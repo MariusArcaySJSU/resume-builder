@@ -1,0 +1,22 @@
+name nameref
+category Package
+revision 80948
+shortdesc Make reference to section names, etc.
+longdesc Defines a \nameref command, that makes reference to an object
+longdesc by its name (e.g., the title of a section or chapter). The
+longdesc package works well with hyperref.
+containersize 3412
+containerchecksum 97d7174b09c07b207704063107fc2282b7b2533f14cf3ffc24db02e1d173084f238eb3b840fff81c952f3ba212913074aebae42dc1bf98c707930dc42a47f91a
+doccontainersize 203388
+doccontainerchecksum 9c311de26938361d3dcf1793693beeba1e3dc9dd98a49d54e1c7090239602acb3b291c11d5f6ca6bf9a346101808f4756029ff451c153f49a8d4b8f2641fd85a
+srccontainersize 7488
+srccontainerchecksum 24cf9876746c91a2f6aee8fff5eca589baaa2ca0775aa45ccb4ca3a4540ad36f2c79f76b6b8d4e3d96ec9d09aa10a98abb1129d640b2505c685714097df25523
+runfiles size=3
+ texmf-dist/tex/latex/nameref/nameref.sty
+catalogue-also titleref
+catalogue-contact-bugs https://github.com/LaTeX-Package-Repositories/nameref/issues
+catalogue-contact-repository https://github.com/LaTeX-Package-Repositories/nameref
+catalogue-ctan /macros/latex/contrib/nameref
+catalogue-license lppl1.3
+catalogue-topics label-ref tagged-pdf
+catalogue-version 2.60

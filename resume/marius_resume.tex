@@ -1,0 +1,234 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\definecolor{linkblue}{RGB}{40,70,135}
+\usepackage[colorlinks=true, urlcolor=linkblue, linkcolor=linkblue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com}{http://sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Marius Arcay} \\ \vspace{1pt}
+    \small 408-607-2800 $|$ \href{mailto:marius@arcay.net}{\underline{marius@arcay.net}} $|$ 
+    \href{https://www.linkedin.com/in/marius-arcay/}{\underline{LinkedIn}} $|$
+    \href{http://marius-arcay.netlify.app/}{\underline{Portfolio Website}} $|$
+    \href{https://github.com/UrGenericName}{\underline{GitHub}} $|$
+    \href{https://www.artstation.com/mariusss}{\underline{Artstation}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{San Jose State University} & \textbf{San Jose, CA} \\
+    \hspace{12pt}\small\textsl{Bachelor of Science in Computer Science} & \small{Spring 2026 -- Spring 2028 (Expected)} \\
+  \end{tabular*}
+
+  \vspace{6pt} % Provides standard spacing between the two universities
+
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{West Valley College} & \textbf{Saratoga, CA} \\
+    \hspace{12pt}\small\textsl{Associate of Science in Physics} & \small{Winter 2026 -- Spring 2028 (Expected)} \\
+    \vspace{-14pt} \\ 
+    \hspace{12pt}\small\textsl{Associate of Science in Mathematics} & \small{Fall 2022 -- Winter 2026} \\
+  \end{tabular*}
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Contract 3D Artist}{Oct 2025 -- Jan 2026}
+      {Valve Corporation}{Remote}
+      \resumeItemListStart
+        \resumeItem{Authored {\textbf{\href{https://www.artstation.com/artwork/1NPwP2}{\underline{Rooftop}}}}, an official Counter-Strike 2 multiplayer map using Valve's proprietary technology, balancing visual fidelity, gameplay, and performance}
+        \resumeItem{Built, profiled and optimized scene geometry, materials, lighting, and assets to meet performance standards expected of an official Counter-Strike 2 map}
+        \resumeItem{Shipped to a global audience of millions of players}
+      \resumeItemListEnd
+      
+% -----------Multiple Positions Heading-----------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+    \resumeSubheading
+      {Retail Tech Consultant}{Jun 2021 -- Present}
+      {Target}{Morgan Hill, CA}
+      \resumeItemListStart
+        \resumeItem{Provided personalized expertise to help guests select, understand, and purchase electronics}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+        %----------------------------------------------------------------------------
+        \resumeProjectHeading
+          {\textbf{\href{https://github.com/UrGenericName/CUDA-Fractal-Renderer}{\underline{CUDA Fractal Renderer}}} \href{https://www.linkedin.com/pulse/cuda-fractal-renderer-marius-arcay-yavkc}{\underline{[Technical Write-up]}} $|$ \emph{C++, CUDA, Multi-threading, Git, Visual Studio}}{}
+          \resumeItemListStart
+            \resumeItem{Built a CUDA fractal renderer achieving a 100$\times$ GPU speedup over single-threaded CPU benchmarks}
+            \resumeItem{Developed a benchmarking system comparing CPU/GPU speeds with dynamic iteration scaling and animation rendering}
+            \resumeItem{Automated build setups to check for CUDA support and drop unneeded dependencies}
+          \resumeItemListEnd
+
+        %----------------------------------------------------------------------------
+        \resumeProjectHeading
+          {\textbf{\href{https://github.com/UrGenericName/OpenGL-Path-Tracer}{\underline{OpenGL Path Tracing Engine}}} \href{https://www.linkedin.com/pulse/opengl-pbr-path-tracing-engine-marius-arcay-qfahc}{\underline{[Technical Write-up]}} $|$ \emph{C++, OpenGL, GLSL, Git, Visual Studio}}{}
+          \resumeItemListStart
+            \resumeItem{Built a GPU path tracer using OpenGL/GLSL with Monte Carlo sampling and Cook-Torrance GGX PBR maps}
+            \resumeItem{Implemented a depth prepass to reduce overdraw alongside texture pooling and bounding-volume intersection tests}
+            \resumeItem{Developed interactive rendering infrastructure featuring a translation gizmo, material editor, and debug modes}
+          \resumeItemListEnd
+              
+      %----------------------------------------------------------------------------
+      \resumeProjectHeading
+          {\textbf{\href{http://github.com/UrGenericName/3Dgraphics}{\underline{3D Graphics Library}}} $|$ \emph{C++, Multi-threading, Visual Studio}}{}
+          \resumeItemListStart
+            \resumeItem{Built a multi-threaded CPU 3D renderer in C++ featuring a model conversion pipeline and scene configuration}
+          \resumeItemListEnd
+
+      %----------------------------------------------------------------------------
+      \resumeProjectHeading
+          {\textbf{\href{https://docs.google.com/document/d/1SZqIfrcqUl6OeupDYiV7Bvgqdqn48WG0b_P6eIfX1HQ/edit?usp=sharing}{\underline{Environment Monitoring Device}}} $|$ \emph{C, MySQL, I2C}}{}
+          \resumeItemListStart
+            \resumeItem{Developed a Raspberry Pi device in C using I2C protocols to collect climate metrics and log data to MySQL}
+          \resumeItemListEnd
+
+      %----------------------------------------------------------------------------
+      \resumeProjectHeading
+          {\textbf{Game Server Infrastructure} $|$ \emph{Python, Linux, OCI}}{}
+          \resumeItemListStart
+            \resumeItem{Hosted Counter-Strike game servers on Oracle Cloud Infrastructure (OCI) Linux virtual machines}
+            \resumeItem{Wrote a Python Discord bot using a game query library to keep track of server status and live player activity}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+
+%%%%%%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: C++, C, GLSL, Python, Java, Assembly (ARM)} \\
+     \textbf{Graphics \& GPU}{: OpenGL, CUDA, PBR, Monte Carlo Rendering} \\
+     \textbf{Systems \& Cloud}{: Linux (CLI/Bash), Oracle Cloud Infrastructure (OCI), Multithreading, I2C, Windows} \\
+     \textbf{Libraries \& Tools}{: OpenCV, Raylib, Git, Visual Studio, VS Code}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}
