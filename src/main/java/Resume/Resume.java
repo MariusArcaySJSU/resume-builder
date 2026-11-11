@@ -1,9 +1,9 @@
 package Resume;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-
 import LatexCompiler.LatexCompiler;
 import Resume.ResumeItems.*;
 
@@ -13,7 +13,7 @@ public class Resume {
     private final String preambleLatex;
 
     public ArrayList<ResumeItem> items = new ArrayList<>();
-    private LatexCompiler latexCompiler = new LatexCompiler();
+    private final LatexCompiler latexCompiler = new LatexCompiler();
 
     public Resume() throws IOException {
         Path filePath = Path.of(preambleFile);

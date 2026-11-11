@@ -19,16 +19,20 @@ public class Experience extends ResumeItem {
         this.endDate = endDate;
     }
 
+    public Experience(String role, String employer, String[] description, String location, LocalDate startDate) {
+        this(role, employer, description, location, startDate, null);
+    }
+
     @Override
     public String toLatex() {
 
-        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate.isAfter(LocalDate.now())) ? "Present" : super.getResumeFormattedDate(endDate));
+        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate.isAfter(LocalDate.now()) || endDate == null) ? "Present" : super.getResumeFormattedDate(endDate));
 
 
         String latex = 
             "\\resumeSubheading\n" + //
-            indentText(1, "{" + role + "}{" + dateRange + "}\n") + //
-            indentText(1, "{" + employer + "}{" + location + "}\n") + //
+            indentText(1, "{" + sanitizeLatex(role) + "}{" + sanitizeLatex(dateRange) + "}\n") + //
+            indentText(1, "{" + sanitizeLatex(employer) + "}{" + sanitizeLatex(location) + "}\n") + //
             indentText(1, "\\resumeItemListStart\n") + //
             indentText(2, descriptionToLatex(description)) + //
             indentText(1, "\\resumeItemListEnd\n");

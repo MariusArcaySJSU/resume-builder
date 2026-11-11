@@ -17,7 +17,7 @@ public class TechnicalSkills extends ResumeItem {
             skillsCombined += skills[i] + ((i == skills.length - 1) ? "" : ", ");
         }
 
-        return "\\textbf{" + category + "}{: " + skillsCombined + "}\\\\\n";
+        return "\\textbf{" + sanitizeLatex(category) + "}{: " + sanitizeLatex(skillsCombined) + "}\\\\\n";
     }
 
 }

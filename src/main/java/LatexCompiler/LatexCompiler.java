@@ -46,7 +46,6 @@ public class LatexCompiler {
             throw new Exception(logOutput);
         }
 
-
         int lastDot = fileName.lastIndexOf(".");
         String nameWithoutExtension = (lastDot == -1) ? fileName : fileName.substring(0, lastDot);
 

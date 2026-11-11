@@ -40,7 +40,7 @@ public class Project extends ResumeItem {
 
         String latex = 
             "\\resumeProjectHeading\r\n" + //
-            indentText(1, "{\\textbf{" + name + "} $|$ \\emph{" + technologiesCombined + "}}{" + (displayDate ? dateRange : "") + "}\n") + //
+            indentText(1, "{\\textbf{" + sanitizeLatex(name) + "} $|$ \\emph{" + sanitizeLatex(technologiesCombined) + "}}{" + (displayDate ? sanitizeLatex(dateRange) : "") + "}\n") + //
             indentText(1, "\\resumeItemListStart\n") + //
             indentText(2, descriptionToLatex(description)) + //;
             indentText(1, "\\resumeItemListEnd\n");

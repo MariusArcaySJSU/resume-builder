@@ -1,18 +1,8 @@
 package Examples;
 
 import java.time.LocalDate;
-
 import Resume.Resume;
-import Resume.ResumeItems.Education;
-import Resume.ResumeItems.EducationGroup;
-import Resume.ResumeItems.Experience;
-import Resume.ResumeItems.ExperienceGroup;
-import Resume.ResumeItems.Header;
-import Resume.ResumeItems.Link;
-import Resume.ResumeItems.Project;
-import Resume.ResumeItems.ProjectGroup;
-import Resume.ResumeItems.TechnicalSkills;
-import Resume.ResumeItems.TechnicalSkillsGroup;
+import Resume.ResumeItems.*;
 
 public class ResumeExample {
 
@@ -139,9 +129,9 @@ public class ResumeExample {
         );
 
         TechnicalSkills languagesItem = new TechnicalSkills("Languages", new String[]{"C++", "C", "GLSL", "Python", "Java", "Assembly (ARM)"});
-        TechnicalSkills graphicsItem = new TechnicalSkills("Graphics and GPU", new String[]{"OpenGL", "CUDA", "PBR", "Monte Carlo Rendering"});
-        TechnicalSkills systemsItem = new TechnicalSkills("Systems and Cloud", new String[]{"Linux (CLI/Bash)", "Oracle Cloud Infrastructure (OCI)", "Multithreading", "I2C", "Windows"});
-        TechnicalSkills librariesItem = new TechnicalSkills("Libraries and Tools", new String[]{"OpenCV", "Raylib", "Git", "Visual Studio", "VS Code"});
+        TechnicalSkills graphicsItem = new TechnicalSkills("Graphics & GPU", new String[]{"OpenGL", "CUDA", "PBR", "Monte Carlo Rendering"});
+        TechnicalSkills systemsItem = new TechnicalSkills("Systems & Cloud", new String[]{"Linux (CLI/Bash)", "Oracle Cloud Infrastructure (OCI)", "Multithreading", "I2C", "Windows"});
+        TechnicalSkills librariesItem = new TechnicalSkills("Libraries & Tools", new String[]{"OpenCV", "Raylib", "Git", "Visual Studio", "VS Code"});
 
         EducationGroup educationGroup = new EducationGroup(new Education[] { sjsuEducation, wvcPhysicsEducation, wvcMathEducation });
         ExperienceGroup experienceGroup = new ExperienceGroup(new Experience[] { valveExperience, targetExperience });

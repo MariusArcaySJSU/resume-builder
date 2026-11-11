@@ -29,8 +29,8 @@ public class Education extends ResumeItem {
 
         String latex =  
             "\\resumeSubheading\n" + //
-            "\t{" + schoolName + "}{" + location + "}\n" + //
-            "\t{" + degreesObtainedList + "}{" + dateRange + "}\n";
+            "\t{" + sanitizeLatex(schoolName) + "}{" + sanitizeLatex(location) + "}\n" + //
+            "\t{" + sanitizeLatex(degreesObtainedList) + "}{" + sanitizeLatex(dateRange) + "}\n";
 
         return latex;
 

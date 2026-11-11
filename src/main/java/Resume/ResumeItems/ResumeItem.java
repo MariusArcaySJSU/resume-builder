@@ -34,10 +34,56 @@ public abstract class ResumeItem {
         String latex = "";
 
         for (String bulletPoint : description) {
-            latex += "\\resumeItem{" + bulletPoint + "}\n";
+            latex += "\\resumeItem{" + sanitizeLatex(bulletPoint) + "}\n";
         }
         
         return latex;
+    }
+
+    // Sanitizes latex escape characters with a blacklash so it doesn't crash latex 
+    protected String sanitizeLatex(String text) {
+
+        StringBuilder sb = new StringBuilder(text.length());
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            switch (c) {
+                case '\\':
+                    sb.append("\\textbackslash{}");
+                    break;
+                case '{':
+                    sb.append("\\{");
+                    break;
+                case '}':
+                    sb.append("\\}");
+                    break;
+                case '$':
+                    sb.append("\\$");
+                    break;
+                case '&':
+                    sb.append("\\&");
+                    break;
+                case '#':
+                    sb.append("\\#");
+                    break;
+                case '^':
+                    sb.append("\\textasciicircum{}");
+                    break;
+                case '_':
+                    sb.append("\\_");
+                    break;
+                case '~':
+                    sb.append("\\textasciitilde{}");
+                    break;
+                case '%':
+                    sb.append("\\%");
+                    break;
+                default:
+                    sb.append(c);
+                    break;
+            }
+        }
+
+        return sb.toString();
     }
 
 }

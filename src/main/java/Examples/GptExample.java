@@ -1,7 +1,6 @@
 package Examples;
 
 import java.util.Scanner;
-
 import ChatGptService.ChatGptService;
 
 public class GptExample {
@@ -15,6 +14,8 @@ public class GptExample {
         String message = scnr.nextLine();
 
         System.out.println("ChatGPT: " + gpt.sendPrompt(message) );
+
+        scnr.close();
 
     }
 
