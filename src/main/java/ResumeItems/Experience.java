@@ -22,17 +22,16 @@ public class Experience extends ResumeItem {
     @Override
     public String toLatex() {
 
-        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate.isAfter(LocalDate.now())) ? "Current" : super.getResumeFormattedDate(endDate));
+        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate.isAfter(LocalDate.now())) ? "Present" : super.getResumeFormattedDate(endDate));
+
 
         String latex = 
-            "   \\resumeSubheading\n" + //
-            "   {" + role + "}{" + dateRange + "}\n" + //
-            "   {" + employer + "}{" + location + "}\n" + //
-            "   \\resumeItemListStart\n" + //
-            "       \\resumeItem{Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems}\n" + //
-            "       \\resumeItem{Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data}\n" + //
-            "       \\resumeItem{Explored ways to visualize GitHub collaboration in a classroom setting}\n" + //
-            "   \\resumeItemListEnd\n";
+            "\\resumeSubheading\n" + //
+            indentText(1, "{" + role + "}{" + dateRange + "}\n") + //
+            indentText(1, "{" + employer + "}{" + location + "}\n") + //
+            indentText(1, "\\resumeItemListStart\n") + //
+            indentText(2, descriptionToLatex(description)) + //
+            indentText(1, "\\resumeItemListEnd\n");
         
         return latex;
     }

@@ -28,7 +28,7 @@ public class Education extends ResumeItem {
         String dateRange = super.getResumeFormattedDate(startDate) + " -- " + super.getResumeFormattedDate(endDate) + ((endDate.isAfter(LocalDate.now())) ? " (Expected)" : "");
 
         String latex =  
-            "resumeSubheading\n" + //
+            "\\resumeSubheading\n" + //
             "\t{" + schoolName + "}{" + location + "}\n" + //
             "\t{" + degreesObtainedList + "}{" + dateRange + "}\n";
 

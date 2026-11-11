@@ -1,10 +1,12 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import ResumeItems.Education;
+import ResumeItems.EducationGroup;
 import ResumeItems.Experience;
-import kotlin.experimental.ExperimentalTypeInference;
-
-import java.time.LocalDate;
+import ResumeItems.ExperienceGroup;
+import ResumeItems.Project;
+import ResumeItems.ProjectGroup;
 
 public class Main {
     
@@ -21,13 +23,27 @@ public class Main {
         Experience experienceItem = new Experience(
             "Tech Consultant", 
             "Target", 
-            new String[] {"test"}, 
+            new String[] {"Provided personalized expertise to help guests select, understand, and purchase electronics"}, 
             "Morgan Hill, CA", 
             LocalDate.of(2021, 5, 1),
             LocalDate.of(9999, 1, 1)
         );
 
-        System.out.println(experienceItem.toLatex());
+        Project projectItem = new Project(
+            "CUDA Fractal Renderer",
+            new String[] {"C++", "CUDA", "Mutli-threading", "Git", "Visual Studio"},
+            new String[] {"Built a CUDA fractal renderer achieving a 100× GPU speedup over single-threaded CPU benchmarks", "Developed a benchmarking system comparing CPU/GPU speeds with dynamic iteration scaling and animation rendering", "Automated build setups to check for CUDA support and drop unneeded dependencies"},
+            LocalDate.of(2021, 5, 1),
+            LocalDate.of(2022, 4, 5)
+        );
+
+        EducationGroup educationGroup = new EducationGroup(new Education[] {educationItem});
+        ExperienceGroup experienceGroup = new ExperienceGroup(new Experience[] {experienceItem});
+        ProjectGroup projectGroup = new ProjectGroup(new Project[] {projectItem});
+
+        System.out.println(educationGroup.toLatex() + "\n");
+        System.out.println(experienceGroup.toLatex() + "\n");
+        System.out.println(projectGroup.toLatex() + "\n");
 
         // latexExample();
 

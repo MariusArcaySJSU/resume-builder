@@ -14,4 +14,29 @@ public abstract class ResumeItem {
 
     }
 
+    protected String indentText(String text) {
+        return text.replaceAll("(?m)^", "\t");
+    }
+
+    protected String indentText(int times, String text) {
+        assert (times > 0);
+        String result = text;
+        
+        for (int i = 0; i < times; ++i) {
+            result = indentText(result);
+        }
+        
+        return result;
+    }
+
+    protected String descriptionToLatex(String[] description) {
+        String latex = "";
+
+        for (String bulletPoint : description) {
+            latex += "\\resumeItem{" + bulletPoint + "}\n";
+        }
+        
+        return latex;
+    }
+
 }
