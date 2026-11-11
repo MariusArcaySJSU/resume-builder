@@ -37,7 +37,7 @@ public class ChatGptService {
             System.out.println("Execution failed:");
             System.out.println(e.getMessage());
 
-            int errorCode = Integer.valueOf(e.getMessage().split(":")[0]);
+            int errorCode = Integer.parseInt(e.getMessage().split(":")[0]);
 
             switch ( errorCode ) {
 
