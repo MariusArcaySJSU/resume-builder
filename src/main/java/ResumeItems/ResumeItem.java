@@ -5,6 +5,7 @@ import java.util.Locale;
 
 public abstract class ResumeItem {
 
+    public static final String indentation = "   ";
     public abstract String toLatex();
 
     protected String getResumeFormattedDate(LocalDate date) {
@@ -15,7 +16,7 @@ public abstract class ResumeItem {
     }
 
     protected String indentText(String text) {
-        return text.replaceAll("(?m)^", "\t");
+        return text.replaceAll("(?m)^", indentation);
     }
 
     protected String indentText(int times, String text) {

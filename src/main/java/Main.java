@@ -7,6 +7,8 @@ import ResumeItems.Experience;
 import ResumeItems.ExperienceGroup;
 import ResumeItems.Project;
 import ResumeItems.ProjectGroup;
+import ResumeItems.TechnicalSkills;
+import ResumeItems.TechnicalSkillsGroup;
 
 public class Main {
     
@@ -37,13 +39,19 @@ public class Main {
             LocalDate.of(2022, 4, 5)
         );
 
+        TechnicalSkills languagesItem = new TechnicalSkills("Languages", new String[]{"C++", "C", "GLSL", "Python", "Java", "Assembly (ARM)"});
+        TechnicalSkills systemsItem = new TechnicalSkills("Systems and Cloud", new String[]{"Linux (CLI/Bash)", "Oracle Cloud Infrastructure (OCI)", "Multithreading", "I2C", "Windows"});
+        TechnicalSkills librariesItem = new TechnicalSkills("Libraries and Tools", new String[]{"OpenCV", "Raylib", "Git", "Visual Studio", "VS Code"});
+
         EducationGroup educationGroup = new EducationGroup(new Education[] {educationItem});
         ExperienceGroup experienceGroup = new ExperienceGroup(new Experience[] {experienceItem});
         ProjectGroup projectGroup = new ProjectGroup(new Project[] {projectItem});
+        TechnicalSkillsGroup technicalSkillsGroup = new TechnicalSkillsGroup(new TechnicalSkills[] {languagesItem, systemsItem, librariesItem});
 
         System.out.println(educationGroup.toLatex() + "\n");
         System.out.println(experienceGroup.toLatex() + "\n");
         System.out.println(projectGroup.toLatex() + "\n");
+        System.out.println(technicalSkillsGroup.toLatex() + "\n");
 
         // latexExample();
 
