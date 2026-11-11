@@ -233,3 +233,6 @@ config
 
 ./xdvi:
 
+
+./fonts/pk/ljfour/jknappen/ec:
+tcrm1000.600pk
