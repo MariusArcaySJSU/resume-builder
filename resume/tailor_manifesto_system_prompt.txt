@@ -1,43 +1,7 @@
-Trim this resume manifesto file based on the targeted job description and limitations below:
+Trim this resume manifesto JSON file based on the targeted job description and limitations below:
 
 Education: Order by relevance, cut out any that are that irrelevent to the job description role.
 Experience: Order by most recent, trim the job descriptions to at most 3 bullet points (3rd entry in experience block), and move keywords from others if needed.  Do NOT change the content or hallucinate skills/keywords, keep it as close to original as possible and ONLY add new keywords IF the context of the text allows for such.  If any job is lacking in relevance, but does not need to be cut, then limit the bullet points as much as possible.
 Projects: Order by relvance, limit the technologies used (2nd entry in project block) to 7 at most.  Again, limit the bullet points to 3 at most, keep them concise, close to the originals, but swap out keywords of context allows.  Again do NOT hallucinate anything that is not present in any of the listed projects.
 TechnicalSkills: based on the targeted job description and information included in the manifesto, clean up the technical skills to include 4 categories at most, with 8 entries at most for each
-Misc: attempt to tailor keywords from the job description when needed, but be conservative and keep close to the original.  The sum of the number of education, experience, and project blocks should not exceed 8 in total.  JUST RETURN THE MANIFESTO, DO NOT ADD ANY ADDITIONAL COMMENTS, YOUR RESPONSE WILL BE PARSED AS IS INTO A GENERATOR!  ABSOLUTELY UNDER NO CIRCUMSTANCES SHALL YOU CHANGE THE FORMATTING OF THIS FILE!
-
-TARGETED JOB DESCRIPTION:
-Who We Are
-
-Aurora’s mission is to deliver the benefits of self-driving technology safely, quickly, and broadly.
-
-The Aurora Driver will create a new era in mobility and logistics, one that will bring a safer, more efficient, and more accessible future to everyone.
-
-At Aurora, you will tackle massively complex problems alongside other passionate, intelligent individuals, growing as an expert while expanding your knowledge. For the latest news from Aurora, visit aurora.tech or follow us on LinkedIn.
-
-What We Are Looking For
-
-We're searching for Summer 2027 Simulation Engineering Interns. You'll work on the simulation systems that let Aurora develop and validate the Driver without driving every mile — sensor simulation (rendering, path tracing, USD scene representation) and/or behavioral simulation (actor and world modeling in closed loop).
-
-In this role you will
-
-Build or extend simulation, rendering, or physics-modeling components used to validate the Aurora Driver
-Work in C++ (with Python for tooling) on performance-sensitive simulation code
-Reason about 3D math and geometry (sensor sim) or vehicle dynamics and behavior modeling (behavioral sim)
-Validate simulation output against measured or ground-truth data rather than relying on visual inspection alone
-Profile and improve performance of simulation pipelines running at scale
-
-Required Qualifications
-
-Currently pursuing a Bachelor's or Master's degree in Computer Science, Computer Graphics, Physics, or a related field
-Has built a simulator, renderer, physics engine, game engine, or robotics simulation not just used an existing one
-Personal or research-project experience with C++
-Depth in at least one relevant specialization (rendering/ray tracing, GPU programming, physically-based materials/optics, lidar/radar/signal processing, vehicle dynamics/controls, motion planning/agent behavior, real-time simulation architecture, 3D content pipelines, or ML for 3D)
-Has verified a simulation or model's correctness systematically, not just by visual inspection
-
-Desirable Qualifications
-
-Prior internship or production-level C++ experience
-Experience with GPU-accelerated raytracing or texturing
-
-RESUME MANIFESTO FILE:
+Misc: attempt to tailor keywords from the job description when needed, but be conservative and keep close to the original.  The sum of the number of education, experience, and project blocks should not exceed 8 in total.  JUST RETURN THE NEW MANIFESTO JSON, DO NOT ADD ANY ADDITIONAL COMMENTS, YOUR RESPONSE WILL BE PARSED AS IS INTO A GENERATOR!  ABSOLUTELY UNDER NO CIRCUMSTANCES SHALL YOU CHANGE THE FORMATTING OF THIS FILE!

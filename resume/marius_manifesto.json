@@ -1,0 +1,132 @@
+{
+  "header": {
+    "name": "Marius Arcay",
+    "phone": "408-607-2800",
+    "email": "marius@arcay.net",
+    "links": [
+      {
+        "url": "https://linkedin.com",
+        "label": "LinkedIn"
+      },
+      {
+        "url": "https://netlify.app",
+        "label": "Portfolio Website"
+      },
+      {
+        "url": "https://linkedin.com",
+        "label": "GitHub"
+      },
+      {
+        "url": "https://artstation.com",
+        "label": "ArtStation"
+      }
+    ]
+  },
+  "education": [
+    {
+      "institution": "San Jose State University",
+      "degrees": ["Bachelor of Science in Computer Science"],
+      "location": "San Jose, CA",
+      "start_date": "2026-01-01",
+      "end_date": "2028-05-01"
+    },
+    {
+      "institution": "West Valley College",
+      "degrees": ["Associate of Science in Physics"],
+      "location": "Saratoga, CA",
+      "start_date": "2026-01-01",
+      "end_date": "2028-05-01"
+    },
+    {
+      "institution": "West Valley College",
+      "degrees": ["Associate of Science in Mathematics"],
+      "location": "Saratoga, CA",
+      "start_date": "2022-08-01",
+      "end_date": "2026-01-01"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Contract 3D Artist",
+      "employer": "Valve Corporation",
+      "description": [
+        "Authored Rooftop, an official Counter-Strike 2 multiplayer map using Valve’s proprietary technology, balancing visual fidelity, gameplay, and performance",
+        "Built, profiled and optimized scene geometry, materials, lighting, and assets to meet performance standards expected of an official Counter-Strike 2 map",
+        "Shipped to a global audience of millions of players"
+      ],
+      "location": "Remote",
+      "start_date": "2025-10-01",
+      "end_date": "2026-01-01"
+    },
+    {
+      "role": "Retail Tech Consultant",
+      "employer": "Target",
+      "description": [
+        "Provided personalized expertise to help guests select, understand, and purchase electronics"
+      ],
+      "location": "Morgan Hill, CA",
+      "start_date": "2021-06-01",
+      "end_date": null
+    }
+  ],
+  "projects": [
+    {
+      "title": "CUDA Fractal Renderer",
+      "technologies": [
+        "C++",
+        "CUDA",
+        "Multi-threading",
+        "Git",
+        "Visual Studio"
+      ],
+      "description": [
+        "Built a CUDA fractal renderer achieving a 100× GPU speedup over single-threaded CPU benchmarks",
+        "Developed a benchmarking system comparing CPU/GPU speeds with dynamic iteration scaling and animation rendering",
+        "Automated build setups to check for CUDA support and drop unneeded dependencies"
+      ],
+      "start_date": null,
+      "end_date": null,
+      "display_date": true
+    },
+    {
+      "title": "OpenGL Path Tracing Engine",
+      "technologies": [
+        "C++",
+        "OpenGL",
+        "GLSL",
+        "Git",
+        "Visual Studio"
+      ],
+      "description": [
+        "Built a GPU path tracer using OpenGL/GLSL with Monte Carlo sampling and Cook-Torrance GGX PBR maps",
+        "Implemented a depth prepass to reduce overdraw alongside texture pooling and bounding-volume intersection tests",
+        "Developed interactive rendering infrastructure featuring a translation gizmo, material editor, and debug modes"
+      ],
+      "start_date": "2025-01-01",
+      "end_date": "2025-06-01",
+      "display_date": false
+    }
+  ],
+  "technical_skills": [
+    {
+      "category": "Languages",
+      "skills": [
+        "C++",
+        "C",
+        "GLSL",
+        "Python",
+        "Java",
+        "Assembly (ARM)"
+      ]
+    },
+    {
+      "category": "Graphics & CPU",
+      "skills": [
+        "OpenGL",
+        "CUDA",
+        "PBR",
+        "Monte Carlo Rendering"
+      ]
+    }
+  ]
+}

@@ -3,14 +3,14 @@ import java.time.LocalDate;
 
 public class Education extends ResumeItem {
     
-    public String schoolName;
+    public String institution;
     public String[] degrees;
     public String location;
     public LocalDate startDate;
     public LocalDate endDate;
 
-    public Education(String schoolName, String[] degrees, String location, LocalDate startDate, LocalDate endDate) {
-        this.schoolName = schoolName;
+    public Education(String institution, String[] degrees, String location, LocalDate startDate, LocalDate endDate) {
+        this.institution = institution;
         this.degrees = degrees;
         this.location = location;
         this.startDate = startDate;
@@ -29,7 +29,7 @@ public class Education extends ResumeItem {
 
         String latex =  
             "\\resumeSubheading\n" + //
-            "\t{" + sanitizeLatex(schoolName) + "}{" + sanitizeLatex(location) + "}\n" + //
+            "\t{" + sanitizeLatex(institution) + "}{" + sanitizeLatex(location) + "}\n" + //
             "\t{" + sanitizeLatex(degreesObtainedList) + "}{" + sanitizeLatex(dateRange) + "}\n";
 
         return latex;

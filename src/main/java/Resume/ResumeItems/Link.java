@@ -1,16 +1,16 @@
 package Resume.ResumeItems;
 public class Link {
     
-    public String anchorText;
-    public String destination;
+    public String url;
+    public String label;
 
-    public Link(String destination) {
-        this.anchorText = destination;
-        this.destination = destination;
+    public Link(String url) {
+        this.url = url;
+        this.label = url;
     }
 
-    public Link(String destination, String anchorText) {
-        this.anchorText = anchorText;
-        this.destination = destination;
+    public Link(String url, String label) {
+        this.url = url;
+        this.label = label;
     }
 }

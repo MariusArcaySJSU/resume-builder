@@ -26,7 +26,7 @@ public class Experience extends ResumeItem {
     @Override
     public String toLatex() {
 
-        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate.isAfter(LocalDate.now()) || endDate == null) ? "Present" : super.getResumeFormattedDate(endDate));
+        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate == null || endDate.isAfter(LocalDate.now())) ? "Present" : super.getResumeFormattedDate(endDate));
 
 
         String latex = 

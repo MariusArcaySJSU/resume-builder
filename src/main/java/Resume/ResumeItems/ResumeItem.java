@@ -10,6 +10,8 @@ public abstract class ResumeItem {
 
     protected String getResumeFormattedDate(LocalDate date) {
 
+        if (date == null) return "null";
+
         String formattedMonth = date.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH).substring(0, 3) + ".";
         return formattedMonth + " " + date.getYear();
 

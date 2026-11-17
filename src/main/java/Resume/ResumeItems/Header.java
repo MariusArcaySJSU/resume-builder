@@ -19,7 +19,7 @@ public class Header extends ResumeItem {
 
         String linksLatex = "";
         for (Link link : links) {
-            linksLatex += "$|$ \\href{" + sanitizeLatex(link.destination) + "}{\\underline{" + sanitizeLatex(link.anchorText) + "}} \n";
+            linksLatex += "$|$ \\href{" + sanitizeLatex(link.url) + "}{\\underline{" + sanitizeLatex(link.label) + "}} \n";
         }
 
         String latex = 

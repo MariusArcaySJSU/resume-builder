@@ -3,35 +3,35 @@ import java.time.LocalDate;
 
 public class Project extends ResumeItem {
     
-    public String name;
+    public String title;
     public String[] technologies;
     public String[] description;
     public LocalDate startDate;
     public LocalDate endDate;
     public boolean displayDate = true;
 
-    public Project(String name, String[] technologies, String[] description, LocalDate startDate, LocalDate endDate) {
-        this.name = name;
+    public Project(String title, String[] technologies, String[] description, LocalDate startDate, LocalDate endDate) {
+        this.title = title;
         this.technologies = technologies;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Project(String name, String[] technologies, String[] description, LocalDate startDate, LocalDate endDate, boolean displayDate) {
-        this(name, technologies, description, startDate, endDate);
+    public Project(String title, String[] technologies, String[] description, LocalDate startDate, LocalDate endDate, boolean displayDate) {
+        this(title, technologies, description, startDate, endDate);
         this.displayDate = displayDate;
     }
 
-    public Project(String name, String[] technologies, String[] description) {
-        this(name, technologies, description, null, null);
+    public Project(String title, String[] technologies, String[] description) {
+        this(title, technologies, description, null, null);
         this.displayDate = false;
     }
 
     @Override
     public String toLatex() {
 
-        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate.isAfter(LocalDate.now())) ? "Present" : super.getResumeFormattedDate(endDate));
+        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + (endDate == null || (endDate.isAfter(LocalDate.now())) ? "Present" : super.getResumeFormattedDate(endDate));
         
         String technologiesCombined = "";
         for (int i = 0; i < technologies.length; ++i) {
@@ -40,7 +40,7 @@ public class Project extends ResumeItem {
 
         String latex = 
             "\\resumeProjectHeading\r\n" + //
-            indentText(1, "{\\textbf{" + sanitizeLatex(name) + "} $|$ \\emph{" + sanitizeLatex(technologiesCombined) + "}}{" + (displayDate ? sanitizeLatex(dateRange) : "") + "}\n") + //
+            indentText(1, "{\\textbf{" + sanitizeLatex(title) + "} $|$ \\emph{" + sanitizeLatex(technologiesCombined) + "}}{" + (displayDate ? sanitizeLatex(dateRange) : "") + "}\n") + //
             indentText(1, "\\resumeItemListStart\n") + //
             indentText(2, descriptionToLatex(description)) + //;
             indentText(1, "\\resumeItemListEnd\n");
