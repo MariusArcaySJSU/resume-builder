@@ -15,7 +15,7 @@ import Resume.ResumeItems.TechnicalSkillsGroup;
 
 public class Resume {
 
-    private final String preambleFile = "resume/resouces/jakes_resume_preamble.tex";
+    private final String preambleFile = "resume/resources/jakes_resume_preamble.tex";
     private final String preambleLatex;
 
     public ArrayList<ResumeItem> items = new ArrayList<>();
