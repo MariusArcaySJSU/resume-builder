@@ -16,19 +16,23 @@ public class Manifesto {
     private final Path manifestoPath;
 
     private final ChatGptService gpt = new ChatGptService();
-    private final String tailorManifesto_SystemPromptFile = "resume/tailor_manifesto_system_prompt.txt";
+    private final String tailorManifesto_SystemPromptFile = "resume/resources/tailor_manifesto_system_prompt.txt";
 
     public Manifesto(String fileName) {
         manifestoPath = Path.of(manifestoFolder + fileName);
     }
 
-    public Resume generateFromJobDescription(String jobDescription) throws Exception {
+    public Resume generateResume() throws Exception {
+        assert (manifestoPath != null);
+        String JSON = Files.readString(manifestoPath);
+        return resumeParser.generateResume(JSON);
+
+    }
+
+    public Resume generateResumeFromJobDescription(String jobDescription) throws Exception {
 
         assert (manifestoPath != null);
-
-        //String tailoredJSON = tailorManifesto(jobDescription);
-        String tailoredJSON = Files.readString(manifestoPath);
-        
+        String tailoredJSON = tailorManifesto(jobDescription);        
         return resumeParser.generateResume(tailoredJSON);
 
     }

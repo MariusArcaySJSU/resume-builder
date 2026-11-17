@@ -25,21 +25,27 @@
   "education": [
     {
       "institution": "San Jose State University",
-      "degrees": ["Bachelor of Science in Computer Science"],
+      "degrees": [
+        "Bachelor of Science in Computer Science"
+      ],
       "location": "San Jose, CA",
       "start_date": "2026-01-01",
       "end_date": "2028-05-01"
     },
     {
       "institution": "West Valley College",
-      "degrees": ["Associate of Science in Physics"],
+      "degrees": [
+        "Associate of Science in Physics"
+      ],
       "location": "Saratoga, CA",
       "start_date": "2026-01-01",
       "end_date": "2028-05-01"
     },
     {
       "institution": "West Valley College",
-      "degrees": ["Associate of Science in Mathematics"],
+      "degrees": [
+        "Associate of Science in Mathematics"
+      ],
       "location": "Saratoga, CA",
       "start_date": "2022-08-01",
       "end_date": "2026-01-01"
@@ -102,9 +108,52 @@
         "Implemented a depth prepass to reduce overdraw alongside texture pooling and bounding-volume intersection tests",
         "Developed interactive rendering infrastructure featuring a translation gizmo, material editor, and debug modes"
       ],
-      "start_date": "2025-01-01",
-      "end_date": "2025-06-01",
-      "display_date": false
+      "start_date": null,
+      "end_date": null,
+      "display_date": true
+    },
+    {
+      "title": "3D Graphics Library",
+      "technologies": [
+        "C++",
+        "Multi-threading",
+        "Visual Studio"
+      ],
+      "description": [
+        "Built a multi-threaded CPU 3D renderer in C++ featuring a model conversion pipeline and scene configuration"
+      ],
+      "start_date": null,
+      "end_date": null,
+      "display_date": true
+    },
+    {
+      "title": "Environment Monitoring Device",
+      "technologies": [
+        "C",
+        "MySQL",
+        "I2C"
+      ],
+      "description": [
+        "Developed a Raspberry Pi device in C using I2C protocols to collect climate metrics and log data to MySQL"
+      ],
+      "start_date": null,
+      "end_date": null,
+      "display_date": true
+    },
+    {
+      "title": "Game Server Infrastructure",
+      "technologies": [
+        "Python",
+        "Linux",
+        "OCI"
+      ],
+      "description": [
+        "Hosted Counter-Strike game servers on Oracle Cloud Infrastructure (OCI) Linux virtual machines",
+        "Wrote a Python Discord bot using a game query library to keep track of server status and live player activity"
+      ],
+      "start_date": null,
+      "end_date": null,
+      "display_date": true
     }
   ],
   "technical_skills": [
@@ -120,12 +169,32 @@
       ]
     },
     {
-      "category": "Graphics & CPU",
+      "category": "Graphics & GPU",
       "skills": [
         "OpenGL",
         "CUDA",
         "PBR",
         "Monte Carlo Rendering"
+      ]
+    },
+    {
+      "category": "Systems & Cloud",
+      "skills": [
+        "Linux (CLI/Bash)",
+        "Oracle Cloud Infrastructure (OCI)",
+        "Multithreading",
+        "I2C",
+        "Windows"
+      ]
+    },
+    {
+      "category": "Libraries & Tools",
+      "skills": [
+        "OpenCV",
+        "Raylib",
+        "Git",
+        "Visual Studio",
+        "VS Code"
       ]
     }
   ]

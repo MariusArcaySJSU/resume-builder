@@ -50,7 +50,7 @@ public class ResumeParser {
             links.add(label.equals("") ? new Link(url) : new Link(url, label));
         }
 
-        return new Header(name, phone, email, links.toArray(new Link[links.size()]));
+        return new Header(name, phone, email, links.toArray(Link[]::new));
 
     }
 
@@ -71,7 +71,7 @@ public class ResumeParser {
             educationList.add(new Education(institution, degrees, location, stringToDate(startDate), stringToDate(endDate)));
         }
 
-        EducationGroup educationGroup = new EducationGroup( educationList.toArray(new Education[educationList.size()]) );
+        EducationGroup educationGroup = new EducationGroup( educationList.toArray(Education[]::new) );
         return educationGroup;
 
     }
@@ -94,7 +94,7 @@ public class ResumeParser {
             experienceList.add(new Experience(role, employer, description, location, stringToDate(startDate), stringToDate(endDate)));
         }
 
-        ExperienceGroup experienceGroup = new ExperienceGroup( experienceList.toArray(new Experience[experienceList.size()]) );
+        ExperienceGroup experienceGroup = new ExperienceGroup( experienceList.toArray(Experience[]::new) );
         return experienceGroup;
 
     }
@@ -117,7 +117,7 @@ public class ResumeParser {
             projectList.add(new Project(title, technologies, description, stringToDate(startDate), stringToDate(endDate), displayDate));
         }
 
-        ProjectGroup projectGroup = new ProjectGroup( projectList.toArray(new Project[projectList.size()]) );
+        ProjectGroup projectGroup = new ProjectGroup( projectList.toArray(Project[]::new) );
         return projectGroup;
 
     }
@@ -125,7 +125,7 @@ public class ResumeParser {
     private TechnicalSkillsGroup generateTechnicalSkillsGroupFromJSON(String JSON) throws Exception {
 
         JsonNode technicalSkillsNode = mapper.readTree(JSON).path("technical_skills");
-        ArrayList<TechnicalSkills> technicalSkillsList = new ArrayList<TechnicalSkills>();
+        ArrayList<TechnicalSkills> technicalSkillsList = new ArrayList<>();
 
         for (JsonNode technicalSkill : technicalSkillsNode) {
             String category = technicalSkill.path("category").asText();
@@ -134,7 +134,7 @@ public class ResumeParser {
             technicalSkillsList.add(new TechnicalSkills(category, skills));
         }
 
-        TechnicalSkillsGroup technicalSkillsGroup = new TechnicalSkillsGroup(technicalSkillsList.toArray(new TechnicalSkills[technicalSkillsList.size()]));
+        TechnicalSkillsGroup technicalSkillsGroup = new TechnicalSkillsGroup(technicalSkillsList.toArray(TechnicalSkills[]::new));
         return technicalSkillsGroup;
 
     }
@@ -147,7 +147,7 @@ public class ResumeParser {
             list.add(element.asText());
         }
 
-        return list.toArray(new String[list.size()]);
+        return list.toArray(String[]::new);
     }
 
     private LocalDate stringToDate(String date) {

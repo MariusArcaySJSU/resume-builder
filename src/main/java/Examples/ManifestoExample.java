@@ -7,11 +7,9 @@ public class ManifestoExample {
     
     public static void manifestoExample() throws Exception {
 
-        Manifesto m = new Manifesto("marius_manifesto.json");
+        Manifesto manifesto = new Manifesto("marius_manifesto.json");
+        Resume resume = manifesto.generateResume();
+        resume.export("resume");
 
-        Resume r = m.generateFromJobDescription("");
-        r.export("resume");
-
-        // m.generateFromJobDescription(jobDescription);
     }
 }

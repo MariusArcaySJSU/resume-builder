@@ -10,6 +10,7 @@ public class TechnicalSkills extends ResumeItem {
         this.skills = skills;
     }
 
+    @Override
     public String toLatex() {
 
         String skillsCombined = "";

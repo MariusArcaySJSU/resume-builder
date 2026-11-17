@@ -4,12 +4,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+
 import LatexCompiler.LatexCompiler;
-import Resume.ResumeItems.*;
+import Resume.ResumeItems.EducationGroup;
+import Resume.ResumeItems.ExperienceGroup;
+import Resume.ResumeItems.Header;
+import Resume.ResumeItems.ProjectGroup;
+import Resume.ResumeItems.ResumeItem;
+import Resume.ResumeItems.TechnicalSkillsGroup;
 
 public class Resume {
 
-    private final String preambleFile = "resume/jakes_resume_preamble.tex";
+    private final String preambleFile = "resume/resouces/jakes_resume_preamble.tex";
     private final String preambleLatex;
 
     public ArrayList<ResumeItem> items = new ArrayList<>();
