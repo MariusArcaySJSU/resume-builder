@@ -1,0 +1,137 @@
+Header
+{
+    "Marius Arcay",
+    "408-607-2800",
+    "marius@arcay.net",
+    {
+        {
+            "https://linkedin.com", "LinkedIn"
+        },
+        {
+            "https://netlify.app", "Portfolio Website"
+        },
+        {
+            "https://linkedin.com", "GitHub"
+        },
+        {
+            "https://artstation.com"
+        }
+    }
+},
+
+Education 
+{
+    "San Jose State University",
+    "Bachelor of Science in Computer Science",
+    "San Jose, CA",
+    "2026, 1, 1",
+    "2028, 5, 1"
+},
+
+Education 
+{
+    "West Valley College",
+    "Associate of Science in Physics",
+    "Saratoga, CA",
+    "2026, 1, 1",
+    "2028, 5, 1"
+},
+
+Education 
+{
+    "West Valley College",
+    "Associate of Science in Mathematics",
+    "Saratoga, CA",
+    "2022, 8, 1",
+    "2026, 1, 1"
+},
+
+Experience
+{
+    "Contract 3D Artist",
+    "Valve Corporation",
+    {
+        "Authored Rooftop, an official Counter-Strike 2 multiplayer map using Valve’s proprietary technology, balancing visual fidelity, gameplay, and performance",
+        "Built, profiled and optimized scene geometry, materials, lighting, and assets to meet performance standards expected of an official Counter-Strike 2 map",
+        "Shipped to a global audience of millions of players"
+    },
+    "Remote",
+    "2025, 10, 1",
+    "2026, 1, 1"
+},
+
+Experience
+{
+    "Retail Tech Consultant",
+    "Target",
+    {
+        "Provided personalized expertise to help guests select, understand, and purchase electronics"
+    },
+    "Morgan Hill, CA",
+    "2021, 6, 1",
+    "9999, 1, 1"
+},
+
+Project
+{
+    "CUDA Fractal Renderer",
+    {
+        "C++", 
+        "CUDA", 
+        "Multi-threading", 
+        "Git", 
+        "Visual Studio"
+    },
+    {
+        "Built a CUDA fractal renderer achieving a 100× GPU speedup over single-threaded CPU benchmarks",
+        "Developed a benchmarking system comparing CPU/GPU speeds with dynamic iteration scaling and animation rendering",
+        "Automated build setups to check for CUDA support and drop unneeded dependencies"
+    },
+    null,
+    null,
+    true
+},
+
+Project
+{
+    "OpenGL Path Tracing Engine",
+    {
+        "C++", 
+        "OpenGL", 
+        "GLSL", 
+        "Git", 
+        "Visual Studio"
+    },
+    {
+        "Built a GPU path tracer using OpenGL/GLSL with Monte Carlo sampling and Cook-Torrance GGX PBR maps",
+        "Implemented a depth prepass to reduce overdraw alongside texture pooling and bounding-volume intersection tests",
+        "Developed interactive rendering infrastructure featuring a translation gizmo, material editor, and debug modes"
+    },
+    "2025, 1, 1",
+    "2025, 6, 1",
+    false
+},
+
+TechnicalSkills
+{
+    "Languages",
+    {
+        "C++", 
+        "C", 
+        "GLSL", 
+        "Python", 
+        "Java", 
+        "Assembly (ARM)"
+    }
+},
+
+TechnicalSkills
+{
+    "Graphics & CPU",
+    {
+        "OpenGL", 
+        "CUDA", 
+        "PBR", 
+        "Monte Carlo Rendering"
+    }
+}

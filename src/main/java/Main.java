@@ -1,10 +1,11 @@
-import Examples.ResumeExample;
+import Examples.ManifestoExample;
 
 public class Main {
     
     public static void main(String args[]) throws Exception {
 
-        ResumeExample.resumeExample();
+        ManifestoExample.manifestoExample();
+        // ResumeExample.resumeExample();
         // GptExample.gptExample();
         // LatexExample.latexExample();
 
