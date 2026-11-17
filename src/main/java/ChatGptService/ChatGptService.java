@@ -11,7 +11,7 @@ public class ChatGptService {
 
     final private OpenAIClient client;
     final private String model = "gpt-4o-mini";
-    final private int maxTokensPerMessage = 1000;
+    final private int maxTokensPerMessage = 3000;
     final private Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     public ChatGptService() {

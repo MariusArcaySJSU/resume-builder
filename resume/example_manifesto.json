@@ -1,0 +1,260 @@
+{
+  "header": {
+    "name": "Elena Rostova",
+    "phone": "512-555-0194",
+    "email": "elena.rostova@utexas-example.edu",
+    "links": [
+      { "url": "https://linkedin.com", "label": "LinkedIn" },
+      { "url": "https://github.com", "label": "GitHub" },
+      { "url": "https://elenarostova.dev", "label": "Portfolio Website" },
+      { "url": "https://google.com", "label": "Google Scholar" }
+    ]
+  },
+  "education": [
+    {
+      "institution": "The University of Texas at Austin",
+      "degrees": [
+        "Bachelor of Science in Computer Science",
+        "Minor in Electrical and Computer Engineering"
+      ],
+      "location": "Austin, TX",
+      "start_date": "2023-08-20",
+      "end_date": "2027-05-15"
+    },
+    {
+      "institution": "Austin Community College",
+      "degrees": [
+        "Dual-Credit Coursework in Multivariable Calculus & Linear Algebra"
+      ],
+      "location": "Austin, TX",
+      "start_date": "2022-06-01",
+      "end_date": "2023-05-10"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Software Engineering Intern – Embedded Systems & Telemetry",
+      "employer": "Rivian Automotive",
+      "description": [
+        "Architected a zero-copy CAN-bus telemetry serialization pipeline in C++20 for vehicle zonal controllers, reducing packet processing latency by 38% across 14 electronic control units",
+        "Implemented deterministic ring-buffer logging firmware on ARM Cortex-M7 microcontrollers using FreeRTOS, ensuring zero data loss during simulated power-brownout fault injections",
+        "Developed an automated hardware-in-the-loop (HIL) regression testing suite in Python and pytest that executed 450+ edge-case fault scenarios nightly on physical test benches",
+        "Diagnosed and resolved a critical priority-inversion deadlock in the thermal management task scheduler using Tracealyzer and JTAG debugging probes",
+        "Authored custom Wireshark Lua dissectors for proprietary Ethernet-based diagnostic protocols, cutting firmware debugging time for a 15-engineer team by roughly 4 hours per week",
+        "Collaborated with systems safety engineers to document ISO 26262 ASIL-B compliance traceability matrices and static analysis MISRA-C++ rule suppressions"
+      ],
+      "location": "Palo Alto, CA",
+      "start_date": "2026-05-18",
+      "end_date": "2026-08-14"
+    },
+    {
+      "role": "Undergraduate Systems & Networking Research Assistant",
+      "employer": "UT Austin Laboratory for Advanced Systems Research",
+      "description": [
+        "Designed and benchmarked a custom eBPF/XDP packet-filtering module in C to mitigate volumetric UDP flood attacks at line rate on 25GbE network interface cards",
+        "Conducted micro-architectural cache-miss profiling using Linux perf and Intel VTune, optimizing hash-table memory alignment to improve L1 data cache hit rates from 81% to 96%",
+        "Built reproducible cloud testbeds across 12 CloudLab bare-metal nodes using Ansible and Terraform to evaluate tail-latency distributions under synthetic Poisson traffic",
+        "Co-authored a workshop paper analyzing kernel-bypass networking trade-offs between DPDK and io_uring, generating all matplotlib performance figures and statistical confidence intervals",
+        "Maintained internal lab documentation, automated kernel compilation scripts, and mentored three incoming freshman researchers on Linux kernel module debugging",
+        "Presented weekly experimental findings to faculty advisors and graduate students, refining experimental methodology based on peer critique"
+      ],
+      "location": "Austin, TX",
+      "start_date": "2025-01-15",
+      "end_date": "2026-05-01"
+    },
+    {
+      "role": "Head Undergraduate Teaching Assistant – Operating Systems (CS 439)",
+      "employer": "UT Austin Department of Computer Science",
+      "description": [
+        "Led weekly discussion sections for 45+ students covering virtual memory paging, preemptive thread scheduling, synchronization primitives, and ext2 file system internals",
+        "Redesigned the automated grading harness for the Pintos kernel project using Docker containers and QEMU, reducing grading turnaround time from 6 hours to 22 minutes",
+        "Held 8 hours of weekly office hours debugging complex student kernel panics, page faults, and race conditions using GDB and Valgrind",
+        "Authored comprehensive study guides and memory-layout diagrams explaining x86-64 stack frames, system call traps, and copy-on-write fork semantics",
+        "Coordinated a team of 12 teaching assistants to standardize rubric criteria across 320 enrolled students and manage exam proctoring logistics",
+        "Created new stress-test cases for the user-program argument passing and filesystem concurrency milestones to catch subtle buffer-overflow bugs"
+      ],
+      "location": "Austin, TX",
+      "start_date": "2024-08-25",
+      "end_date": "2025-12-18"
+    },
+    {
+      "role": "IT Infrastructure & AV Support Technician",
+      "employer": "UT Austin College of Natural Sciences",
+      "description": [
+        "Provisioned, imaged, and maintained 180+ Ubuntu Linux and Windows 11 workstations across four undergraduate computer science instructional labs",
+        "Automated Active Directory user account lifecycle management and workstation health checks using PowerShell and Bash scripts, saving 6 hours of manual weekly labor",
+        "Diagnosed hardware failures including faulty DIMMs, degraded NVMe drives, and network switch port misconfigurations with an average ticket resolution time under 2 hours",
+        "Configured PXE network boot servers and Clonezilla multicast imaging workflows to re-image entire 40-seat classrooms between semesters in under 45 minutes",
+        "Provided live classroom audio-visual troubleshooting for faculty lectures, resolving HDMI matrix switcher, wireless microphone, and lecture-capture issues",
+        "Maintained an accurate asset-tracking inventory database of over 600 peripherals, loaner laptops, and lab servers"
+      ],
+      "location": "Austin, TX",
+      "start_date": "2023-09-05",
+      "end_date": "2024-08-10"
+    }
+  ],
+  "projects": [
+    {
+      "title": "ChronosKV: Distributed Raft Key-Value Storage Engine",
+      "technologies": ["Go", "gRPC", "Protobuf", "Raft Consensus", "BoltDB", "Docker", "Jepsen"],
+      "description": [
+        "Engineered a fault-tolerant, linearizable distributed key-value store from scratch in Go implementing the Raft consensus algorithm for leader election and log replication",
+        "Implemented log compaction via asynchronous snapshotting and chunked InstallSnapshot RPCs to prevent unbounded write-ahead log growth on disk",
+        "Built a custom LSM-tree storage backend with Bloom filters, write-ahead logging, and background SSTable compaction supporting 42,000+ writes per second",
+        "Added dynamic cluster membership changes (joint consensus) allowing nodes to join or leave a live 5-node cluster without service interruption",
+        "Validated strict serializability and partition tolerance using a custom Jepsen-style fault-injection harness simulating asymmetric network partitions, packet drops, and clock skew",
+        "Exposed Prometheus metrics endpoints and built a Grafana dashboard visualizing commit latency, election terms, and replication lag"
+      ],
+      "start_date": "2026-01-10",
+      "end_date": "2026-04-28",
+      "display_date": true
+    },
+    {
+      "title": "RISC-V Out-of-Order Superscalar CPU Simulator & FPGA Core",
+      "technologies": ["SystemVerilog", "Verilator", "C++", "RISC-V Assembly", "Vivado", "GTKWave"],
+      "description": [
+        "Designed a 2-way superscalar, out-of-order RV32IM processor core in SystemVerilog featuring Tomasulo's algorithm, a 32-entry Reorder Buffer (ROB), and explicit register renaming",
+        "Implemented a tournament branch predictor combining a 2-bit saturating bimodal table with a global Gshare history predictor, achieving 93.4% accuracy on CoreMark benchmarks",
+        "Built a non-blocking, 2-way set-associative L1 data cache with Miss Status Holding Registers (MSHRs) and a write-back victim buffer",
+        "Verified cycle-accurate correctness against the Spike RISC-V ISA simulator using a co-simulation testbench written in C++ and Verilator",
+        "Synthesized and deployed the core onto a Xilinx Artix-7 FPGA at 85 MHz, running bare-metal Conway's Game of Life over UART serial output",
+        "Authored a custom Python assembler and ELF binary loader to convert bare-metal C programs into synthesizable Verilog memory initialization files"
+      ],
+      "start_date": "2025-09-01",
+      "end_date": "2025-12-12",
+      "display_date": true
+    },
+    {
+      "title": "MiniCC: Optimizing C-Subset Compiler targeting x86-64 & ARM64",
+      "technologies": ["Rust", "LLVM IR", "x86-64 Assembly", "ARM64 Assembly", "CMake"],
+      "description": [
+        "Built a complete ahead-of-time compiler in Rust for a typed subset of C supporting pointers, structs, multidimensional arrays, function pointers, and variadic calls",
+        "Hand-wrote a zero-dependency recursive-descent Pratt parser with detailed span-based error recovery and ANSI-colored diagnostic reporting",
+        "Constructed a Static Single Assignment (SSA) intermediate representation with dominance frontier calculation and phi-node insertion",
+        "Implemented classic compiler optimization passes including constant folding, dead-code elimination, loop-invariant code motion, and function inlining",
+        "Developed a graph-coloring register allocator using Chaitin-Briggs coalescing and spill-cost heuristics to minimize stack frame memory traffic"
+      ],
+      "start_date": "2023-03-01",
+      "end_date": "2023-04-12",
+      "display_date": true
+    },
+    {
+      "title": "SynapseLite: Bare-Metal Neural Network Inference Engine",
+      "technologies": ["C99", "ARM NEON Intrinsics", "Python", "NumPy", "ONNX"],
+      "description": [
+        "Wrote a zero-dependency C99 inference runtime for executing quantized INT8 Convolutional Neural Networks on resource-constrained microcontrollers",
+        "Vectorized 2D convolution (im2col + GEMM) and depthwise separable convolution kernels using ARM NEON SIMD intrinsics for a 4.6x speedup",
+        "Built a Python model-export script converting PyTorch and ONNX weights into flat, 16-byte aligned C header arrays with static arena memory planning",
+        "Implemented post-training static quantization calibration using KL-divergence minimization to preserve 98.7% of FP32 classification accuracy on CIFAR-10",
+        "Verified numerical parity layer-by-layer against PyTorch reference activations within a tolerance of 1 quantization step",
+        "Demonstrated live keyword spotting on an STM32H7 board consuming only 148 KB of SRAM"
+      ],
+      "start_date": "2024-06-01",
+      "end_date": "2024-08-15",
+      "display_date": true
+    },
+    {
+      "title": "StudySync: Real-Time Collaborative Markdown & LaTeX Editor",
+      "technologies": ["TypeScript", "React", "Node.js", "WebSockets", "CRDTs", "PostgreSQL", "Redis"],
+      "description": [
+        "Built a full-stack collaborative note-taking web application supporting conflict-free simultaneous editing and live KaTeX math rendering",
+        "Implemented a sequence Conflict-Free Replicated Data Type (CRDT) using fractional indexing and vector clocks to merge offline edits cleanly upon reconnection",
+        "Engineered a WebSocket synchronization server in Node.js with Redis Pub/Sub horizontal scaling to broadcast cursor positions and document deltas",
+        "Designed a PostgreSQL persistence schema with periodic document snapshotting and full version-history diff viewing",
+        "Added client-side IndexedDB caching so students could continue editing lecture notes seamlessly during campus Wi-Fi dropouts",
+        "Implemented role-based access control (owner, editor, viewer) with shareable invite tokens and PDF export via headless Chromium"
+      ],
+      "start_date": "2024-02-10",
+      "end_date": "2024-05-01",
+      "display_date": true
+    },
+    {
+      "title": "CHIP-8 & Game Boy (DMG) Cycle-Stepped Emulator",
+      "technologies": ["C++20", "SDL2", "ImGui", "CMake", "Git"],
+      "description": [
+        "Developed an accurate Sharp LR35902 CPU and Game Boy hardware emulator in C++20 capable of booting commercial ROMs and passing Blargg's CPU instruction tests",
+        "Implemented a scanline-based Picture Processing Unit (PPU) supporting background scrolling, window layers, 8x16 sprites, and priority bitmasks",
+        "Emulated MBC1 and MBC3 memory bank controllers with battery-backed external RAM save file persistence",
+        "Integrated Dear ImGui debugging windows displaying live VRAM tile maps, CPU register states, instruction disassembly, and memory hex dumps",
+        "Built a 4-channel Audio Processing Unit (APU) synthesizer outputting 44.1 kHz stereo pulse, wave, and noise channels through SDL2 audio callbacks",
+        "Added configurable frame-rate unlocking, save-state serialization, and deterministic input replay recording"
+      ],
+      "start_date": "2023-11-01",
+      "end_date": "2024-01-20",
+      "display_date": true
+    },
+    {
+      "title": "SmartPower: ESP32 Home Energy & Appliance Disaggregator",
+      "technologies": ["C++", "ESP-IDF", "MQTT", "InfluxDB", "Grafana", "Python", "scikit-learn"],
+      "description": [
+        "Built a non-intrusive load monitoring sensor node using an ESP32 microcontroller and split-core current transformers sampling mains current at 4 kHz",
+        "Computed true RMS current, apparent power, and power factor in real time using FreeRTOS dual-core tasks and transmitted JSON payloads over TLS-encrypted MQTT",
+        "Trained a Random Forest classifier in Python using transient inrush current features to identify when specific appliances (HVAC, refrigerator, microwave) turned on",
+        "Deployed an InfluxDB time-series database and Grafana dashboard on a Raspberry Pi 4 to track daily kilowatt-hour consumption and estimated utility costs",
+        "Designed a custom 3D-printed DIN-rail enclosure in Fusion 360 with isolated voltage-divider sensing circuitry",
+        "Configured automated Telegram webhook alerts triggered by abnormal sustained current draws or compressor short-cycling"
+      ],
+      "start_date": "2023-06-15",
+      "end_date": "2023-08-25",
+      "display_date": true
+    },
+    {
+      "title": "GitViz: CLI Repository Dependency & Churn Analyzer",
+      "technologies": ["Python", "GitPython", "NetworkX", "Graphviz", "Rich"],
+      "description": [
+        "Created a command-line developer utility that parses local Git commit histories to identify tightly coupled files and high-churn technical debt hotspots",
+        "Constructed co-change co-occurrence graphs using NetworkX to detect architectural boundaries and hidden cross-module dependencies",
+        "Generated color-coded Graphviz dependency diagrams and Rich terminal tables ranking files by cyclomatic complexity vs. commit frequency",
+        "Added author bus-factor analysis highlighting critical directories maintained solely by a single contributor",
+        "Published the package to PyPI with automated GitHub Actions unit tests and a configuration file parser for ignoring vendored directories"
+      ],
+      "start_date": "2023-03-01",
+      "end_date": "2023-04-12",
+      "display_date": true
+    },
+    {
+      "title": "Dotfiles & Automated Linux Workstation Bootstrapper",
+      "technologies": ["Bash", "Lua", "Neovim", "Tmux", "Git", "Ansible"],
+      "description": [
+        "Maintained a modular, idempotent Bash and Ansible bootstrap script capable of configuring a fresh Ubuntu or Arch Linux machine in under 8 minutes",
+        "Engineered a custom Lua-based Neovim configuration featuring Tree-sitter syntax parsing, native LSP integration, Telescope fuzzy finding, and DAP debugging",
+        "Wrote custom Tmux sessionizer scripts and Zsh prompt integrations displaying active Git branches, Python virtual environments, and SSH host context",
+        "Implemented symlink management using GNU Stow with OS-specific conditional overrides for Linux and macOS environments",
+        "Added automated backup routines for GPG keys, SSH configurations, and package manifests"
+      ],
+      "start_date": "2022-09-01",
+      "end_date": null,
+      "display_date": true
+    }
+  ],
+  "technical_skills": [
+    {
+      "category": "Systems & Low-Level Languages",
+      "skills": ["C (C99/C11)", "C++ (C++17/C++20)", "Rust", "Go", "SystemVerilog", "RISC-V Assembly", "x86-64 Assembly", "ARM64 Assembly"]
+    },
+    {
+      "category": "Scripting & Web Languages",
+      "skills": ["Python", "TypeScript", "JavaScript (ES2023)", "Bash / Zsh", "SQL", "Lua", "PowerShell"]
+    },
+    {
+      "category": "Operating Systems & Kernel",
+      "skills": ["Linux Kernel Internals", "eBPF / XDP", "FreeRTOS", "POSIX Threads", "io_uring", "QEMU", "Virtual Memory & Paging", "Device Drivers"]
+    },
+    {
+      "category": "Embedded & Hardware",
+      "skills": ["ARM Cortex-M / STM32", "ESP32 (ESP-IDF)", "NVIDIA Jetson", "CAN-bus", "SPI / I2C / UART", "FPGA Synthesis (Vivado)", "Verilator", "JTAG / Logic Analyzers"]
+    },
+    {
+      "category": "Distributed Systems & Cloud",
+      "skills": ["gRPC & Protobuf", "Raft Consensus", "Docker", "Kubernetes", "Terraform", "Ansible", "AWS (EC2, S3)", "CloudLab"]
+    },
+    {
+      "category": "Databases & Observability",
+      "skills": ["PostgreSQL", "Redis", "SQLite", "InfluxDB", "BoltDB", "Prometheus", "Grafana", "Wireshark"]
+    },
+    {
+      "category": "Performance, Debugging & Build Tools",
+      "skills": ["GDB", "Valgrind", "AddressSanitizer / ThreadSanitizer", "Linux perf", "Intel VTune", "CMake", "Make", "Git"]
+    }
+  ]
+}
