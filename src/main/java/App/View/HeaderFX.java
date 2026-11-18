@@ -1,5 +1,9 @@
 package App.View;
 
+import java.util.ArrayList;
+
+import App.Model.Resume.ResumeItems.Link;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -31,13 +35,11 @@ public class HeaderFX extends VBox {
 
         Label linkLabel = new Label("Links:");
         links = new VBox(5);
-        addLink();
 
         Button addLink = new Button("Add link");
         addLink.setOnAction(event -> {
             addLink();
         });
-
 
         this.getChildren().addAll(
                 nameLabel, nameField,
@@ -51,6 +53,8 @@ public class HeaderFX extends VBox {
 
         LinkFX link = new LinkFX();
         Button removeButton = new Button("Remove");
+        removeButton.setFocusTraversable(false);
+
         HBox fullLink = new HBox(10, link, removeButton);
 
         links.getChildren().add(
@@ -74,4 +78,23 @@ public class HeaderFX extends VBox {
         return emailField.getText();
     }
     
+    public ArrayList<Link> getLinks() {
+
+        ArrayList<Link> result = new ArrayList<>();
+
+        for (Node node : links.getChildren()) {
+            HBox linkBox = (HBox) node;
+            LinkFX linkFX = (LinkFX) linkBox.getChildren().get(0);
+            
+            if (linkFX.getLabel().isEmpty()) {
+                result.add(new Link(linkFX.getUrl()));
+            } else {
+                result.add(new Link(linkFX.getUrl(), linkFX.getLabel()));
+            }
+        }
+
+        return result;
+
+    }
+
 }
