@@ -16,6 +16,12 @@
     </properties>
 
     <dependencies>
+        <!-- Core UI controls (Buttons, Labels, Layouts, etc.) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>26</version>
+        </dependency>
         <!-- JSON reader -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

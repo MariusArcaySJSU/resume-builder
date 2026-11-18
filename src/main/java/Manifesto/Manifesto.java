@@ -41,9 +41,6 @@ public class Manifesto {
         
         String manifestoJSON = Files.readString(manifestoPath);
         String result = gpt.sendPrompt(getSystemPrompt(tailorManifesto_SystemPromptFile) + "\nTARGETED JOB DESCRIPTION:\n" + jobDescription + "\nRESUME MANIFESTO:\n" + manifestoJSON);
-        
-        System.out.println(result);
-
         return result;
     }
 
