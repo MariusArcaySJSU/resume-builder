@@ -58,6 +58,19 @@ public class EducationFX extends VBox {
         );
     }
 
+    public EducationFX(Education education) {
+        this();
+        institutionField.setText(education.institution);
+        
+        for (String degree : education.degrees) {
+            addDegree(degree);
+        }
+
+        locationField.setText(education.location);
+        startDatePicker.setValue(education.startDate);
+        endDatePicker.setValue(education.endDate);
+    }
+
     public Education getEducation() {
 
         String[] degrees = getDegrees().toArray(String[]::new);
@@ -96,18 +109,22 @@ public class EducationFX extends VBox {
     }
 
     private void addDegree() {
+        addDegree("");
+    }
 
-        TextField degree = new TextField();
-        degree.setPrefWidth(500);
+    private void addDegree(String degree) {
+
+        TextField degreeField = new TextField(degree);
+        degreeField.setPrefWidth(500);
 
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
 
         HBox fullDegreeList;
         if (degrees.getChildren().isEmpty()) {
-            fullDegreeList = new HBox(10, degree);
+            fullDegreeList = new HBox(10, degreeField);
         } else {
-            fullDegreeList = new HBox(10, degree, removeButton);
+            fullDegreeList = new HBox(10, degreeField, removeButton);
         }
 
         degrees.getChildren().add(

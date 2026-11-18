@@ -1,4 +1,5 @@
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\AppFX.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Controller\Controller.java
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Launcher.java
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Model\ChatGptService\ChatGptService.java
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Model\Examples\GptExample.java
@@ -21,5 +22,12 @@ C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Model\Resum
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Model\Resume\ResumeItems\TechnicalSkills.java
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Model\Resume\ResumeItems\TechnicalSkillsGroup.java
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\Model\Resume\ResumeParser.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\EducationFX.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\ExperienceFX.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\GenerateTabFX.java
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\HeaderFX.java
 C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\LinkFX.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\ManifestoTabFX.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\ProjectFX.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\SkillFX.java
+C:\Users\yourg\Documents\SJSU\CS151\resume-builder\src\main\java\App\View\TechnicalSkillsFX.java

@@ -7,6 +7,17 @@ public abstract class ResumeItemGroup extends ResumeItem {
     public ResumeItem[] items;
     
     @Override
+    public boolean isValid() {
+
+        for (ResumeItem item : items) {
+            if (!item.isValid()) return false;
+        }
+
+        return true;
+
+    }
+
+    @Override
     public String toLatex() {
 
         String itemsAppendedLatex = "";
@@ -38,6 +49,26 @@ public abstract class ResumeItemGroup extends ResumeItem {
 
         return latex;
         
+    }
+
+    @Override
+    public String toJSON() {
+
+        String itemsAppendedJSON = "";
+        for (ResumeItem item : items) {
+            itemsAppendedJSON += item.toJSON() + ",\n";
+        }
+
+        if (!itemsAppendedJSON.isBlank()) {
+            itemsAppendedJSON = itemsAppendedJSON.substring(0, itemsAppendedJSON.length() - 2) + "\n";
+        }
+        
+        String JSON = 
+                "\"" + groupName.toLowerCase().replace(" ", "_") + "\": [\n" + //
+                indentText(1, itemsAppendedJSON) + "\n" + //
+                "]";
+        
+        return JSON;
     }
 
 }

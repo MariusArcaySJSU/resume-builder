@@ -1,0 +1,54 @@
+{
+    "header": {
+        "name": "Marius Arcay",
+        "phone": "",
+        "email": "",
+        "links": [
+        ]
+    },
+    "education": [
+        {
+            "institution": "",
+            "degrees": [
+                ""
+            ],
+            "location": "",
+            "startDate": "Present",
+            "endDate": "Present"
+        }
+    
+    ],
+    "experience": [
+        {
+            "role": "",
+            "employer": "",
+            "description": [
+                ""
+            ],
+            "location": "",
+            "startDate": "Present",
+            "endDate": "Present"
+        }
+    
+    ],
+    "project": [
+        {
+            "title": "",
+            "technologies": [""],
+            "description": [
+                ""
+            ],
+            "startDate": "Present",
+            "endDate": "Present",
+            "displayDate": "true"
+        }
+    
+    ],
+    "technical_skills": [
+        {
+            "category": "",
+            "skills": [""]
+        }
+    
+    ]
+}

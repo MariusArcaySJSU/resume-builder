@@ -15,6 +15,11 @@ public class Header extends ResumeItem {
     }
 
     @Override
+    public boolean isValid() {
+        return !name.isBlank() && !phone.isBlank() && !email.isBlank();
+    }
+
+    @Override
     public String toLatex() {
 
         String linksLatex = "";
@@ -30,6 +35,28 @@ public class Header extends ResumeItem {
             "\\end{center}";
 
         return latex;
+
+    }
+
+    @Override
+    public String toJSON() {
+
+        String linksJSON = "\"links\": [\n";
+        for (Link link : links) {
+            linksJSON += indentText(1, "{ \"url\": \"" + sanitizeJSON(link.url) + "\", \"label\": \"" + sanitizeJSON(link.label) + "\" },\n");
+        }
+        if (links.length != 0) linksJSON = linksJSON.substring(0, linksJSON.length() - 2) + "\n";
+        linksJSON += "]\n";
+
+        String JSON =
+            "\"header\": {\n" + //
+            indentText(1, "\"name\": \"" + sanitizeJSON(name) + "\",\n") + //
+            indentText(1, "\"phone\": \"" + sanitizeJSON(phone) + "\",\n") + //
+            indentText(1, "\"email\": \"" + sanitizeJSON(email) + "\",\n") + //
+            indentText(1, linksJSON) + //
+            "}";
+
+        return JSON;
 
     }
 

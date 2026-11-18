@@ -24,9 +24,14 @@ public class Experience extends ResumeItem {
     }
 
     @Override
+    public boolean isValid() {
+        return !role.isBlank() && !employer.isBlank() && description.length > 0 && !location.isBlank() && startDate != null;
+    }
+
+    @Override
     public String toLatex() {
 
-        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + ((endDate == null || endDate.isAfter(LocalDate.now())) ? "Present" : super.getResumeFormattedDate(endDate));
+        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + super.getResumeFormattedDate(endDate);
 
 
         String latex = 
@@ -38,6 +43,29 @@ public class Experience extends ResumeItem {
             indentText(1, "\\resumeItemListEnd\n");
         
         return latex;
+    }
+
+    @Override
+    public String toJSON() {
+
+        String descriptionJSON = "\"description\": [\n";
+        for (String bulletPoint : description) {
+            descriptionJSON += indentText(1, "\"" + sanitizeJSON(bulletPoint) + "\",\n");
+        }
+        if (description.length != 0) descriptionJSON = descriptionJSON.substring(0, descriptionJSON.length() - 2) + "\n";
+        descriptionJSON += "],\n";
+
+        String JSON =
+            "{\n" + //
+            indentText(1, "\"role\": \"" + sanitizeJSON(role) + "\",\n") + //
+            indentText(1, "\"employer\": \"" + sanitizeJSON(employer) + "\",\n") + //
+            indentText(1, descriptionJSON) + //
+            indentText(1, "\"location\": \"" + sanitizeJSON(location) + "\",\n") + //
+            indentText(1, "\"startDate\": \"" + sanitizeJSON(getResumeFormattedDate(startDate)) + "\",\n") + //
+            indentText(1, "\"endDate\": \"" + sanitizeJSON(getResumeFormattedDate(endDate)) + "\"\n") + //
+            "}";
+
+        return JSON;
     }
 
 }

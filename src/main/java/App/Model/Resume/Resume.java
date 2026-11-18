@@ -15,13 +15,13 @@ import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 
 public class Resume {
 
+    public ArrayList<ResumeItem> items = new ArrayList<>();    
+
+    private final String canidateFullName;
+    private final LatexCompiler latexCompiler = new LatexCompiler();
     private final String preambleFile = "resume/resources/jakes_resume_preamble.tex";
     private final String preambleLatex;
-
-    public ArrayList<ResumeItem> items = new ArrayList<>();
-    private final LatexCompiler latexCompiler = new LatexCompiler();
     
-    private final String canidateFullName;
 
     public Resume(
         Header header, 
@@ -40,10 +40,10 @@ public class Resume {
         items.add(projects);
         items.add(technicalSkills);
 
-        canidateFullName = header.name;
+        canidateFullName = header.name.isBlank() ? "untitled" : header.name;
     }
 
-    public String export() throws Exception {
+    public String compile() throws Exception {
 
         String bodyLatex = "";
 
@@ -52,12 +52,14 @@ public class Resume {
         }
 
         String latex = preambleLatex + "\n\\begin{document}" + bodyLatex + "\\end{document}";
+    
+        latexCompiler.generateLatexFile(getSanitizedCanidateName(), latex);
+        return latexCompiler.compile(getSanitizedCanidateName());
 
-        String sanitizeName = canidateFullName.replace(" ", "_").toLowerCase().trim();
+    }
 
-        latexCompiler.generateLatexFile(sanitizeName + ".tex", latex);
-        return latexCompiler.compile(sanitizeName + ".tex");
-
+    public String getSanitizedCanidateName() {
+        return canidateFullName.replace(" ", "_").toLowerCase().trim();
     }
 
 }

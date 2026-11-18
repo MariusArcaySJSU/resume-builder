@@ -18,14 +18,19 @@ public class Education extends ResumeItem {
     }
 
     @Override
+    public boolean isValid() {
+        return !institution.isBlank() && degrees.length > 0 && !location.isBlank() && startDate != null && endDate != null;
+    }
+
+    @Override
     public String toLatex() {
 
         String degreesObtainedList = "";
         for (int i = 0; i < degrees.length; ++i) {
             degreesObtainedList += degrees[i] + ((i == degrees.length - 1) ? "" : ", ");
         }
-    
-        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + super.getResumeFormattedDate(endDate) + ((endDate.isAfter(LocalDate.now())) ? " (Expected)" : "");
+        
+        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + super.getResumeFormattedDate(endDate);
 
         String latex =  
             "\\resumeSubheading\n" + //
@@ -33,6 +38,29 @@ public class Education extends ResumeItem {
             "\t{" + sanitizeLatex(degreesObtainedList) + "}{" + sanitizeLatex(dateRange) + "}\n";
 
         return latex;
+
+    }
+
+    @Override
+    public String toJSON() {
+
+        String degreesJSON = "\"degrees\": [\n";
+        for (String degree : degrees) {
+            degreesJSON += indentText(1, "\"" + sanitizeJSON(degree) + "\",\n");
+        }
+        if (degrees.length != 0) degreesJSON = degreesJSON.substring(0, degreesJSON.length() - 2) + "\n";
+        degreesJSON += "],\n";
+
+        String JSON =
+            "{\n" + //
+            indentText(1, "\"institution\": \"" + sanitizeJSON(institution) + "\",\n") + //
+            indentText(1, degreesJSON) + //
+            indentText(1, "\"location\": \"" + sanitizeJSON(location) + "\",\n") + //
+            indentText(1, "\"startDate\": \"" + sanitizeJSON(getResumeFormattedDate(startDate)) + "\",\n") + //
+            indentText(1, "\"endDate\": \"" + sanitizeJSON(getResumeFormattedDate(endDate)) + "\"\n") + //
+            "}";
+
+        return JSON;
 
     }
 

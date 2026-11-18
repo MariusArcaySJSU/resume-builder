@@ -11,6 +11,11 @@ public class TechnicalSkills extends ResumeItem {
     }
 
     @Override
+    public boolean isValid() {
+        return !category.isBlank() && skills.length > 0;
+    }
+
+    @Override
     public String toLatex() {
 
         String skillsCombined = "";
@@ -19,6 +24,25 @@ public class TechnicalSkills extends ResumeItem {
         }
 
         return "\\textbf{" + sanitizeLatex(category) + "}{: " + sanitizeLatex(skillsCombined) + "}\\\\\n";
+    }
+
+    @Override
+    public String toJSON() {
+
+        String skillsJSON = "\"skills\": [";
+        for (String skill : skills) {
+            skillsJSON += "\"" + sanitizeJSON(skill) + "\", ";
+        }
+        if (skills.length != 0) skillsJSON = skillsJSON.substring(0, skillsJSON.length() - 2);
+        skillsJSON += "]\n";
+
+        String JSON = 
+                "{\n" + //
+                indentText(1, "\"category\": \"" + sanitizeJSON(category) + "\",\n") + //
+                indentText(1, skillsJSON) + //
+                "}";
+
+        return JSON;
     }
 
 }

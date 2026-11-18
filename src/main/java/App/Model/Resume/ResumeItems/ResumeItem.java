@@ -6,22 +6,24 @@ import java.util.Locale;
 public abstract class ResumeItem {
 
     public static final String INDENTATION = "    ";
+    public abstract boolean isValid();
     public abstract String toLatex();
+    public abstract String toJSON();
 
     protected String getResumeFormattedDate(LocalDate date) {
 
-        if (date == null) return "null";
+        if (date == null) return "Present";
 
         String formattedMonth = date.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH).substring(0, 3) + ".";
-        return formattedMonth + " " + date.getYear();
+        return formattedMonth + " " + date.getYear() + (date.isAfter(LocalDate.now()) ? " (Expected)" : "");
 
     }
 
-    protected String indentText(String text) {
+    public static String indentText(String text) {
         return text.replaceAll("(?m)^", INDENTATION);
     }
 
-    protected String indentText(int times, String text) {
+    public static String indentText(int times, String text) {
         assert (times > 0);
         String result = text;
         
@@ -32,7 +34,7 @@ public abstract class ResumeItem {
         return result;
     }
 
-    protected String descriptionToLatex(String[] description) {
+    protected static String descriptionToLatex(String[] description) {
         String latex = "";
 
         for (String bulletPoint : description) {
@@ -43,7 +45,26 @@ public abstract class ResumeItem {
     }
 
     // Sanitizes latex escape characters with a blacklash so it doesn't crash latex 
-    protected String sanitizeLatex(String text) {
+    protected static String sanitizeJSON(String text) {
+
+        StringBuilder sb = new StringBuilder(text.length());
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            switch (c) {
+                case '"':
+                    sb.append("\\\"");
+                    break;
+                default:
+                    sb.append(c);
+                    break;
+            }
+        }
+
+        return sb.toString();
+    }
+
+    // Sanitizes latex escape characters with a blacklash so it doesn't crash latex 
+    protected static String sanitizeLatex(String text) {
 
         StringBuilder sb = new StringBuilder(text.length());
         for (int i = 0; i < text.length(); i++) {

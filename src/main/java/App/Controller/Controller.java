@@ -5,18 +5,19 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Path;
 
-import App.Model.Resume.Resume;
+import App.Model.Manifesto.Manifesto;
 
 public class Controller {
     
-    public void generateResume(Resume resume, String jobDescription, Boolean openWhenDone) {
+    public void generateResume(Manifesto manifesto, String jobDescription, Boolean openWhenDone) {
 
         String pdfOutput;
 
         try {
-            pdfOutput = resume.export();
+            pdfOutput = manifesto.generateResume().compile();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error compiling resume: " + e.getMessage() + ".pdf");
+            e.printStackTrace();
             return;
         }
 

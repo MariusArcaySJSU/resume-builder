@@ -1,5 +1,6 @@
 package App.View;
 
+import App.Model.Resume.ResumeItems.Link;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -23,6 +24,12 @@ public class LinkFX extends HBox {
         HBox fieldsRow = new HBox(10, labelField, urlField);
 
         this.getChildren().addAll(fieldsRow);
+    }
+
+    public LinkFX(Link link) {
+        this();
+        urlField.setText(link.url);
+        labelField.setText(link.label);
     }
 
     public String getUrl() {

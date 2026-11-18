@@ -50,6 +50,18 @@ public class HeaderFX extends VBox {
         );
     }
 
+    public HeaderFX(Header header) {
+        this();
+        nameField.setText(header.name);
+        phoneField.setText(header.phone);
+        emailField.setText(header.email);
+
+        Link[] links = header.links;
+        for (Link l : links) {
+            addLink(l);
+        }
+    }
+
     public Header getHeader() {
 
         Link[] links = getLinks().toArray(Link[]::new);
@@ -89,12 +101,16 @@ public class HeaderFX extends VBox {
     }
 
     private void addLink() {
+       addLink(new Link("", ""));
+    }
 
-        LinkFX link = new LinkFX();
+    private void addLink(Link link) {
+
+        LinkFX linkFX = new LinkFX(link);
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
 
-        HBox fullLink = new HBox(10, link, removeButton);
+        HBox fullLink = new HBox(10, linkFX, removeButton);
 
         links.getChildren().add(
             fullLink
@@ -104,6 +120,5 @@ public class HeaderFX extends VBox {
             links.getChildren().remove(fullLink);
         });
     }
-
 
 }

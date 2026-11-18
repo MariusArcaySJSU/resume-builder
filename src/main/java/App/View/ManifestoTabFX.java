@@ -2,6 +2,7 @@ package App.View;
 
 import java.util.ArrayList;
 
+import App.Model.Manifesto.Manifesto;
 import App.Model.Resume.Resume;
 import App.Model.Resume.ResumeItems.Education;
 import App.Model.Resume.ResumeItems.EducationGroup;
@@ -26,9 +27,15 @@ public class ManifestoTabFX extends VBox {
     private TitledPane projectSection;
     private TitledPane technicalSkillsSection;
 
+    private HeaderFX headerFX;
     private VBox educationList;
     private VBox experienceList;
     private VBox projectList;
+    private TechnicalSkillsFX technicalSkillsFX;
+
+    public ManifestoTabFX(Resume resume) {
+
+    }
 
     public ManifestoTabFX() {
 
@@ -51,7 +58,7 @@ public class ManifestoTabFX extends VBox {
 
     }
 
-    public Resume getResume() {
+    public Manifesto generateManifesto() throws Exception {
 
         HeaderFX headerFX = (HeaderFX) (headerSection.getContent());
 
@@ -89,24 +96,19 @@ public class ManifestoTabFX extends VBox {
         ProjectGroup projectGroup = new ProjectGroup(projectModelArray);
         TechnicalSkillsGroup technicalSkillsGroup = ((TechnicalSkillsFX) technicalSkillsSection.getContent()).getTechnicalSkillsGroup();
 
-        Resume resume = null;
-        try {
-            resume = new Resume(header, educationGroup, experienceGroup, projectGroup, technicalSkillsGroup);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return resume;
-        }
+        Resume resume = new Resume(header, educationGroup, experienceGroup, projectGroup, technicalSkillsGroup);            
+        Manifesto manifesto = new Manifesto(resume);
 
-        return resume;
+        return manifesto;
 
     }
 
     private void createHeaderSection() {
 
-        VBox header = new HeaderFX();
-        header.setPadding(new Insets(15));
+        headerFX = new HeaderFX();
+        headerFX.setPadding(new Insets(15));
 
-        headerSection = new TitledPane("Personal Information", header);
+        headerSection = new TitledPane("Personal Information", headerFX);
         headerSection.setCollapsible(true);
 
     }
@@ -120,7 +122,7 @@ public class ManifestoTabFX extends VBox {
         addEducation.setOnAction(event -> {
             addEducation();
         });
-
+        
         educationSection = new TitledPane("Education", new VBox(educationList, addEducation));
         educationSection.setCollapsible(true);
 
@@ -162,10 +164,10 @@ public class ManifestoTabFX extends VBox {
 
     private void createTechnicalSkillsSection() {
 
-        TechnicalSkillsFX skill = new TechnicalSkillsFX();
-        skill.setPadding(new Insets(15));
+        technicalSkillsFX = new TechnicalSkillsFX();
+        technicalSkillsFX.setPadding(new Insets(15));
 
-        technicalSkillsSection = new TitledPane("Technical Skills", skill);
+        technicalSkillsSection = new TitledPane("Technical Skills", technicalSkillsFX);
         technicalSkillsSection.setCollapsible(true);
     }
 

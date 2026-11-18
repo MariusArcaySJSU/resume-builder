@@ -1,8 +1,6 @@
 package App;
 
 import App.Controller.Controller;
-import App.Model.Manifesto.Manifesto;
-import App.Model.Resume.Resume;
 import App.View.GenerateTabFX;
 import App.View.ManifestoTabFX;
 import javafx.application.Application;
@@ -23,16 +21,22 @@ public class AppFX extends Application {
     public AppFX() {
         manifestoTab = new ManifestoTabFX();
         generateTab = new GenerateTabFX();
-
         controller = new Controller();
 
-        generateTab.setOnGenerate(
-            event -> controller.generateResume(
-                manifestoTab.getResume(), 
-                generateTab.getJobDescription(), 
-                generateTab.getOpenWhenDone()
-            )
+        generateTab.setOnGenerate( event -> {
+                try {
+                    controller.generateResume(
+                        manifestoTab.generateManifesto(), 
+                        generateTab.getJobDescription(), 
+                        generateTab.getOpenWhenDone()
+                    ); 
+                } catch (Exception e) {
+                    System.out.println("Error generating manifesto:" + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
         );
+
     }
 
     @Override
@@ -63,22 +67,5 @@ public class AppFX extends Application {
 
         tabPane.getTabs().add(tab);
     }
-
-    private void generateResume() {
-
-        String jobDescription = generateTab.getJobDescription();
-
-        try {
-            Manifesto manifesto = new Manifesto("example_manifesto.json");
-            Resume resume = manifesto.generateResumeFromJobDescription(jobDescription);
-            resume.export();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-        
-    }
-
-
 
 }

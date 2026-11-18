@@ -24,6 +24,7 @@ public class ManifestoExample {
         Resume resume = manifesto.generateResume();
         //Resume resume = manifesto.generateResumeFromJobDescription(jobDescription);
         //resume.export();
+        //System.out.println(resume.generate());
 
     }
 }

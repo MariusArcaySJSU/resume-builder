@@ -6,23 +6,56 @@ import java.nio.file.Path;
 
 import App.Model.ChatGptService.ChatGptService;
 import App.Model.Resume.Resume;
+import App.Model.Resume.ResumeItems.ResumeItem;
 import App.Model.Resume.ResumeParser;
 
 public class Manifesto {
     
-    private final ResumeParser resumeParser = new ResumeParser();
-
-    private final String manifestoFolder = "resume/";
     private final Path manifestoPath;
 
-    private final ChatGptService gpt = new ChatGptService();
-    private final String tailorManifesto_SystemPromptFile = "resume/resources/tailor_manifesto_system_prompt.txt";
+    private static final ResumeParser resumeParser = new ResumeParser();
 
+    private static final ChatGptService gpt = new ChatGptService();
+    private static final String manifestoFolder = "resume/";
+    private static final String tailorManifesto_SystemPromptFile = "resume/resources/tailor_manifesto_system_prompt.txt";
+    
     public Manifesto(String fileName) {
-        manifestoPath = Path.of(manifestoFolder + fileName);
+        manifestoPath = Path.of(manifestoFolder + fileName + ".json");
     }
 
+    public Manifesto(Resume resume) throws IOException {
+
+        String bodyJSON = "";
+        for (ResumeItem item : resume.items) {
+            bodyJSON += item.toJSON() + ",\n";
+        }
+
+        if (!bodyJSON.isBlank()) {
+            bodyJSON = bodyJSON.substring(0, bodyJSON.length() - 2) + "\n";
+        }
+
+        String JSON = 
+                "{\n" + //
+                ResumeItem.indentText(1, bodyJSON) + //
+        "}";
+
+        generateManifestoFile(resume.getSanitizedCanidateName(), JSON);
+        manifestoPath = Path.of(manifestoFolder + resume.getSanitizedCanidateName() + ".json");
+
+    }
+
+    public static String generateManifestoFile(String canidateFullName, String JSON) throws IOException {
+
+        Path manifestoFile = Path.of(manifestoFolder + canidateFullName + ".json");
+        Files.writeString(manifestoFile, JSON);
+        System.out.println("Succesfully generated manifesto File: " + manifestoFile.toString().replace("\\", "/"));
+
+        return manifestoFile.toString().replace("\\", "/");
+
+    }
+    
     public Resume generateResume() throws Exception {
+
         assert (manifestoPath != null);
         String JSON = Files.readString(manifestoPath);
         return resumeParser.generateResume(JSON);
