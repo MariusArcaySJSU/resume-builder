@@ -44,7 +44,7 @@ public class AppFX extends Application {
         createTab(tabPane, manifestoTab, "Manifesto");
         createTab(tabPane, generateTab, "Generate");
 
-        Scene scene = new Scene(tabPane, 400, 300);
+        Scene scene = new Scene(tabPane, 700, 700);
 
         stage.setTitle("Resume Builder");
         stage.setScene(scene);
