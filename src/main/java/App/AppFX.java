@@ -15,7 +15,7 @@ public class AppFX extends Application {
 
     @Override
     public void start(Stage stage) {
-        
+
         createHeaderSection();
 
         VBox root = new VBox(20);

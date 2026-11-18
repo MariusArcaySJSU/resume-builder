@@ -1,0 +1,39 @@
+package App.Model.Resume.ResumeItems;
+import java.time.LocalDate;
+
+public class Education extends ResumeItem {
+    
+    public String institution;
+    public String[] degrees;
+    public String location;
+    public LocalDate startDate;
+    public LocalDate endDate;
+
+    public Education(String institution, String[] degrees, String location, LocalDate startDate, LocalDate endDate) {
+        this.institution = institution;
+        this.degrees = degrees;
+        this.location = location;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    @Override
+    public String toLatex() {
+
+        String degreesObtainedList = "";
+        for (int i = 0; i < degrees.length; ++i) {
+            degreesObtainedList += degrees[i] + ((i == degrees.length - 1) ? "" : ", ");
+        }
+    
+        String dateRange = super.getResumeFormattedDate(startDate) + " -- " + super.getResumeFormattedDate(endDate) + ((endDate.isAfter(LocalDate.now())) ? " (Expected)" : "");
+
+        String latex =  
+            "\\resumeSubheading\n" + //
+            "\t{" + sanitizeLatex(institution) + "}{" + sanitizeLatex(location) + "}\n" + //
+            "\t{" + sanitizeLatex(degreesObtainedList) + "}{" + sanitizeLatex(dateRange) + "}\n";
+
+        return latex;
+
+    }
+
+}
