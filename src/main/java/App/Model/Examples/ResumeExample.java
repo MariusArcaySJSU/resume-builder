@@ -150,7 +150,7 @@ public class ResumeExample {
 
 
         Resume resume = new Resume(headerItem, educationGroup, experienceGroup, projectGroup, technicalSkillsGroup);
-        resume.export("resume");
+        resume.export();
 
     }
 

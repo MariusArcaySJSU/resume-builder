@@ -38,7 +38,7 @@ public class ManifestoTabFX extends VBox {
         );
 
     }
-    
+
     private void createHeaderSection() {
 
         VBox header = new HeaderFX();

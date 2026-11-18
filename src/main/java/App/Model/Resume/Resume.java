@@ -20,11 +20,8 @@ public class Resume {
 
     public ArrayList<ResumeItem> items = new ArrayList<>();
     private final LatexCompiler latexCompiler = new LatexCompiler();
-
-    public Resume() throws IOException {
-        Path filePath = Path.of(preambleFile);
-        preambleLatex = Files.readString(filePath);
-    }
+    
+    private final String canidateFullName;
 
     public Resume(
         Header header, 
@@ -33,15 +30,20 @@ public class Resume {
         ProjectGroup projects, 
         TechnicalSkillsGroup technicalSkills) 
     throws IOException {
-        this();
+        
+        Path filePath = Path.of(preambleFile);
+        preambleLatex = Files.readString(filePath);
+
         items.add(header);
         items.add(education);
         items.add(experience);
         items.add(projects);
         items.add(technicalSkills);
+
+        canidateFullName = header.name;
     }
 
-    public void export(String name) throws Exception {
+    public String export() throws Exception {
 
         String bodyLatex = "";
 
@@ -51,8 +53,10 @@ public class Resume {
 
         String latex = preambleLatex + "\n\\begin{document}" + bodyLatex + "\\end{document}";
 
-        latexCompiler.generateLatexFile(name + ".tex", latex);
-        latexCompiler.compile(name + ".tex");
+        String sanitizeName = canidateFullName.replace(" ", "_").toLowerCase().trim();
+
+        latexCompiler.generateLatexFile(sanitizeName + ".tex", latex);
+        return latexCompiler.compile(sanitizeName + ".tex");
 
     }
 

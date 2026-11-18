@@ -1,5 +1,8 @@
 package App;
 
+import App.Controller.Controller;
+import App.Model.Manifesto.Manifesto;
+import App.Model.Resume.Resume;
 import App.View.GenerateTabFX;
 import App.View.ManifestoTabFX;
 import javafx.application.Application;
@@ -12,14 +15,34 @@ import javafx.stage.Stage;
 
 public class AppFX extends Application {
 
+    private final ManifestoTabFX manifestoTab;
+    private final GenerateTabFX generateTab;
+
+    private final Controller controller;
+
+    public AppFX() {
+        manifestoTab = new ManifestoTabFX();
+        generateTab = new GenerateTabFX();
+
+        controller = new Controller();
+
+        generateTab.setOnGenerate(
+            event -> controller.generateResume(
+                "example_manifesto.json", 
+                generateTab.getJobDescription(), 
+                generateTab.getOpenWhenDone()
+            )
+        );
+    }
+
     @Override
     public void start(Stage stage) {
 
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        createTab(tabPane, new ManifestoTabFX(), "Manifesto");
-        createTab(tabPane, new GenerateTabFX(), "Generate");
+        createTab(tabPane, manifestoTab, "Manifesto");
+        createTab(tabPane, generateTab, "Generate");
 
         Scene scene = new Scene(tabPane, 400, 300);
 
@@ -29,16 +52,33 @@ public class AppFX extends Application {
 
     }
 
-    void createTab(TabPane tabPane, VBox tab, String title) {
-        ScrollPane scrollPane = new ScrollPane(tab);
+    private void createTab(TabPane tabPane, VBox tabBox, String title) {
+        ScrollPane scrollPane = new ScrollPane(tabBox);
         scrollPane.setFitToWidth(true);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 
-        Tab manifestoTab = new Tab(title);
-        manifestoTab.setContent(scrollPane);
+        Tab tab = new Tab(title);
+        tab.setContent(scrollPane);
 
-        tabPane.getTabs().add(manifestoTab);
+        tabPane.getTabs().add(tab);
     }
+
+    private void generateResume() {
+
+        String jobDescription = generateTab.getJobDescription();
+
+        try {
+            Manifesto manifesto = new Manifesto("example_manifesto.json");
+            Resume resume = manifesto.generateResumeFromJobDescription(jobDescription);
+            resume.export();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        
+    }
+
+
 
 }
