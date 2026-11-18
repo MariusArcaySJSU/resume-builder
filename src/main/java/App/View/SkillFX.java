@@ -37,7 +37,7 @@ public class SkillFX extends HBox {
     public ArrayList<String> getSkills() {
         
         ArrayList<String> result = new ArrayList<>();
-        String[] technologiesArray = categoryField.getText().split(",");
+        String[] technologiesArray = skillsField.getText().split(",");
 
         for (String technology : technologiesArray) {
             result.add(technology.trim());

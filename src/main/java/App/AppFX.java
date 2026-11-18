@@ -28,7 +28,7 @@ public class AppFX extends Application {
 
         generateTab.setOnGenerate(
             event -> controller.generateResume(
-                "example_manifesto.json", 
+                manifestoTab.getResume(), 
                 generateTab.getJobDescription(), 
                 generateTab.getOpenWhenDone()
             )

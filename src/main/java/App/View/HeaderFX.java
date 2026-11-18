@@ -2,6 +2,7 @@ package App.View;
 
 import java.util.ArrayList;
 
+import App.Model.Resume.ResumeItems.Header;
 import App.Model.Resume.ResumeItems.Link;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -49,21 +50,11 @@ public class HeaderFX extends VBox {
         );
     }
 
-    private void addLink() {
+    public Header getHeader() {
 
-        LinkFX link = new LinkFX();
-        Button removeButton = new Button("Remove");
-        removeButton.setFocusTraversable(false);
+        Link[] links = getLinks().toArray(Link[]::new);
+        return new Header(getFullName(), getPhone(), getEmail(), links);
 
-        HBox fullLink = new HBox(10, link, removeButton);
-
-        links.getChildren().add(
-            fullLink
-        );
-
-        removeButton.setOnAction(event -> {
-            links.getChildren().remove(fullLink);
-        });
     }
 
     public String getFullName() {
@@ -96,5 +87,23 @@ public class HeaderFX extends VBox {
         return result;
 
     }
+
+    private void addLink() {
+
+        LinkFX link = new LinkFX();
+        Button removeButton = new Button("Remove");
+        removeButton.setFocusTraversable(false);
+
+        HBox fullLink = new HBox(10, link, removeButton);
+
+        links.getChildren().add(
+            fullLink
+        );
+
+        removeButton.setOnAction(event -> {
+            links.getChildren().remove(fullLink);
+        });
+    }
+
 
 }

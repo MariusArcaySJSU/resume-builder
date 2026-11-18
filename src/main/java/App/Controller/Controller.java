@@ -5,19 +5,15 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Path;
 
-import App.Model.Manifesto.Manifesto;
 import App.Model.Resume.Resume;
 
 public class Controller {
     
-    public void generateResume(String manifestoFileName, String jobDescription, Boolean openWhenDone) {
+    public void generateResume(Resume resume, String jobDescription, Boolean openWhenDone) {
 
         String pdfOutput;
 
         try {
-            Manifesto manifesto = new Manifesto(manifestoFileName);
-            Resume resume = manifesto.generateResume();
-            //Resume resume = manifesto.generateResumeFromJobDescription(jobDescription);
             pdfOutput = resume.export();
         } catch (Exception e) {
             System.out.println(e.getMessage());

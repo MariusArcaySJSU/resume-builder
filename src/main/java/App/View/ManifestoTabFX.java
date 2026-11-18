@@ -1,6 +1,18 @@
 package App.View;
 
+import java.util.ArrayList;
+
+import App.Model.Resume.Resume;
+import App.Model.Resume.ResumeItems.Education;
+import App.Model.Resume.ResumeItems.EducationGroup;
+import App.Model.Resume.ResumeItems.Experience;
+import App.Model.Resume.ResumeItems.ExperienceGroup;
+import App.Model.Resume.ResumeItems.Header;
+import App.Model.Resume.ResumeItems.Project;
+import App.Model.Resume.ResumeItems.ProjectGroup;
+import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TitledPane;
@@ -36,6 +48,56 @@ public class ManifestoTabFX extends VBox {
             projectSection,
             technicalSkillsSection
         );
+
+    }
+
+    public Resume getResume() {
+
+        HeaderFX headerFX = (HeaderFX) (headerSection.getContent());
+
+        ArrayList<Education> educationModelList = new ArrayList<>();
+        for (Node node : educationList.getChildren()) {
+
+            EducationFX educationFX = (EducationFX) ((VBox) node).getChildren().get(0);
+            educationModelList.add(educationFX.getEducation());
+        
+        }
+
+        ArrayList<Experience> experienceModelList = new ArrayList<>();
+        for (Node node : experienceList.getChildren()) {
+
+            ExperienceFX experienceFX = (ExperienceFX) ((VBox) node).getChildren().get(0);
+            experienceModelList.add(experienceFX.getExperience());
+        
+        }
+
+        ArrayList<Project> projectModelList = new ArrayList<>();
+        for (Node node : projectList.getChildren()) {
+
+            ProjectFX projectFX = (ProjectFX) ((VBox) node).getChildren().get(0);
+            projectModelList.add(projectFX.getProject());
+        
+        }
+
+        Education[] educationModelArray = educationModelList.toArray(Education[]::new);
+        Experience[] experienceModelArray = experienceModelList.toArray(Experience[]::new);
+        Project[] projectModelArray = projectModelList.toArray(Project[]::new);
+
+        Header header = headerFX.getHeader();
+        EducationGroup educationGroup = new EducationGroup(educationModelArray);
+        ExperienceGroup experienceGroup = new ExperienceGroup(experienceModelArray);
+        ProjectGroup projectGroup = new ProjectGroup(projectModelArray);
+        TechnicalSkillsGroup technicalSkillsGroup = ((TechnicalSkillsFX) technicalSkillsSection.getContent()).getTechnicalSkillsGroup();
+
+        Resume resume = null;
+        try {
+            resume = new Resume(header, educationGroup, experienceGroup, projectGroup, technicalSkillsGroup);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return resume;
+        }
+
+        return resume;
 
     }
 

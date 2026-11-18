@@ -3,6 +3,7 @@ package App.View;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import App.Model.Resume.ResumeItems.Education;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -57,28 +58,11 @@ public class EducationFX extends VBox {
         );
     }
 
-    private void addDegree() {
+    public Education getEducation() {
 
-        TextField degree = new TextField();
-        degree.setPrefWidth(500);
+        String[] degrees = getDegrees().toArray(String[]::new);
+        return new Education(getInstitution(), degrees, getLocation(), getStartDate(), getEndDate());
 
-        Button removeButton = new Button("Remove");
-        removeButton.setFocusTraversable(false);
-
-        HBox fullDegreeList;
-        if (degrees.getChildren().isEmpty()) {
-            fullDegreeList = new HBox(10, degree);
-        } else {
-            fullDegreeList = new HBox(10, degree, removeButton);
-        }
-
-        degrees.getChildren().add(
-            fullDegreeList
-        );
-
-        removeButton.setOnAction(event -> {
-            degrees.getChildren().remove(fullDegreeList);
-        });
     }
 
     public String getInstitution() {
@@ -109,5 +93,29 @@ public class EducationFX extends VBox {
 
     public LocalDate getEndDate() {
         return endDatePicker.getValue();
+    }
+
+    private void addDegree() {
+
+        TextField degree = new TextField();
+        degree.setPrefWidth(500);
+
+        Button removeButton = new Button("Remove");
+        removeButton.setFocusTraversable(false);
+
+        HBox fullDegreeList;
+        if (degrees.getChildren().isEmpty()) {
+            fullDegreeList = new HBox(10, degree);
+        } else {
+            fullDegreeList = new HBox(10, degree, removeButton);
+        }
+
+        degrees.getChildren().add(
+            fullDegreeList
+        );
+
+        removeButton.setOnAction(event -> {
+            degrees.getChildren().remove(fullDegreeList);
+        });
     }
 }

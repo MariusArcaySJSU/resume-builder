@@ -1,5 +1,10 @@
 package App.View;
 
+import java.util.ArrayList;
+
+import App.Model.Resume.ResumeItems.TechnicalSkills;
+import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -26,6 +31,28 @@ public class TechnicalSkillsFX extends VBox {
         this.getChildren().addAll(
             categoryLabel, technicalSkillsBox, addSkills
         );
+    }
+
+    public TechnicalSkillsGroup getTechnicalSkillsGroup() {
+
+        ArrayList<TechnicalSkills> technicalSkillList = new ArrayList<>();
+
+        for (Node node : technicalSkillsBox.getChildren()) {
+
+            SkillFX skillFX = (SkillFX) ((HBox) node).getChildren().get(0);
+
+            String category = skillFX.getCategory();
+            ArrayList<String> skills = skillFX.getSkills();
+
+            TechnicalSkills technicalSkills = new TechnicalSkills(category, skills.toArray(String[]::new));
+            technicalSkillList.add(technicalSkills);
+
+        }
+
+        TechnicalSkills[] technicalSkillsArray = technicalSkillList.toArray(TechnicalSkills[]::new);
+
+        return new TechnicalSkillsGroup(technicalSkillsArray);
+
     }
 
     private void addSkills() {

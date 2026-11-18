@@ -3,6 +3,7 @@ package App.View;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import App.Model.Resume.ResumeItems.Project;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -57,6 +58,13 @@ public class ProjectFX extends VBox {
                 endDateLabel, endDatePicker,
                 displayDate
         );
+    }
+
+    public Project getProject() {
+
+        String[] technologies = getTechnologies().toArray(String[]::new);
+        return new Project(getTitle(), technologies, new String[]{ getDescription() }, getStartDate(), getEndDate(), getDisplayDate());
+
     }
 
     public String getTitle() {

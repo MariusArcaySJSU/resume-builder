@@ -2,6 +2,7 @@ package App.View;
 
 import java.time.LocalDate;
 
+import App.Model.Resume.ResumeItems.Experience;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -62,6 +63,10 @@ public class ExperienceFX extends VBox {
                 startDateLabel, startDatePicker,
                 endDateLabel, endDateBox
         );
+    }
+
+    public Experience getExperience() {
+        return new Experience(getRole(), getEmployer(), new String[]{ getDescription() }, getLocation(), getStartDate(), getEndDate());
     }
 
     public String getRole() {
