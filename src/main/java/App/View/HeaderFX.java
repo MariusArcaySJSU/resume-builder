@@ -99,10 +99,12 @@ public class HeaderFX extends VBox {
             HBox linkBox = (HBox) node;
             LinkFX linkFX = (LinkFX) linkBox.getChildren().get(0);
             
-            if (linkFX.getLabel().isEmpty()) {
-                result.add(new Link(linkFX.getUrl()));
-            } else {
-                result.add(new Link(linkFX.getUrl(), linkFX.getLabel()));
+            if (!linkFX.getUrl().isBlank()) {   // Only add if field is not blank
+                if (linkFX.getLabel().isEmpty()) {
+                    result.add(new Link(linkFX.getUrl()));
+                } else {
+                    result.add(new Link(linkFX.getUrl(), linkFX.getLabel()));
+                }
             }
         }
 

@@ -75,9 +75,9 @@ public class Project extends ResumeItem {
             indentText(1, "\"title\": \"" + sanitizeJSON(title) + "\",\n") + //
             indentText(1, technologiesJSON) + //
             indentText(1, descriptionJSON) + //
-            indentText(1, "\"startDate\": \"" + sanitizeJSON(getResumeFormattedDate(startDate)) + "\",\n") + //
-            indentText(1, "\"endDate\": \"" + sanitizeJSON(getResumeFormattedDate(endDate)) + "\",\n") + //
-            indentText(1, "\"displayDate\": \"" + (displayDate ? "true" : "false") + "\"\n") + //
+            indentText(1, "\"start_date\": \"" + sanitizeJSON(toSanitizedDate(startDate)) + "\",\n") + //
+            indentText(1, "\"start_date\": \"" + sanitizeJSON(toSanitizedDate(endDate)) + "\",\n") + //
+            indentText(1, "\"display_date\": \"" + (displayDate ? "true" : "false") + "\"\n") + //
             "}";
 
         return JSON;

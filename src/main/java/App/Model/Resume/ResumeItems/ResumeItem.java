@@ -10,6 +10,12 @@ public abstract class ResumeItem {
     public abstract String toLatex();
     public abstract String toJSON();
 
+    // LocalDate.toString() but with additonal null checking
+    protected String toSanitizedDate(LocalDate date) {
+        if (date == null) return "null";
+        return date.toString();
+    }
+
     protected String getResumeFormattedDate(LocalDate date) {
 
         if (date == null) return "Present";
@@ -53,6 +59,9 @@ public abstract class ResumeItem {
             switch (c) {
                 case '"':
                     sb.append("\\\"");
+                    break;
+                case '\t':
+                    sb.append(INDENTATION);
                     break;
                 default:
                     sb.append(c);

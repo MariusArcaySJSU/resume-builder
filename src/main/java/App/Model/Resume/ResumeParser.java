@@ -101,7 +101,7 @@ public class ResumeParser {
 
     private ProjectGroup generateProjectGroupFromJSON(String JSON) throws Exception {
      
-        JsonNode projectArrayNode = mapper.readTree(JSON).path("projects");
+        JsonNode projectArrayNode = mapper.readTree(JSON).path("project");
         ArrayList<Project> projectList = new ArrayList<>();
         
         for (JsonNode projectNode : projectArrayNode) {
@@ -109,7 +109,7 @@ public class ResumeParser {
             String title = projectNode.path("title").asText();
             String startDate = projectNode.path("start_date").asText();
             String endDate = projectNode.path("end_date").asText();
-            Boolean displayDate = projectNode.path("displayDate").asBoolean();
+            Boolean displayDate = projectNode.path("display_date").asBoolean();
 
             String[] technologies = parseList(projectNode.path("technologies"));
             String[] description = parseList(projectNode.path("description"));

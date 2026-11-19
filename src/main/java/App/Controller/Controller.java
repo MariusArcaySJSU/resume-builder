@@ -6,6 +6,9 @@ import java.net.URI;
 import java.nio.file.Path;
 
 import App.Model.Manifesto.Manifesto;
+import App.Model.Resume.Resume;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Controller {
     
@@ -14,7 +17,17 @@ public class Controller {
         String pdfOutput;
 
         try {
-            pdfOutput = manifesto.generateResume().compile();
+
+            Resume resume = manifesto.generateResume();
+
+            if (!resume.isValid()) {
+                createAlert("Manifesto incomplete!", "Please continue filling out the manifesto before generating");
+                return;
+            }
+
+            pdfOutput = resume.compile();
+
+
         } catch (Exception e) {
             System.out.println("Error compiling resume: " + e.getMessage() + ".pdf");
             e.printStackTrace();
@@ -22,22 +35,36 @@ public class Controller {
         }
 
         if (openWhenDone) {
-
-            Path pdfPath = Path.of(pdfOutput).toAbsolutePath();
-            URI pdfURI = pdfPath.toUri();
-
-            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                try {
-                    Desktop.getDesktop().browse(pdfURI);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                System.out.println("Cannot pull up output pdf: Desktop browsing is not supported on this system.");
-            }
-            
+            Path absolutePdfPath = Path.of(pdfOutput).toAbsolutePath();
+            openPdfInBrowser(absolutePdfPath);   
         }
         
+    }
+
+    private void openPdfInBrowser(Path absolutePdfPath) {
+
+        URI pdfURI = absolutePdfPath.toUri();
+
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(pdfURI);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Cannot pull up output pdf: Desktop browsing is not supported on this system.");
+        }
+
+    }
+
+    private void createAlert(String header, String content) {
+        
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+
     }
 
 }

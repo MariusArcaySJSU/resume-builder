@@ -74,6 +74,7 @@ public class EducationFX extends VBox {
     public Education getEducation() {
 
         String[] degrees = getDegrees().toArray(String[]::new);
+
         return new Education(getInstitution(), degrees, getLocation(), getStartDate(), getEndDate());
 
     }
@@ -89,7 +90,7 @@ public class EducationFX extends VBox {
         for (Node node : degrees.getChildren()) {
             HBox degreeBox = (HBox) node;
             TextField degree = (TextField) degreeBox.getChildren().get(0);
-            result.add(degree.getText());
+            if (!degree.getText().isBlank()) result.add(degree.getText()); // don't add if entry is empty
         }
 
         return result;

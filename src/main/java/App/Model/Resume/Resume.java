@@ -43,6 +43,19 @@ public class Resume {
         canidateFullName = header.name.isBlank() ? "untitled" : header.name;
     }
 
+    public boolean isValid() {
+
+        for (ResumeItem item : items) {
+            if (!item.isValid()) {
+                System.out.println(item);
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
     public String compile() throws Exception {
 
         String bodyLatex = "";
