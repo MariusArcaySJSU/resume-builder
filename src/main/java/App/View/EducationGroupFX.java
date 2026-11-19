@@ -1,6 +1,11 @@
 package App.View;
 
+import java.util.ArrayList;
+
+import App.Model.Resume.ResumeItems.Education;
+import App.Model.Resume.ResumeItems.EducationGroup;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TitledPane;
@@ -50,6 +55,23 @@ public class EducationGroupFX extends VBox {
             educationList.getChildren().remove(educationBox);
         });
 
+    }
+
+    public EducationGroup getEducationGroup() {
+
+        ArrayList<Education> educationArrayList = new ArrayList<>();
+
+        for (Node node : educationList.getChildren()) {
+            VBox educationBox = (VBox) node;
+            EducationFX educationFX = (EducationFX) educationBox.getChildren().get(0);
+
+            educationArrayList.add(educationFX.getEducation());
+        }
+
+        Education[] educationArray = educationArrayList.toArray(Education[]::new);
+
+        return new EducationGroup(educationArray);
+        
     }
 
 }

@@ -1,6 +1,11 @@
 package App.View;
 
+import java.util.ArrayList;
+
+import App.Model.Resume.ResumeItems.Project;
+import App.Model.Resume.ResumeItems.ProjectGroup;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TitledPane;
@@ -52,5 +57,21 @@ public class ProjectGroupFX extends VBox {
 
     }
 
+    public ProjectGroup getProjectGroup() {
+
+        ArrayList<Project> projectArrayList = new ArrayList<>();
+
+        for (Node node : projectList.getChildren()) {
+            VBox projectBox = (VBox) node;
+            ProjectFX projectFX = (ProjectFX) projectBox.getChildren().get(0);
+
+            projectArrayList.add(projectFX.getProject());
+        }
+
+        Project[] projectArray = projectArrayList.toArray(Project[]::new);
+
+        return new ProjectGroup(projectArray);
+
+    }
 
 }

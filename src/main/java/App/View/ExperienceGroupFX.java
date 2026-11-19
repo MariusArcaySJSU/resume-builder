@@ -1,6 +1,11 @@
 package App.View;
 
+import java.util.ArrayList;
+
+import App.Model.Resume.ResumeItems.Experience;
+import App.Model.Resume.ResumeItems.ExperienceGroup;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TitledPane;
@@ -50,6 +55,23 @@ public class ExperienceGroupFX extends VBox {
             experienceList.getChildren().remove(experienceBox);
         });
 
+    }
+
+    public ExperienceGroup getExperienceGroup() {
+
+        ArrayList<Experience> experienceArrayList = new ArrayList<>();
+
+        for (Node node : experienceList.getChildren()) {
+            VBox experienceBox = (VBox) node;
+            ExperienceFX experienceFX = (ExperienceFX) experienceBox.getChildren().get(0);
+
+            experienceArrayList.add(experienceFX.getExperience());
+        }
+
+        Experience[] educationArray = experienceArrayList.toArray(Experience[]::new);
+
+        return new ExperienceGroup(educationArray);
+        
     }
 
 

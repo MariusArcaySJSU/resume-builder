@@ -1,18 +1,18 @@
 {
     "header": {
         "name": "Marius Arcay",
-        "phone": "",
-        "email": "",
+        "phone": "(408) 607-2800",
+        "email": "marius@arcay.net",
         "links": [
         ]
     },
     "education": [
         {
-            "institution": "",
+            "institution": "SJSU",
             "degrees": [
-                ""
+                "Math"
             ],
-            "location": "",
+            "location": "San Jose, CA",
             "startDate": "Present",
             "endDate": "Present"
         }
@@ -20,12 +20,12 @@
     ],
     "experience": [
         {
-            "role": "",
-            "employer": "",
+            "role": "SE",
+            "employer": "Apple",
             "description": [
-                ""
+                "Did apple stuff"
             ],
-            "location": "",
+            "location": "Remote",
             "startDate": "Present",
             "endDate": "Present"
         }
@@ -33,10 +33,10 @@
     ],
     "project": [
         {
-            "title": "",
-            "technologies": [""],
+            "title": "Resume Builder",
+            "technologies": ["Java", "VSCode", "Maven"],
             "description": [
-                ""
+                "built this"
             ],
             "startDate": "Present",
             "endDate": "Present",
@@ -46,8 +46,8 @@
     ],
     "technical_skills": [
         {
-            "category": "",
-            "skills": [""]
+            "category": "Languages",
+            "skills": ["C++", "C", "Java", "arm"]
         }
     
     ]
