@@ -18,6 +18,35 @@ public class Controller {
 
         try {
 
+            Resume resume = manifesto.generateResumeFromJobDescription(jobDescription);
+
+            if (!resume.isValid()) {
+                createAlert("Manifesto incomplete!", "Please continue filling out the manifesto before generating");
+                return;
+            }
+
+            pdfOutput = resume.compile();
+
+
+        } catch (Exception e) {
+            System.out.println("Error compiling resume: " + e.getMessage() + ".pdf");
+            e.printStackTrace();
+            return;
+        }
+
+        if (openWhenDone) {
+            Path absolutePdfPath = Path.of(pdfOutput).toAbsolutePath();
+            openPdfInBrowser(absolutePdfPath);   
+        }
+
+    }
+
+    public void generateManifesto(Manifesto manifesto, Boolean openWhenDone) {
+
+        String pdfOutput;
+
+        try {
+
             Resume resume = manifesto.generateResume();
 
             if (!resume.isValid()) {

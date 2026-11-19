@@ -23,7 +23,20 @@ public class AppFX extends Application {
         generateTab = new GenerateTabFX();
         controller = new Controller();
 
-        generateTab.setOnGenerate( event -> {
+        generateTab.setOnGenerateManifesto( event -> {
+                try {
+                    controller.generateManifesto(
+                        manifestoTab.generateManifesto(), 
+                        generateTab.getOpenWhenDone()
+                    ); 
+                } catch (Exception e) {
+                    System.out.println("Error generating manifesto:" + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        );
+
+        generateTab.setOnGenerateResume( event -> {
                 try {
                     controller.generateResume(
                         manifestoTab.generateManifesto(), 
