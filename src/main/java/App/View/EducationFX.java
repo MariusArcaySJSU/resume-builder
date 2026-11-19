@@ -115,7 +115,7 @@ public class EducationFX extends VBox {
     private void addDegree(String degree) {
 
         TextField degreeField = new TextField(degree);
-        degreeField.setPrefWidth(500);
+        degreeField.setPrefWidth(250);
 
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);

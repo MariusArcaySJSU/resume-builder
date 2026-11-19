@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 import App.Model.Resume.ResumeItems.Header;
 import App.Model.Resume.ResumeItems.Link;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
 public class HeaderFX extends VBox {
+
+    private final TitledPane titledPane;
 
     private final TextField nameField;
     private final TextField phoneField;
@@ -41,13 +45,19 @@ public class HeaderFX extends VBox {
         addLink.setOnAction(event -> {
             addLink();
         });
+        
+        VBox nameBox = new VBox(5, nameLabel, nameField);
+        VBox phoneBox = new VBox(5, phoneLabel, phoneField);
+        VBox emailBox = new VBox(5, emailLabel, emailField);
+        VBox linkBox = new VBox(5, linkLabel, links);
 
-        this.getChildren().addAll(
-                nameLabel, nameField,
-                phoneLabel, phoneField,
-                emailLabel, emailField,
-                linkLabel, links, addLink
-        );
+        VBox content = new VBox(10, nameBox, phoneBox, emailBox, linkBox, addLink);
+        content.setPadding(new Insets(15)); // Matches EducationGroupFX padding
+
+        titledPane = new TitledPane("Personal Information", content);
+        titledPane.setCollapsible(true);
+
+        this.getChildren().add(titledPane);
     }
 
     public HeaderFX(Header header) {

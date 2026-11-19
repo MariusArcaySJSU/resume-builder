@@ -2,79 +2,48 @@ package App.View;
 
 import java.util.ArrayList;
 
-import App.Model.Resume.ResumeItems.TechnicalSkills;
-import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Priority;
 
-
-public class TechnicalSkillsFX extends VBox {
-
-    private final VBox technicalSkillsBox;
+public class TechnicalSkillsFX extends HBox {
+    private final TextField categoryField;
+    private final TextField skillsField;
 
     public TechnicalSkillsFX() {
-        super(10);
+        this.setSpacing(5);
 
-        Label categoryLabel = new Label("Category:");
-        technicalSkillsBox = new VBox(5);
+        categoryField = new TextField();
+        categoryField.setPromptText("Category (e.g., Languages)");
 
-        Button addSkills = new Button("Add set of skills");
-        addSkills.setOnAction(event -> {
-            addSkills();
-        });
+        skillsField = new TextField();
+        skillsField.setPromptText("C++, C, Java, Python...");
+        skillsField.setPrefWidth(330);
 
-        addSkills();
+        HBox.setHgrow(categoryField, Priority.ALWAYS);
+        HBox.setHgrow(skillsField, Priority.ALWAYS);
 
-        this.getChildren().addAll(
-            categoryLabel, technicalSkillsBox, addSkills
-        );
+        HBox fieldsRow = new HBox(10, categoryField, skillsField);
+        
+        HBox.setHgrow(fieldsRow, Priority.ALWAYS);
+
+        this.getChildren().addAll(fieldsRow);
     }
 
-    public TechnicalSkillsGroup getTechnicalSkillsGroup() {
 
-        ArrayList<TechnicalSkills> technicalSkillList = new ArrayList<>();
+    public String getCategory() {
+        return categoryField.getText();
+    }
 
-        for (Node node : technicalSkillsBox.getChildren()) {
+    public ArrayList<String> getSkills() {
+        
+        ArrayList<String> result = new ArrayList<>();
+        String[] technologiesArray = skillsField.getText().split(",");
 
-            SkillFX skillFX = (SkillFX) ((HBox) node).getChildren().get(0);
-
-            String category = skillFX.getCategory();
-            ArrayList<String> skills = skillFX.getSkills();
-
-            TechnicalSkills technicalSkills = new TechnicalSkills(category, skills.toArray(String[]::new));
-            technicalSkillList.add(technicalSkills);
-
+        for (String technology : technologiesArray) {
+            result.add(technology.trim());
         }
 
-        TechnicalSkills[] technicalSkillsArray = technicalSkillList.toArray(TechnicalSkills[]::new);
-
-        return new TechnicalSkillsGroup(technicalSkillsArray);
-
+        return result;
     }
-
-    private void addSkills() {
-
-        SkillFX skill = new SkillFX();
-        Button removeButton = new Button("Remove");
-        removeButton.setFocusTraversable(false);
-        
-        HBox skillBox;
-        if (technicalSkillsBox.getChildren().isEmpty()) {
-            skillBox = new HBox(10, skill);
-        } else {
-            skillBox = new HBox(10, skill, removeButton);
-        }
-        
-        technicalSkillsBox.getChildren().add(
-            skillBox
-        );
-
-        removeButton.setOnAction(event -> {
-            technicalSkillsBox.getChildren().remove(skillBox);
-        });
-    }
-
 }
