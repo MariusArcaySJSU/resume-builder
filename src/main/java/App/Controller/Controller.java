@@ -18,12 +18,14 @@ public class Controller {
 
         try {
 
-            Resume resume = manifesto.generateResumeFromJobDescription(jobDescription);
+            Resume resume = manifesto.generateResume(); // Generate just manifesto so you can check validity before sending to chatgpt
 
             if (!resume.isValid()) {
                 createAlert("Manifesto incomplete!", "Please continue filling out the manifesto before generating");
                 return;
             }
+
+            resume = manifesto.generateResumeFromJobDescription(jobDescription);
 
             pdfOutput = resume.compile();
 
