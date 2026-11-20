@@ -1,5 +1,6 @@
 package App;
 
+import App.Model.Manifesto.Manifesto;
 import App.Controller.Controller;
 import App.View.GenerateTabFX;
 import App.View.ManifestoTabFX;
@@ -18,7 +19,7 @@ public class AppFX extends Application {
 
     private final Controller controller;
 
-    public AppFX() {
+    public AppFX() throws Exception {
         manifestoTab = new ManifestoTabFX();
         generateTab = new GenerateTabFX();
         controller = new Controller();

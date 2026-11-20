@@ -2,6 +2,9 @@ package App.View;
 
 import java.util.ArrayList;
 
+import App.Model.Resume.ResumeItems.ResumeItem;
+import App.Model.Resume.ResumeItems.Experience;
+import App.Model.Resume.ResumeItems.ExperienceGroup;
 import App.Model.Resume.ResumeItems.Project;
 import App.Model.Resume.ResumeItems.ProjectGroup;
 import javafx.geometry.Insets;
@@ -15,6 +18,18 @@ public class ProjectGroupFX extends VBox {
 
     private final TitledPane titledPane;
     private final VBox projectList;
+
+    public ProjectGroupFX(ProjectGroup projectGroup) {
+        this();
+        clear();
+
+        for (ResumeItem item : projectGroup.items) {
+
+            Project p = (Project) item;
+            addProject(p);
+
+        }
+    }
 
     public ProjectGroupFX() {
         projectList = new VBox(40);
@@ -34,17 +49,25 @@ public class ProjectGroupFX extends VBox {
 
     }
 
-    private void addProject() {
+    public void clear() {
+        projectList.getChildren().clear();
+    }
 
-        ProjectFX project = new ProjectFX();
+    private void addProject() {
+        addProject(null);
+    }
+
+    private void addProject(Project project) {
+
+        ProjectFX projectFX = new ProjectFX(project);
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
 
         VBox projectBox;
         if (projectList.getChildren().isEmpty()) {
-            projectBox = new VBox(10, project, new Separator());
+            projectBox = new VBox(10, projectFX, new Separator());
         } else {
-            projectBox = new VBox(10, project, removeButton, new Separator());
+            projectBox = new VBox(10, projectFX, removeButton, new Separator());
         }
 
         projectList.getChildren().add(

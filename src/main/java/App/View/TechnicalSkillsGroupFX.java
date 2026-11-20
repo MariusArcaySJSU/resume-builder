@@ -2,6 +2,7 @@ package App.View;
 
 import java.util.ArrayList;
 
+import App.Model.Resume.ResumeItems.ResumeItem;
 import App.Model.Resume.ResumeItems.TechnicalSkills;
 import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 import javafx.scene.Node;
@@ -15,6 +16,18 @@ public class TechnicalSkillsGroupFX extends VBox {
 
     private final TitledPane titledPane;
     private final VBox technicalSkillsBox;
+
+    public TechnicalSkillsGroupFX(TechnicalSkillsGroup technicalSkillsGroup) {
+        this();
+        clear();
+
+        for (ResumeItem item : technicalSkillsGroup.items) {
+
+            TechnicalSkills s = (TechnicalSkills) item;
+            addSkills(s);
+
+        }
+    }
 
     public TechnicalSkillsGroupFX() {
 
@@ -31,6 +44,10 @@ public class TechnicalSkillsGroupFX extends VBox {
         titledPane.setCollapsible(true);
 
         this.getChildren().add(titledPane);
+    }
+
+    public void clear() {
+        technicalSkillsBox.getChildren().clear();
     }
 
     public TechnicalSkillsGroup getTechnicalSkillsGroup() {
@@ -56,16 +73,20 @@ public class TechnicalSkillsGroupFX extends VBox {
     }
 
     private void addSkills() {
+        addSkills(null);
+    }
 
-        TechnicalSkillsFX skill = new TechnicalSkillsFX();
+    private void addSkills(TechnicalSkills skill) {
+
+        TechnicalSkillsFX skillFX = new TechnicalSkillsFX(skill);
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
         
         HBox skillBox;
         if (technicalSkillsBox.getChildren().isEmpty()) {
-            skillBox = new HBox(10, skill);
+            skillBox = new HBox(10, skillFX);
         } else {
-            skillBox = new HBox(10, skill, removeButton);
+            skillBox = new HBox(10, skillFX, removeButton);
         }
         
         technicalSkillsBox.getChildren().add(

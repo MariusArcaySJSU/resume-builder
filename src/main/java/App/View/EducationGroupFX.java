@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import App.Model.Resume.ResumeItems.Education;
 import App.Model.Resume.ResumeItems.EducationGroup;
+import App.Model.Resume.ResumeItems.ResumeItem;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -15,6 +16,18 @@ public class EducationGroupFX extends VBox {
 
     private final TitledPane titledPane;
     private final VBox educationList;
+
+    public EducationGroupFX(EducationGroup educationGroup) {
+        this();
+        clear();
+
+        for (ResumeItem item : educationGroup.items) {
+
+            Education e = (Education) item;
+            addEducation(e);
+
+        }
+    }
 
     public EducationGroupFX() {
         educationList = new VBox(40);
@@ -34,17 +47,25 @@ public class EducationGroupFX extends VBox {
 
     }
 
-    private void addEducation() {
+    public void clear() {
+        educationList.getChildren().clear();
+    }
 
-        EducationFX education = new EducationFX();
+    private void addEducation() {
+        addEducation(null);
+    }
+
+    private void addEducation(Education education) {
+
+        EducationFX educationFX = new EducationFX(education);
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
 
         VBox educationBox;
         if (educationList.getChildren().isEmpty()) {
-            educationBox = new VBox(10, education, new Separator());
+            educationBox = new VBox(10, educationFX, new Separator());
         } else {
-            educationBox = new VBox(10, education, removeButton, new Separator());
+            educationBox = new VBox(10, educationFX, removeButton, new Separator());
         }
 
         educationList.getChildren().add(

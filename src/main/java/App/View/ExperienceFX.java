@@ -21,6 +21,11 @@ public class ExperienceFX extends VBox {
     private final DatePicker endDatePicker;
     private final CheckBox currentlyEmployed;
 
+    public ExperienceFX(Experience experience) {
+        this();
+        fill(experience);
+    }
+
     public ExperienceFX() {
         super(10);
 
@@ -63,6 +68,27 @@ public class ExperienceFX extends VBox {
                 startDateLabel, startDatePicker,
                 endDateLabel, endDateBox
         );
+    }
+
+    public void fill(Experience experience) {
+
+        if (experience == null) return;
+
+        roleField.setText(experience.role);
+        employerField.setText(experience.employer);
+        locationField.setText(experience.location);
+
+        String descriptionAppended = "";
+        for (String bulletPoint : experience.description) {
+            descriptionAppended += bulletPoint + ", ";
+        }
+        if(!descriptionAppended.isBlank()) descriptionAppended = descriptionAppended.substring(0, descriptionAppended.length() - 2);
+        
+        descriptionArea.setText(descriptionAppended);
+
+        startDatePicker.setValue(experience.startDate);
+        endDatePicker.setValue(experience.endDate);
+
     }
 
     public Experience getExperience() {

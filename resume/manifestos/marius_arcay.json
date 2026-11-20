@@ -1,0 +1,108 @@
+{
+    "header": {
+        "name": "Marius Arcay",
+        "phone": "(408) 607-2800",
+        "email": "marius@arcay.net",
+        "links": [
+            { "url": "https://github.com/MariusArcaySJSU/resume-builder", "label": "GitHub" },
+            { "url": "https://www.linkedin.com/in/marius-arcay/", "label": "LinkedIn" },
+            { "url": "https://marius-arcay.netlify.app/", "label": "Portfolio" }
+        ]
+    },
+    "education": [
+        {
+            "institution": "San Jose State University",
+            "degrees": [
+                "Bachelor of Science in Computer Science"
+            ],
+            "location": "San Jose, CA",
+            "start_date": "2026-01-01",
+            "end_date": "2028-05-15"
+        },
+        {
+            "institution": "West Valley College",
+            "degrees": [
+                "Associates in Mathematics",
+                "Associates in Liberal Arts: Math & Sci"
+            ],
+            "location": "Saratoga, CA",
+            "start_date": "2022-08-01",
+            "end_date": "2026-01-01"
+        },
+        {
+            "institution": "West Valley College",
+            "degrees": [
+                "Associates in Physics"
+            ],
+            "location": "Saratoga, CA",
+            "start_date": "2026-01-01",
+            "end_date": "2028-05-15"
+        }
+    
+    ],
+    "experience": [
+        {
+            "role": "Contract 3D Artist",
+            "employer": "Valve Corporation",
+            "description": [
+                "Authored Rooftop, an official Counter-Strike 2 multiplayer map using Valve’s proprietary technology, balancing visual fidelity, gameplay, and performance.  Built, profiled and optimized 3D geometry, materials, textures, lighting, and models to meet performance standards expected of an official Counter-Strike 2 map.  Shipped to a global audience of millions of players"
+            ],
+            "location": "Remote",
+            "start_date": "2025-10-01",
+            "end_date": "2026-01-01"
+        },
+        {
+            "role": "Tech Consultant",
+            "employer": "Target",
+            "description": [
+                "Provided personalized expertise to help guests select, understand, and purchase electronics"
+            ],
+            "location": "Morgan Hill, CA",
+            "start_date": "2021-06-01",
+            "end_date": "null"
+        }
+    
+    ],
+    "project": [
+        {
+            "title": "CUDA Fractal Renderer",
+            "technologies": ["C++", "CUDA", "Multithreading", "Git", "Visual Studio"],
+            "description": [
+                "Built a GPU accelerated fractal renderer using CUDA, achieving a 100× GPU speedup over single-threaded CPU benchmarks Implemented animation system, image/video renderer, interactive UI and benchmarking system to compare CPU/GPU rendering speeds Simplified cross-platform installation by automating hardware checks and removing extra dependencies"
+            ],
+            "start_date": "null",
+            "start_date": "null",
+            "display_date": "false"
+        },
+        {
+            "title": "OpenGL Path Tracing Engine",
+            "technologies": ["C++", "OpenGL", "GLSL", "Git", "Visual Studio"],
+            "description": [
+                "Built a GPU accelerated fractal renderer using CUDA, achieving a 100× GPU speedup over single-threaded CPU benchmarks.  Implemented animation system, image/video renderer, interactive UI and benchmarking system to compare CPU/GPU rendering speeds.  Simplified cross-platform installation by automating hardware checks and removing extra dependencies"
+            ],
+            "start_date": "null",
+            "start_date": "null",
+            "display_date": "false"
+        }
+    
+    ],
+    "technical_skills": [
+        {
+            "category": "Languages",
+            "skills": ["C++", "Python", "GLSL", "C", "Bash"]
+        },
+        {
+            "category": "Graphics & Simulation",
+            "skills": ["OpenGL", "CUDA", "Path Tracing", "PBR", "Monte Carlo Rendering", "3D Math & Geometry"]
+        },
+        {
+            "category": "3D Content & Tooling",
+            "skills": ["3D Asset Creation Pipeline", "Asset Profiling & Benchmarking", "OBJ Parsing"]
+        },
+        {
+            "category": "Systems & Environments",
+            "skills": ["Linux (CLI)", "Multithreading", "Git", "Visual Studio", "VS Code", "Oracle Cloud Infrastructure"]
+        }
+    
+    ]
+}

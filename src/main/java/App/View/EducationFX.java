@@ -17,9 +17,15 @@ public class EducationFX extends VBox {
 
     private final TextField institutionField;
     private final TextField locationField;
-    private final VBox degrees;
+    private VBox degrees;
     private final DatePicker startDatePicker;
     private final DatePicker endDatePicker;
+
+    public EducationFX(Education education) {
+        this();
+        clearDegrees();
+        fill(education);
+    }
 
     public EducationFX() {
         super(10);
@@ -58,8 +64,10 @@ public class EducationFX extends VBox {
         );
     }
 
-    public EducationFX(Education education) {
-        this();
+    public void fill(Education education) {
+
+        if (education == null) return;
+
         institutionField.setText(education.institution);
         
         for (String degree : education.degrees) {
@@ -69,6 +77,7 @@ public class EducationFX extends VBox {
         locationField.setText(education.location);
         startDatePicker.setValue(education.startDate);
         endDatePicker.setValue(education.endDate);
+
     }
 
     public Education getEducation() {
@@ -107,6 +116,10 @@ public class EducationFX extends VBox {
 
     public LocalDate getEndDate() {
         return endDatePicker.getValue();
+    }
+
+    private void clearDegrees() {
+        degrees.getChildren().clear();
     }
 
     private void addDegree() {

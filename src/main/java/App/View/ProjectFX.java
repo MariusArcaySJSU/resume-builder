@@ -20,6 +20,11 @@ public class ProjectFX extends VBox {
     private final DatePicker endDatePicker;
     private final CheckBox displayDate;
 
+    public ProjectFX(Project project) {
+        this();
+        fill(project);
+    }
+
     public ProjectFX() {
         super(10);
 
@@ -58,6 +63,34 @@ public class ProjectFX extends VBox {
                 endDateLabel, endDatePicker,
                 displayDate
         );
+    }
+
+    public void fill(Project project) {
+
+        if (project == null) return;
+
+        titleField.setText(project.title);
+
+        String technologiesAppended = "";
+        for (String technology : project.technologies) {
+            technologiesAppended += technology + ", ";
+        }
+        if(!technologiesAppended.isBlank()) technologiesAppended = technologiesAppended.substring(0, technologiesAppended.length() - 2);
+        
+        technologiesField.setText(technologiesAppended);
+
+        String descriptionAppended = "";
+        for (String bulletPoint : project.description) {
+            descriptionAppended += bulletPoint + ", ";
+        }
+        if(!descriptionAppended.isBlank()) descriptionAppended = descriptionAppended.substring(0, descriptionAppended.length() - 2);
+        
+        descriptionArea.setText(descriptionAppended);
+
+        startDatePicker.setValue(project.startDate);
+        endDatePicker.setValue(project.endDate);
+        displayDate.setSelected(project.displayDate);
+
     }
 
     public Project getProject() {

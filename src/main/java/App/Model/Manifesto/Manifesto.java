@@ -16,7 +16,7 @@ public class Manifesto {
     private static final ResumeParser resumeParser = new ResumeParser();
 
     private static final ChatGptService gpt = new ChatGptService();
-    private static final String manifestoFolder = "resume/";
+    private static final String manifestoFolder = "resume/manifestos/";
     private static final String tailorManifesto_SystemPromptFile = "resume/resources/tailor_manifesto_system_prompt.txt";
     
     public Manifesto(String fileName) {

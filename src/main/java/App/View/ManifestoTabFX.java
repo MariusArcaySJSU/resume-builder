@@ -8,12 +8,9 @@ import App.Model.Resume.ResumeItems.Header;
 import App.Model.Resume.ResumeItems.ProjectGroup;
 import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 import javafx.geometry.Insets;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 
 public class ManifestoTabFX extends VBox {
-
-    private TitledPane headerSection;
 
     private HeaderFX headerFX;
     private EducationGroupFX educationGroupFX;
@@ -21,19 +18,27 @@ public class ManifestoTabFX extends VBox {
     private ProjectGroupFX projectGroupFX;
     private TechnicalSkillsGroupFX technicalSkillsGroupFX;
 
-    public ManifestoTabFX(Resume resume) {
-
+    public ManifestoTabFX() {
+        this(null);
     }
 
-    public ManifestoTabFX() {
+    public ManifestoTabFX(Resume resume) {
 
         super(50);
-        
-        headerFX = new HeaderFX();
-        educationGroupFX = new EducationGroupFX();
-        experienceGroupFX = new ExperienceGroupFX();
-        projectGroupFX = new ProjectGroupFX();
-        technicalSkillsGroupFX = new TechnicalSkillsGroupFX();
+
+        if (resume == null) {
+            headerFX = new HeaderFX();
+            educationGroupFX = new EducationGroupFX();
+            experienceGroupFX = new ExperienceGroupFX();
+            projectGroupFX = new ProjectGroupFX();
+            technicalSkillsGroupFX = new TechnicalSkillsGroupFX();
+        } else {
+            headerFX = new HeaderFX((Header) resume.items.get(0));
+            educationGroupFX = new EducationGroupFX((EducationGroup) resume.items.get(1));
+            experienceGroupFX = new ExperienceGroupFX((ExperienceGroup) resume.items.get(2));
+            projectGroupFX = new ProjectGroupFX((ProjectGroup) resume.items.get(3));
+            technicalSkillsGroupFX = new TechnicalSkillsGroupFX((TechnicalSkillsGroup) resume.items.get(4));
+        }
 
         this.setPadding(new Insets(50));
         this.getChildren().addAll(

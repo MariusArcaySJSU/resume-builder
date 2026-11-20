@@ -23,6 +23,11 @@ public class HeaderFX extends VBox {
     private final TextField emailField;
     private final VBox links;
 
+    public HeaderFX(Header header) {
+        this();
+        fill(header);
+    }
+
     public HeaderFX() {
         super(10);
 
@@ -60,8 +65,10 @@ public class HeaderFX extends VBox {
         this.getChildren().add(titledPane);
     }
 
-    public HeaderFX(Header header) {
-        this();
+    public void fill(Header header) {
+
+        if (header == null) return;
+
         nameField.setText(header.name);
         phoneField.setText(header.phone);
         emailField.setText(header.email);
@@ -70,6 +77,7 @@ public class HeaderFX extends VBox {
         for (Link l : links) {
             addLink(l);
         }
+
     }
 
     public Header getHeader() {
