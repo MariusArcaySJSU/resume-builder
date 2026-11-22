@@ -37,9 +37,11 @@ public class ManifestoTabFX extends VBox {
         );
     }
 
-    public ManifestoTabFX(Resume resume) {
-
+    public ManifestoTabFX(Manifesto manifesto) throws Exception {
+        
         super(50);
+        Resume resume = manifesto.generateResume();
+        
         headerFX = new HeaderFX(resume.getHeader());
         educationGroupFX = new EducationGroupFX(resume.getEducationGroup());
         experienceGroupFX = new ExperienceGroupFX(resume.getExperienceGroup());
@@ -59,14 +61,20 @@ public class ManifestoTabFX extends VBox {
 
     public Manifesto generateManifesto() throws Exception {
         
+        Resume resume = generateResume();
+        return new Manifesto(resume);
+
+    }
+
+    public Resume generateResume() throws Exception {
+        
         Header header = headerFX.getHeader();
         EducationGroup educationGroup = educationGroupFX.getEducationGroup();
         ExperienceGroup experienceGroup = experienceGroupFX.getExperienceGroup();
         ProjectGroup projectGroup = projectGroupFX.getProjectGroup();
         TechnicalSkillsGroup technicalSkillsGroup = technicalSkillsGroupFX.getTechnicalSkillsGroup();
 
-        Resume resume = new Resume(header, educationGroup, experienceGroup, projectGroup, technicalSkillsGroup);
-        return new Manifesto(resume);
+        return new Resume(header, educationGroup, experienceGroup, projectGroup, technicalSkillsGroup);
 
     }
 

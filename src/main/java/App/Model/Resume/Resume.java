@@ -88,7 +88,7 @@ public class Resume {
 
         String latex = preambleLatex + "\n\\begin{document}" + bodyLatex + "\\end{document}";
     
-        latexCompiler.generateLatexFile(getSanitizedCanidateName(), latex);
+        latexCompiler.saveLatexFile(getSanitizedCanidateName(), latex);
         return latexCompiler.compile(getSanitizedCanidateName());
 
     }

@@ -8,11 +8,59 @@ import java.util.ArrayList;
 
 import App.Model.Manifesto.Manifesto;
 import App.Model.Resume.Resume;
+import App.View.GenerateTabFX;
+import App.View.ManifestoTabFX;
+import App.View.ToolBarFX;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 
 public class Controller {
+
+    private final BorderPane root;
+    private ToolBarFX toolBar;
+    private ManifestoTabFX manifestoTab;
+    private GenerateTabFX generateTab;
+
+    private ScrollPane manifestoScrollPane;
+
+    public Controller(BorderPane root, ToolBarFX toolBar, ManifestoTabFX manifestoTab, GenerateTabFX generateTab, ScrollPane manifestoScrollPane) {
+        this.root = root;
+        this.toolBar = toolBar;
+        this.manifestoTab = manifestoTab;
+        this.generateTab = generateTab;
+        this.manifestoScrollPane = manifestoScrollPane;
+
+        generateTab.setOnGenerateManifesto( event -> {
+                try {
+                    generateManifesto(
+                        manifestoTab.generateManifesto(), 
+                        generateTab.getOpenWhenDone()
+                    ); 
+                } catch (Exception e) {
+                    System.out.println("Error generating manifesto:" + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        );
+
+        generateTab.setOnGenerateResume( event -> {
+                try {
+                    generateResume(
+                        manifestoTab.generateManifesto(), 
+                        generateTab.getJobDescription(), 
+                        generateTab.getOpenWhenDone()
+                    ); 
+                } catch (Exception e) {
+                    System.out.println("Error generating manifesto: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        );
     
+    }
+
     public void generateResume(Manifesto manifesto, String jobDescription, Boolean openWhenDone) {
 
         String pdfOutput;
@@ -62,10 +110,11 @@ public class Controller {
 
                 if (!invalidItemsList.isBlank()) invalidItemsList = invalidItemsList.substring(0, invalidItemsList.length() - 1);
 
-                createAlert("Manifesto incomplete!", "Please continue filling out the following before generating:\n" + invalidItemsList);
+                ToolBarFX.createAlert("Manifesto incomplete!", "Please continue filling out the following before generating:\n" + invalidItemsList);
                 return;
             }
 
+            toolBar.saveManifesto();
             pdfOutput = resume.compile();
 
 
@@ -95,16 +144,6 @@ public class Controller {
         } else {
             System.out.println("Cannot pull up output pdf: Desktop browsing is not supported on this system.");
         }
-
-    }
-
-    private void createAlert(String header, String content) {
-        
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
 
     }
 

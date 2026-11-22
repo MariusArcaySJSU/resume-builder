@@ -15,68 +15,39 @@ import javafx.stage.Stage;
 
 public class AppFX extends Application {
 
-    private final ToolBarFX toolBar;
+    private ToolBarFX toolBar;
     private ManifestoTabFX manifestoTab;
-    private final GenerateTabFX generateTab;
-    private final Controller controller;
+    private GenerateTabFX generateTab;
+    private Controller controller;
 
     private ScrollPane manifestoScrollPane;
-
-    public AppFX() throws Exception {
-
-        toolBar = new ToolBarFX();
-        manifestoTab = new ManifestoTabFX();
-        generateTab = new GenerateTabFX();
-        controller = new Controller();
-
-        generateTab.setOnGenerateManifesto( event -> {
-                try {
-                    controller.generateManifesto(
-                        manifestoTab.generateManifesto(), 
-                        generateTab.getOpenWhenDone()
-                    ); 
-                } catch (Exception e) {
-                    System.out.println("Error generating manifesto:" + e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        );
-
-        generateTab.setOnGenerateResume( event -> {
-                try {
-                    controller.generateResume(
-                        manifestoTab.generateManifesto(), 
-                        generateTab.getJobDescription(), 
-                        generateTab.getOpenWhenDone()
-                    ); 
-                } catch (Exception e) {
-                    System.out.println("Error generating manifesto:" + e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        );
-
-        toolBar.newItem.setOnAction( event -> {
-            manifestoTab = new ManifestoTabFX();
-            manifestoScrollPane.setContent(manifestoTab);
-        });
-
-    }
+    private ScrollPane generateScrollPane;
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
 
+        // Creates tabPane and all the tabs within
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
+        manifestoTab = new ManifestoTabFX();
+        generateTab = new GenerateTabFX();
+
+
+        // Creates toolBar
         manifestoScrollPane = createTab(tabPane, manifestoTab, "Manifesto");
-        createTab(tabPane, generateTab, "Generate");
+        generateScrollPane = createTab(tabPane, generateTab, "Generate");
+        toolBar = new ToolBarFX(manifestoScrollPane);
 
         BorderPane root = new BorderPane();
         root.setTop(toolBar);
         root.setCenter(tabPane);
-
         Scene scene = new Scene(root, 700, 700);
+
+
+
+        // Creates controller that handles interactions
+        controller = new Controller(root, toolBar, manifestoTab, generateTab, manifestoScrollPane);
 
         stage.setTitle("Resume Builder");
         stage.setScene(scene);

@@ -14,7 +14,7 @@ public class LatexCompiler {
     private static final String outputFolder = resumeFolder + "output/";
     private static final ProcessBuilder pb = new ProcessBuilder();
 
-    public String generateLatexFile(String sanitizedCanidateName, String latex) throws IOException {
+    public String saveLatexFile(String sanitizedCanidateName, String latex) throws IOException {
 
         Path latexFile = Path.of(outputFolder + sanitizedCanidateName + ".tex");
         Files.writeString(latexFile, latex);
