@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import App.Model.Manifesto.Manifesto;
 import App.Model.Resume.Resume;
@@ -52,7 +53,16 @@ public class Controller {
             Resume resume = manifesto.generateResume();
 
             if (!resume.isValid()) {
-                createAlert("Manifesto incomplete!", "Please continue filling out the manifesto before generating");
+
+                ArrayList<String> invalidItems = resume.getInvalid();
+                String invalidItemsList = "\n";
+                for (String item : invalidItems) {
+                    invalidItemsList += item + "\n";
+                }
+
+                if (!invalidItemsList.isBlank()) invalidItemsList = invalidItemsList.substring(0, invalidItemsList.length() - 1);
+
+                createAlert("Manifesto incomplete!", "Please continue filling out the following before generating:\n" + invalidItemsList);
                 return;
             }
 

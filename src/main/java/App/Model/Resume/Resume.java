@@ -52,6 +52,20 @@ public class Resume {
 
     }
 
+    public ArrayList<String> getInvalid() {
+
+        ArrayList<String> invalid = new ArrayList<>();
+
+        for (ResumeItem item : items) {
+            if (!item.isValid()) {
+                invalid.add(item.getClass().getSimpleName());
+            }
+        }
+
+        return invalid;
+
+    }
+
     public boolean isValid() {
 
         for (ResumeItem item : items) {
