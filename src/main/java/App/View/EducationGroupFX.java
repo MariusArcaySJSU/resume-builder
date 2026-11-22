@@ -9,90 +9,44 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 
-public class EducationGroupFX extends VBox {
-
-    private final TitledPane titledPane;
-    private final VBox educationList;
+public class EducationGroupFX extends ResumeItemGroupFX<Education> {
 
     public EducationGroupFX(EducationGroup educationGroup) {
         this();
         clear();
 
         for (ResumeItem item : educationGroup.items) {
-
-            Education e = (Education) item;
-            addEducation(e);
-
+            addItem((Education) item);
         }
     }
 
     public EducationGroupFX() {
-        educationList = new VBox(40);
-        educationList.setPadding(new Insets(15));
-        
-        Button addEducation = new Button("Add education");
-        addEducation.setOnAction(event -> {
-            addEducation();
-        });
-        
-        titledPane = new TitledPane("Education", new VBox(educationList, addEducation));
-        titledPane.setCollapsible(true);
-
-        addEducation();
-
-        this.getChildren().add(titledPane);
-
-    }
-
-    public void clear() {
-        educationList.getChildren().clear();
-    }
-
-    private void addEducation() {
-        addEducation(null);
-    }
-
-    private void addEducation(Education education) {
-
-        EducationFX educationFX = new EducationFX(education);
-        Button removeButton = new Button("Remove");
-        removeButton.setFocusTraversable(false);
-
-        VBox educationBox;
-        if (educationList.getChildren().isEmpty()) {
-            educationBox = new VBox(10, educationFX, new Separator());
-        } else {
-            educationBox = new VBox(10, educationFX, removeButton, new Separator());
-        }
-
-        educationList.getChildren().add(
-            educationBox
-        );
-
-        removeButton.setOnAction(event -> {
-            educationList.getChildren().remove(educationBox);
-        });
-
+        super("Education", "Add education", 40, new Insets(15), 0);
+        addItem(null);
     }
 
     public EducationGroup getEducationGroup() {
-
-        ArrayList<Education> educationArrayList = new ArrayList<>();
-
-        for (Node node : educationList.getChildren()) {
-            VBox educationBox = (VBox) node;
-            EducationFX educationFX = (EducationFX) educationBox.getChildren().get(0);
-
-            educationArrayList.add(educationFX.getEducation());
-        }
-
-        Education[] educationArray = educationArrayList.toArray(Education[]::new);
-
-        return new EducationGroup(educationArray);
-        
+        return new EducationGroup(getItems().toArray(Education[]::new));
     }
 
+    @Override
+    protected Node createItemView(Education education) {
+        return new EducationFX(education);
+    }
+
+    @Override
+    protected Node createEntry(Node itemView, Button removeButton, boolean firstItem) {
+        EducationFX educationFX = (EducationFX) itemView;
+        if (firstItem) {
+            return new VBox(10, educationFX, new Separator());
+        }
+        return new VBox(10, educationFX, removeButton, new Separator());
+    }
+
+    @Override
+    protected Education getItem(Node entry) {
+        return ((EducationFX) ((VBox) entry).getChildren().get(0)).getEducation();
+    }
 }

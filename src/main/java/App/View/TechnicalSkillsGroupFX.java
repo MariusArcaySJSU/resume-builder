@@ -1,101 +1,50 @@
 package App.View;
 
-import java.util.ArrayList;
-
 import App.Model.Resume.ResumeItems.ResumeItem;
 import App.Model.Resume.ResumeItems.TechnicalSkills;
 import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
-public class TechnicalSkillsGroupFX extends VBox {
-
-    private final TitledPane titledPane;
-    private final VBox technicalSkillsBox;
+public class TechnicalSkillsGroupFX extends ResumeItemGroupFX<TechnicalSkills> {
 
     public TechnicalSkillsGroupFX(TechnicalSkillsGroup technicalSkillsGroup) {
         this();
         clear();
 
         for (ResumeItem item : technicalSkillsGroup.items) {
-
-            TechnicalSkills s = (TechnicalSkills) item;
-            addSkills(s);
-
+            addItem((TechnicalSkills) item);
         }
     }
 
     public TechnicalSkillsGroupFX() {
-
-        technicalSkillsBox = new VBox(5);
-
-        Button addSkills = new Button("Add set of skills");
-        addSkills.setOnAction(event -> {
-            addSkills();
-        });
-
-        addSkills();
-
-        titledPane = new TitledPane("Technical Skills", new VBox(10, technicalSkillsBox, addSkills));
-        titledPane.setCollapsible(true);
-
-        this.getChildren().add(titledPane);
-    }
-
-    public void clear() {
-        technicalSkillsBox.getChildren().clear();
+        super("Technical Skills", "Add set of skills", 5, null, 10);
+        addItem(null);
     }
 
     public TechnicalSkillsGroup getTechnicalSkillsGroup() {
+        return new TechnicalSkillsGroup(getItems().toArray(TechnicalSkills[]::new));
+    }
 
-        ArrayList<TechnicalSkills> technicalSkillList = new ArrayList<>();
+    @Override
+    protected Node createItemView(TechnicalSkills technicalSkills) {
+        return new TechnicalSkillsFX(technicalSkills);
+    }
 
-        for (Node node : technicalSkillsBox.getChildren()) {
-
-            TechnicalSkillsFX skillFX = (TechnicalSkillsFX) ((HBox) node).getChildren().get(0);
-
-            String category = skillFX.getCategory();
-            ArrayList<String> skills = skillFX.getSkills();
-
-            TechnicalSkills technicalSkills = new TechnicalSkills(category, skills.toArray(String[]::new));
-            technicalSkillList.add(technicalSkills);
-
+    @Override
+    protected Node createEntry(Node itemView, Button removeButton, boolean firstItem) {
+        TechnicalSkillsFX skillFX = (TechnicalSkillsFX) itemView;
+        if (firstItem) {
+            return new HBox(10, skillFX);
         }
-
-        TechnicalSkills[] technicalSkillsArray = technicalSkillList.toArray(TechnicalSkills[]::new);
-
-        return new TechnicalSkillsGroup(technicalSkillsArray);
-
+        return new HBox(10, skillFX, removeButton);
     }
 
-    private void addSkills() {
-        addSkills(null);
+    @Override
+    protected TechnicalSkills getItem(Node entry) {
+        TechnicalSkillsFX skillFX = (TechnicalSkillsFX) ((HBox) entry).getChildren().get(0);
+        return new TechnicalSkills(skillFX.getCategory(), skillFX.getSkills().toArray(String[]::new));
     }
-
-    private void addSkills(TechnicalSkills skill) {
-
-        TechnicalSkillsFX skillFX = new TechnicalSkillsFX(skill);
-        Button removeButton = new Button("Remove");
-        removeButton.setFocusTraversable(false);
-        
-        HBox skillBox;
-        if (technicalSkillsBox.getChildren().isEmpty()) {
-            skillBox = new HBox(10, skillFX);
-        } else {
-            skillBox = new HBox(10, skillFX, removeButton);
-        }
-        
-        technicalSkillsBox.getChildren().add(
-            skillBox
-        );
-
-        removeButton.setOnAction(event -> {
-            technicalSkillsBox.getChildren().remove(skillBox);
-        });
-    }
-
 }
