@@ -1,25 +1,29 @@
 package App;
 
-import App.Model.Manifesto.Manifesto;
 import App.Controller.Controller;
 import App.View.GenerateTabFX;
 import App.View.ManifestoTabFX;
+import App.View.ToolBarFX;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class AppFX extends Application {
 
+    private final ToolBarFX toolBar;
     private final ManifestoTabFX manifestoTab;
     private final GenerateTabFX generateTab;
 
     private final Controller controller;
 
     public AppFX() throws Exception {
+
+        toolBar = new ToolBarFX();
         manifestoTab = new ManifestoTabFX();
         generateTab = new GenerateTabFX();
         controller = new Controller();
@@ -62,7 +66,11 @@ public class AppFX extends Application {
         createTab(tabPane, manifestoTab, "Manifesto");
         createTab(tabPane, generateTab, "Generate");
 
-        Scene scene = new Scene(tabPane, 700, 700);
+        BorderPane root = new BorderPane();
+        root.setTop(toolBar);
+        root.setCenter(tabPane);
+
+        Scene scene = new Scene(root, 700, 700);
 
         stage.setTitle("Resume Builder");
         stage.setScene(scene);
