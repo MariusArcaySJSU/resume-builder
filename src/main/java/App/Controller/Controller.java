@@ -11,8 +11,6 @@ import App.Model.Resume.Resume;
 import App.View.GenerateTabFX;
 import App.View.ManifestoTabFX;
 import App.View.ToolBarFX;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 
@@ -70,7 +68,7 @@ public class Controller {
             Resume resume = manifesto.generateResume(); // Generate just manifesto so you can check validity before sending to chatgpt
 
             if (!resume.isValid()) {
-                createAlert("Manifesto incomplete!", "Please continue filling out the manifesto before generating");
+                ToolBarFX.createAlert("Manifesto incomplete!", "Please continue filling out the manifesto before generating");
                 return;
             }
 
