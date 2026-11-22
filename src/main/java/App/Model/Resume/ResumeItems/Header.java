@@ -1,17 +1,19 @@
 package App.Model.Resume.ResumeItems;
 
+import java.util.ArrayList;
+
 public class Header extends ResumeItem {
     
     public String name;
     public String phone;
     public String email;
-    public Link[] links;
+    public ArrayList<Link> links;
 
-    public Header(String name, String phone, String email, Link[] links) {
+    public Header(String name, String phone, String email, ArrayList<Link> links) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.links = links;
+        this.links = new ArrayList<>(links);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class Header extends ResumeItem {
         for (Link link : links) {
             linksJSON += indentText(1, "{ \"url\": \"" + sanitizeJSON(link.url) + "\", \"label\": \"" + sanitizeJSON(link.label) + "\" },\n");
         }
-        if (links.length != 0) linksJSON = linksJSON.substring(0, linksJSON.length() - 2) + "\n";
+        if (!links.isEmpty()) linksJSON = linksJSON.substring(0, linksJSON.length() - 2) + "\n";
         linksJSON += "]\n";
 
         String JSON =

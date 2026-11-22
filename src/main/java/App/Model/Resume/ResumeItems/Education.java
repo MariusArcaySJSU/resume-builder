@@ -1,17 +1,18 @@
 package App.Model.Resume.ResumeItems;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Education extends ResumeItem {
     
     public String institution;
-    public String[] degrees;
+    public ArrayList<String> degrees;
     public String location;
     public LocalDate startDate;
     public LocalDate endDate;
 
-    public Education(String institution, String[] degrees, String location, LocalDate startDate, LocalDate endDate) {
+    public Education(String institution, ArrayList<String> degrees, String location, LocalDate startDate, LocalDate endDate) {
         this.institution = institution;
-        this.degrees = degrees;
+        this.degrees = new ArrayList<>(degrees);
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -19,15 +20,15 @@ public class Education extends ResumeItem {
 
     @Override
     public boolean isValid() {
-        return !institution.isBlank() && degrees.length > 0 && !location.isBlank() && startDate != null && endDate != null;
+        return !institution.isBlank() && !degrees.isEmpty() && !location.isBlank() && startDate != null && endDate != null;
     }
 
     @Override
     public String toLatex() {
 
         String degreesObtainedList = "";
-        for (int i = 0; i < degrees.length; ++i) {
-            degreesObtainedList += degrees[i] + ((i == degrees.length - 1) ? "" : ", ");
+        for (int i = 0; i < degrees.size(); ++i) {
+            degreesObtainedList += degrees.get(i) + ((i == degrees.size() - 1) ? "" : ", ");
         }
         
         String dateRange = super.getResumeFormattedDate(startDate) + " -- " + super.getResumeFormattedDate(endDate);
@@ -48,7 +49,7 @@ public class Education extends ResumeItem {
         for (String degree : degrees) {
             degreesJSON += indentText(1, "\"" + sanitizeJSON(degree) + "\",\n");
         }
-        if (degrees.length != 0) degreesJSON = degreesJSON.substring(0, degreesJSON.length() - 2) + "\n";
+        if (!degrees.isEmpty()) degreesJSON = degreesJSON.substring(0, degreesJSON.length() - 2) + "\n";
         degreesJSON += "],\n";
 
         String JSON =

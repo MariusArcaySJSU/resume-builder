@@ -81,10 +81,7 @@ public class EducationFX extends VBox {
     }
 
     public Education getEducation() {
-
-        String[] degrees = getDegrees().toArray(String[]::new);
-
-        return new Education(getInstitution(), degrees, getLocation(), getStartDate(), getEndDate());
+        return new Education(getInstitution(), getDegrees(), getLocation(), getStartDate(), getEndDate());
 
     }
 

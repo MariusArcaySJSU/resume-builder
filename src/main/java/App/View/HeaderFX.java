@@ -73,17 +73,14 @@ public class HeaderFX extends VBox {
         phoneField.setText(header.phone);
         emailField.setText(header.email);
 
-        Link[] links = header.links;
-        for (Link l : links) {
+        for (Link l : header.links) {
             addLink(l);
         }
 
     }
 
     public Header getHeader() {
-
-        Link[] links = getLinks().toArray(Link[]::new);
-        return new Header(getFullName(), getPhone(), getEmail(), links);
+        return new Header(getFullName(), getPhone(), getEmail(), getLinks());
 
     }
 

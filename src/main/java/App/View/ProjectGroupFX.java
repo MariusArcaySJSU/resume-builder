@@ -26,7 +26,7 @@ public class ProjectGroupFX extends ResumeItemGroupFX<Project> {
     }
 
     public ProjectGroup getProjectGroup() {
-        return new ProjectGroup(getItems().toArray(Project[]::new));
+        return new ProjectGroup(getItems());
     }
 
     @Override

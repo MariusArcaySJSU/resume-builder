@@ -25,7 +25,7 @@ public class TechnicalSkillsGroupFX extends ResumeItemGroupFX<TechnicalSkills> {
     }
 
     public TechnicalSkillsGroup getTechnicalSkillsGroup() {
-        return new TechnicalSkillsGroup(getItems().toArray(TechnicalSkills[]::new));
+        return new TechnicalSkillsGroup(getItems());
     }
 
     @Override
@@ -45,6 +45,6 @@ public class TechnicalSkillsGroupFX extends ResumeItemGroupFX<TechnicalSkills> {
     @Override
     protected TechnicalSkills getItem(Node entry) {
         TechnicalSkillsFX skillFX = (TechnicalSkillsFX) ((HBox) entry).getChildren().get(0);
-        return new TechnicalSkills(skillFX.getCategory(), skillFX.getSkills().toArray(String[]::new));
+        return new TechnicalSkills(skillFX.getCategory(), skillFX.getSkills());
     }
 }

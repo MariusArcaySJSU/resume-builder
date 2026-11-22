@@ -1,10 +1,12 @@
 package App.Model.Resume.ResumeItems;
 
+import java.util.ArrayList;
+
 public abstract class ResumeItemGroup extends ResumeItem {
     
     protected String groupName;
     protected boolean smallText = false;    // mainly used in TechnicalSkillsGroup
-    public ResumeItem[] items;
+    public ArrayList<ResumeItem> items;
     
     @Override
     public boolean isValid() {

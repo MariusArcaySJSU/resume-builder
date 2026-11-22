@@ -26,7 +26,7 @@ public class ExperienceGroupFX extends ResumeItemGroupFX<Experience> {
     }
 
     public ExperienceGroup getExperienceGroup() {
-        return new ExperienceGroup(getItems().toArray(Experience[]::new));
+        return new ExperienceGroup(getItems());
     }
 
     @Override

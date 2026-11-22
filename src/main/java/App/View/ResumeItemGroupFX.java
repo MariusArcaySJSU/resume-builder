@@ -1,7 +1,6 @@
 package App.View;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import App.Model.Resume.ResumeItems.ResumeItem;
 import javafx.geometry.Insets;
@@ -42,8 +41,8 @@ public abstract class ResumeItemGroupFX<T extends ResumeItem> extends VBox {
         removeButton.setOnAction(event -> itemList.getChildren().remove(entry));
     }
 
-    protected final List<T> getItems() {
-        List<T> items = new ArrayList<>();
+    protected final ArrayList<T> getItems() {
+        ArrayList<T> items = new ArrayList<>();
         for (Node entry : itemList.getChildren()) {
             items.add(getItem(entry));
         }

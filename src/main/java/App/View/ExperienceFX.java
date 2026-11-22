@@ -1,6 +1,7 @@
 package App.View;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import App.Model.Resume.ResumeItems.Experience;
 import javafx.scene.control.CheckBox;
@@ -92,7 +93,9 @@ public class ExperienceFX extends VBox {
     }
 
     public Experience getExperience() {
-        return new Experience(getRole(), getEmployer(), new String[]{ getDescription() }, getLocation(), getStartDate(), getEndDate());
+        ArrayList<String> description = new ArrayList<>();
+        description.add(getDescription());
+        return new Experience(getRole(), getEmployer(), description, getLocation(), getStartDate(), getEndDate());
     }
 
     public String getRole() {

@@ -94,9 +94,9 @@ public class ProjectFX extends VBox {
     }
 
     public Project getProject() {
-
-        String[] technologies = getTechnologies().toArray(String[]::new);
-        return new Project(getTitle(), technologies, new String[]{ getDescription() }, getStartDate(), getEndDate(), getDisplayDate());
+        ArrayList<String> description = new ArrayList<>();
+        description.add(getDescription());
+        return new Project(getTitle(), getTechnologies(), description, getStartDate(), getEndDate(), getDisplayDate());
 
     }
 
@@ -107,7 +107,7 @@ public class ProjectFX extends VBox {
     public ArrayList<String> getTechnologies() {
         
         ArrayList<String> result = new ArrayList<>();
-        String[] technologiesArray = technologiesField.getText().split(",");
+        ArrayList<String> technologiesArray = new ArrayList<>(java.util.Arrays.asList(technologiesField.getText().split(",")));
 
         for (String technology : technologiesArray) {
             result.add(technology.trim());

@@ -28,7 +28,7 @@ public class EducationGroupFX extends ResumeItemGroupFX<Education> {
     }
 
     public EducationGroup getEducationGroup() {
-        return new EducationGroup(getItems().toArray(Education[]::new));
+        return new EducationGroup(getItems());
     }
 
     @Override

@@ -1,31 +1,32 @@
 package App.Model.Resume.ResumeItems;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Experience extends ResumeItem {
     
     public String role;
     public String employer;
-    public String[] description;
+    public ArrayList<String> description;
     public String location;
     public LocalDate startDate;
     public LocalDate endDate;
 
-    public Experience(String role, String employer, String[] description, String location, LocalDate startDate, LocalDate endDate) {
+    public Experience(String role, String employer, ArrayList<String> description, String location, LocalDate startDate, LocalDate endDate) {
         this.role = role;
         this.employer = employer;
-        this.description = description;
+        this.description = new ArrayList<>(description);
         this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Experience(String role, String employer, String[] description, String location, LocalDate startDate) {
+    public Experience(String role, String employer, ArrayList<String> description, String location, LocalDate startDate) {
         this(role, employer, description, location, startDate, null);
     }
 
     @Override
     public boolean isValid() {
-        return !role.isBlank() && !employer.isBlank() && description.length > 0 && !location.isBlank() && startDate != null;
+        return !role.isBlank() && !employer.isBlank() && !description.isEmpty() && !location.isBlank() && startDate != null;
     }
 
     @Override
@@ -52,7 +53,7 @@ public class Experience extends ResumeItem {
         for (String bulletPoint : description) {
             descriptionJSON += indentText(1, "\"" + sanitizeJSON(bulletPoint) + "\",\n");
         }
-        if (description.length != 0) descriptionJSON = descriptionJSON.substring(0, descriptionJSON.length() - 2) + "\n";
+        if (!description.isEmpty()) descriptionJSON = descriptionJSON.substring(0, descriptionJSON.length() - 2) + "\n";
         descriptionJSON += "],\n";
 
         String JSON =

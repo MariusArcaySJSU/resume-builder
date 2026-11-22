@@ -56,7 +56,6 @@ public class Resume {
 
         for (ResumeItem item : items) {
             if (!item.isValid()) {
-                System.out.println(item);
                 return false;
             }
         }
