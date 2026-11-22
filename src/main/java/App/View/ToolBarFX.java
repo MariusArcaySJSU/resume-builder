@@ -1,4 +1,6 @@
 package App.View;
+
+import javafx.application.Platform;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
@@ -17,7 +19,7 @@ public class ToolBarFX extends ToolBar {
         newItem.setOnAction(e -> System.out.println("New clicked"));
         openItem.setOnAction(e -> System.out.println("Open clicked"));
         saveItem.setOnAction(e -> System.out.println("Save clicked"));
-        exitItem.setOnAction(e -> System.out.println("Exit clicked"));
+        exitItem.setOnAction(e -> Platform.exit());
 
         fileButton.getItems().addAll(
             newItem,
