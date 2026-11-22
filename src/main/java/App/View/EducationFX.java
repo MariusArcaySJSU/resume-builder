@@ -36,12 +36,13 @@ public class EducationFX extends VBox {
 
         Label degreesLabel = new Label("Degrees:");
         degrees = new VBox(5);
-        addDegree();
 
         Button addDegree = new Button("Add degree");
         addDegree.setOnAction(event -> {
             addDegree();
         });
+
+        addDegree();
 
         Label locationLabel = new Label("Location:");
         locationField = new TextField();

@@ -19,26 +19,32 @@ public class ManifestoTabFX extends VBox {
     private final TechnicalSkillsGroupFX technicalSkillsGroupFX;
 
     public ManifestoTabFX() {
-        this(null);
+
+        super(50);
+        headerFX = new HeaderFX();
+        educationGroupFX = new EducationGroupFX();
+        experienceGroupFX = new ExperienceGroupFX();
+        projectGroupFX = new ProjectGroupFX();
+        technicalSkillsGroupFX = new TechnicalSkillsGroupFX();
+
+        this.setPadding(new Insets(50));
+        this.getChildren().addAll(
+            headerFX,
+            educationGroupFX,
+            experienceGroupFX,
+            projectGroupFX,
+            technicalSkillsGroupFX
+        );
     }
 
     public ManifestoTabFX(Resume resume) {
 
         super(50);
-
-        if (resume == null) {
-            headerFX = new HeaderFX();
-            educationGroupFX = new EducationGroupFX();
-            experienceGroupFX = new ExperienceGroupFX();
-            projectGroupFX = new ProjectGroupFX();
-            technicalSkillsGroupFX = new TechnicalSkillsGroupFX();
-        } else {
-            headerFX = new HeaderFX(resume.getHeader());
-            educationGroupFX = new EducationGroupFX(resume.getEducationGroup());
-            experienceGroupFX = new ExperienceGroupFX(resume.getExperienceGroup());
-            projectGroupFX = new ProjectGroupFX(resume.getProjectGroup());
-            technicalSkillsGroupFX = new TechnicalSkillsGroupFX(resume.getTechnicalSkillsGroup());
-        }
+        headerFX = new HeaderFX(resume.getHeader());
+        educationGroupFX = new EducationGroupFX(resume.getEducationGroup());
+        experienceGroupFX = new ExperienceGroupFX(resume.getExperienceGroup());
+        projectGroupFX = new ProjectGroupFX(resume.getProjectGroup());
+        technicalSkillsGroupFX = new TechnicalSkillsGroupFX(resume.getTechnicalSkillsGroup());
 
         this.setPadding(new Insets(50));
         this.getChildren().addAll(
