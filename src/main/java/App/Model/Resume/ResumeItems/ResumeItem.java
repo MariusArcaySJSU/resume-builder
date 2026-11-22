@@ -51,18 +51,26 @@ public abstract class ResumeItem {
         return latex;
     }
 
-    // Sanitizes latex escape characters with a blacklash so it doesn't crash latex 
+    // Sanitizes JSON characters with a blacklash so it doesn't crash JSON 
     protected static String sanitizeJSON(String text) {
 
-        StringBuilder sb = new StringBuilder(text.length());
-        for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
+        String trimmed = text.trim();
+
+        StringBuilder sb = new StringBuilder(trimmed.length());
+        for (int i = 0; i < trimmed.length(); i++) {
+            char c = trimmed.charAt(i);
             switch (c) {
                 case '"':
                     sb.append("\\\"");
                     break;
                 case '\t':
                     sb.append(INDENTATION);
+                    break;
+                case '\n':
+                    sb.append("\", \"");
+                    break;
+                case '\\':
+                    sb.append("\\\\");
                     break;
                 default:
                     sb.append(c);
