@@ -1,0 +1,9 @@
+name makeindex.universal-darwin
+category Package
+revision 77928
+shortdesc universal-darwin files of makeindex
+containersize 95076
+containerchecksum d215fbd8c18cdf2fdf684d4ee4f71592e6a324a2dc464c0dbfe136e8e5cde9cbeecee54eb7b00036756acb55a025ab2810750651fa4a0e9299708c1f7d942e8d
+binfiles arch=universal-darwin size=96
+ bin/universal-darwin/makeindex
+ bin/universal-darwin/mkindex
