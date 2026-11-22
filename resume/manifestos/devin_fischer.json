@@ -1,0 +1,54 @@
+{
+    "header": {
+        "name": "Devin Fischer",
+        "phone": "1234567890",
+        "email": "sdfghjhgfds@gmail.com",
+        "links": [
+        ]
+    },
+    "education": [
+        {
+            "institution": "wedrfedws",
+            "degrees": [
+                "comp sci"
+            ],
+            "location": "San jOse",
+            "start_date": "2026-11-10",
+            "end_date": "2026-12-05"
+        }
+    
+    ],
+    "experience": [
+        {
+            "role": "SFT",
+            "employer": "Applw",
+            "description": [
+                "wedsawe3d"
+            ],
+            "location": "werwq",
+            "start_date": "2026-11-17",
+            "end_date": "null"
+        }
+    
+    ],
+    "project": [
+        {
+            "title": "sdefrdeswqa",
+            "technologies": ["wedswqaw3e"],
+            "description": [
+                "Made project"
+            ],
+            "start_date": "2026-11-03",
+            "start_date": "2026-11-20",
+            "display_date": "true"
+        }
+    
+    ],
+    "technical_skills": [
+        {
+            "category": "qswdefredws",
+            "skills": ["qwedrfedwsq"]
+        }
+    
+    ]
+}

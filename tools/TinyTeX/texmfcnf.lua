@@ -11,7 +11,6 @@ return {
   content = {
     variables = {
       TEXMFLOCAL = "selfautoparent:/texmf-local",
-      OSFONTDIR = "$SystemRoot/fonts//;$LOCALAPPDATA/Microsoft/Windows/Fonts//",
       ASYMPTOTE_HOME = "$TEXMFCONFIG/asymptote",
       TEXMFHOME = "$TEXMFLOCAL",
       TEXMFVAR = "$TEXMFSYSVAR",

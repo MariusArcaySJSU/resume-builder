@@ -9,10 +9,34 @@ import java.util.stream.Collectors;
 
 public class LatexCompiler {
     
-    private static final String pathToCompiler = "tools/TinyTeX/bin/windows/pdflatex.exe";
     private static final String resumeFolder = "resume/";
     private static final String outputFolder = resumeFolder + "output/";
     private static final ProcessBuilder pb = new ProcessBuilder();
+    
+    private static String pathToCompiler() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        Path bundledCompiler;
+
+        if (osName.contains("win")) {
+            bundledCompiler = Path.of("tools/TinyTeX/bin/windows/pdflatex.exe");
+        } else if (osName.contains("mac")) {
+            bundledCompiler = Path.of("tools/TinyTeX/bin/universal-darwin/pdflatex");
+
+            Path userTinyTex = Path.of(System.getProperty("user.home"), "Library", "TinyTeX",
+                    "bin", "universal-darwin", "pdflatex");
+            if (Files.isExecutable(userTinyTex)) {
+                return userTinyTex.toString();
+            }
+        } else {
+            bundledCompiler = Path.of("tools/TinyTeX/bin/x86_64-linux/pdflatex");
+        }
+
+        if (Files.isExecutable(bundledCompiler)) {
+            return bundledCompiler.toString();
+        }
+
+        return "pdflatex";
+    }
 
     public String generateLatexFile(String sanitizedCanidateName, String latex) throws IOException {
 
@@ -31,7 +55,7 @@ public class LatexCompiler {
         
         String logOutput;
         pb.redirectErrorStream(true);
-        pb.command(pathToCompiler, outputFlag, interactionFlag, outputFolder + sanitizedCanidateName + ".tex");
+        pb.command(pathToCompiler(), outputFlag, interactionFlag, outputFolder + sanitizedCanidateName + ".tex");
         Process p = pb.start();
 
         // Read and capture the console output text
