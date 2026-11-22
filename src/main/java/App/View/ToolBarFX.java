@@ -8,13 +8,13 @@ import javafx.scene.control.ToolBar;
 
 public class ToolBarFX extends ToolBar {
 
+    public final MenuItem newItem = new MenuItem("New");
+    public final MenuItem openItem = new MenuItem("Open...");
+    public final MenuItem saveItem = new MenuItem("Save");
+    public final MenuItem exitItem = new MenuItem("Exit");
+
     public ToolBarFX() {
         MenuButton fileButton = new MenuButton("File");
-
-        MenuItem newItem = new MenuItem("New");
-        MenuItem openItem = new MenuItem("Open...");
-        MenuItem saveItem = new MenuItem("Save");
-        MenuItem exitItem = new MenuItem("Exit");
 
         newItem.setOnAction(e -> System.out.println("New clicked"));
         openItem.setOnAction(e -> System.out.println("Open clicked"));

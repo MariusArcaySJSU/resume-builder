@@ -9,17 +9,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AppFX extends Application {
 
     private final ToolBarFX toolBar;
-    private final ManifestoTabFX manifestoTab;
+    private ManifestoTabFX manifestoTab;
     private final GenerateTabFX generateTab;
-
     private final Controller controller;
+
+    private ScrollPane manifestoScrollPane;
 
     public AppFX() throws Exception {
 
@@ -55,6 +56,11 @@ public class AppFX extends Application {
             }
         );
 
+        toolBar.newItem.setOnAction( event -> {
+            manifestoTab = new ManifestoTabFX();
+            manifestoScrollPane.setContent(manifestoTab);
+        });
+
     }
 
     @Override
@@ -63,7 +69,7 @@ public class AppFX extends Application {
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        createTab(tabPane, manifestoTab, "Manifesto");
+        manifestoScrollPane = createTab(tabPane, manifestoTab, "Manifesto");
         createTab(tabPane, generateTab, "Generate");
 
         BorderPane root = new BorderPane();
@@ -78,7 +84,7 @@ public class AppFX extends Application {
 
     }
 
-    private void createTab(TabPane tabPane, VBox tabBox, String title) {
+    private ScrollPane createTab(TabPane tabPane, VBox tabBox, String title) {
         ScrollPane scrollPane = new ScrollPane(tabBox);
         scrollPane.setFitToWidth(true);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -88,6 +94,7 @@ public class AppFX extends Application {
         tab.setContent(scrollPane);
 
         tabPane.getTabs().add(tab);
+        return scrollPane;
     }
 
 }
