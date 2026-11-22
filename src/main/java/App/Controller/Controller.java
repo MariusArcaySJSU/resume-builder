@@ -18,22 +18,20 @@ public class Controller {
 
     private final BorderPane root;
     private ToolBarFX toolBar;
-    private ManifestoTabFX manifestoTab;
     private GenerateTabFX generateTab;
 
     private ScrollPane manifestoScrollPane;
 
-    public Controller(BorderPane root, ToolBarFX toolBar, ManifestoTabFX manifestoTab, GenerateTabFX generateTab, ScrollPane manifestoScrollPane) {
+    public Controller(BorderPane root, ToolBarFX toolBar, GenerateTabFX generateTab, ScrollPane manifestoScrollPane) {
         this.root = root;
         this.toolBar = toolBar;
-        this.manifestoTab = manifestoTab;
         this.generateTab = generateTab;
         this.manifestoScrollPane = manifestoScrollPane;
 
         generateTab.setOnGenerateManifesto( event -> {
                 try {
                     generateManifesto(
-                        manifestoTab.generateManifesto(), 
+                        getCurrentManifestoTab().generateManifesto(),
                         generateTab.getOpenWhenDone()
                     ); 
                 } catch (Exception e) {
@@ -46,7 +44,7 @@ public class Controller {
         generateTab.setOnGenerateResume( event -> {
                 try {
                     generateResume(
-                        manifestoTab.generateManifesto(), 
+                        getCurrentManifestoTab().generateManifesto(),
                         generateTab.getJobDescription(), 
                         generateTab.getOpenWhenDone()
                     ); 
@@ -57,6 +55,10 @@ public class Controller {
             }
         );
     
+    }
+
+    private ManifestoTabFX getCurrentManifestoTab() {
+        return (ManifestoTabFX) manifestoScrollPane.getContent();
     }
 
     public void generateResume(Manifesto manifesto, String jobDescription, Boolean openWhenDone) {

@@ -57,8 +57,8 @@ public class Education extends ResumeItem {
             indentText(1, "\"institution\": \"" + sanitizeJSON(institution) + "\",\n") + //
             indentText(1, degreesJSON) + //
             indentText(1, "\"location\": \"" + sanitizeJSON(location) + "\",\n") + //
-            indentText(1, "\"start_date\": \"" + sanitizeJSON(toSanitizedDate(startDate)) + "\",\n") + //
-            indentText(1, "\"end_date\": \"" + sanitizeJSON(toSanitizedDate(endDate)) + "\"\n") + //
+            indentText(1, "\"startDate\": \"" + sanitizeJSON(safeDateToString(startDate)) + "\",\n") + //
+            indentText(1, "\"endDate\": \"" + sanitizeJSON(safeDateToString(endDate)) + "\"\n") + //
             "}";
 
         return JSON;

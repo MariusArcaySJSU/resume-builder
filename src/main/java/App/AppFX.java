@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 public class AppFX extends Application {
 
     private ToolBarFX toolBar;
-    private ManifestoTabFX manifestoTab;
     private GenerateTabFX generateTab;
     private Controller controller;
 
@@ -30,7 +29,7 @@ public class AppFX extends Application {
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        manifestoTab = new ManifestoTabFX();
+        ManifestoTabFX manifestoTab = new ManifestoTabFX();
         generateTab = new GenerateTabFX();
 
 
@@ -47,7 +46,7 @@ public class AppFX extends Application {
 
 
         // Creates controller that handles interactions
-        controller = new Controller(root, toolBar, manifestoTab, generateTab, manifestoScrollPane);
+        controller = new Controller(root, toolBar, generateTab, manifestoScrollPane);
 
         stage.setTitle("Resume Builder");
         stage.setScene(scene);

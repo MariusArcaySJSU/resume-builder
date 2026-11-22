@@ -51,6 +51,11 @@ public abstract class ResumeItem {
         return latex;
     }
 
+    protected static String safeDateToString(LocalDate date) {
+        if (date == null) return "null";
+        return date.toString();
+    }
+
     // Sanitizes JSON characters with a blacklash so it doesn't crash JSON 
     protected static String sanitizeJSON(String text) {
 

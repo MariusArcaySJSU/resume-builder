@@ -1,8 +1,8 @@
 package App.Model.Resume;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,8 +64,8 @@ public class ResumeParser {
 
             String institution = educationNode.path("institution").asText();
             String location = educationNode.path("location").asText();
-            String startDate = educationNode.path("start_date").asText();
-            String endDate = educationNode.path("end_date").asText();
+            String startDate = educationNode.path("startDate").asText();
+            String endDate = educationNode.path("endDate").asText();
 
             ArrayList<String> degrees = parseList(educationNode.path("degrees"));
 
@@ -87,8 +87,8 @@ public class ResumeParser {
             String role = experienceNode.path("role").asText();
             String employer = experienceNode.path("employer").asText();
             String location = experienceNode.path("location").asText();
-            String startDate = experienceNode.path("start_date").asText();
-            String endDate = experienceNode.path("end_date").asText();
+            String startDate = experienceNode.path("startDate").asText();
+            String endDate = experienceNode.path("endDate").asText();
 
             ArrayList<String> description = parseList(experienceNode.path("description"));
 
@@ -108,8 +108,8 @@ public class ResumeParser {
         for (JsonNode projectNode : projectArrayNode) {
 
             String title = projectNode.path("title").asText();
-            String startDate = projectNode.path("start_date").asText();
-            String endDate = projectNode.path("end_date").asText();
+            String startDate = projectNode.path("startDate").asText();
+            String endDate = projectNode.path("endDate").asText();
             Boolean displayDate = projectNode.path("display_date").asBoolean();
 
             ArrayList<String> technologies = parseList(projectNode.path("technologies"));
@@ -153,10 +153,18 @@ public class ResumeParser {
 
     private LocalDate stringToDate(String date) {
 
-        if (date == null || date.equals("null") || date.equals("")) return null;
+        if (date == null || date.equals("null")) return null;
 
-        ArrayList<String> split = new ArrayList<>(Arrays.asList(date.split("-")));
-        return LocalDate.of(Integer.parseInt(split.get(0).trim()), Integer.parseInt(split.get(1).trim()), Integer.parseInt(split.get(2).trim()));
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return LocalDate.parse(date, formatter);
+        } catch (Exception e) {
+            System.out.println("Error parsing string to date: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return null;
+
     }
 
 }

@@ -59,7 +59,7 @@ public class ToolBarFX extends ToolBar {
 
         try {
             ((ManifestoTabFX) manifestoScrollPane.getContent()).generateManifesto().saveManifestoFile();
-            System.out.println("Saved manifesto");
+            System.out.println("Succesfully saved manifesto");
 
         } catch (Exception e) {
             System.out.println("Error saving manifesto file: " + e.getMessage());
@@ -97,7 +97,7 @@ public class ToolBarFX extends ToolBar {
                     String fileNameWithoutExtension = s.substring(0, dotIndex);
                     Manifesto manifesto = new Manifesto( fileNameWithoutExtension );
                     manifestoScrollPane.setContent( new ManifestoTabFX( manifesto ) );
-                    System.out.println("Opened manifesto");
+                    System.out.println("sSuccesfully opened manifesto");
 
                 } catch (Exception e) {
                     System.out.println("Error opening manifesto: " + e.getMessage());
