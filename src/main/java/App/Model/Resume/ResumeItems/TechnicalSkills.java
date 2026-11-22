@@ -1,26 +1,28 @@
 package App.Model.Resume.ResumeItems;
 
+import java.util.ArrayList;
+
 public class TechnicalSkills extends ResumeItem {
     
     public String category;
-    public String[] skills;
+    public ArrayList<String> skills;
 
-    public TechnicalSkills(String category, String[] skills) {
+    public TechnicalSkills(String category, ArrayList<String> skills) {
         this.category = category;
-        this.skills = skills;
+        this.skills = new ArrayList<>(skills);
     }
 
     @Override
     public boolean isValid() {
-        return !category.isBlank() && skills.length > 0;
+        return !category.isBlank() && !skills.isEmpty();
     }
 
     @Override
     public String toLatex() {
 
         String skillsCombined = "";
-        for (int i = 0; i < skills.length; ++i) {
-            skillsCombined += skills[i] + ((i == skills.length - 1) ? "" : ", ");
+        for (int i = 0; i < skills.size(); ++i) {
+            skillsCombined += skills.get(i) + ((i == skills.size() - 1) ? "" : ", ");
         }
 
         return "\\textbf{" + sanitizeLatex(category) + "}{: " + sanitizeLatex(skillsCombined) + "}\\\\\n";
@@ -33,7 +35,7 @@ public class TechnicalSkills extends ResumeItem {
         for (String skill : skills) {
             skillsJSON += "\"" + sanitizeJSON(skill) + "\", ";
         }
-        if (skills.length != 0) skillsJSON = skillsJSON.substring(0, skillsJSON.length() - 2);
+        if (!skills.isEmpty()) skillsJSON = skillsJSON.substring(0, skillsJSON.length() - 2);
         skillsJSON += "]\n";
 
         String JSON = 

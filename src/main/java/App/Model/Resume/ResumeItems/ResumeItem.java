@@ -1,6 +1,7 @@
 package App.Model.Resume.ResumeItems;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public abstract class ResumeItem {
@@ -40,7 +41,7 @@ public abstract class ResumeItem {
         return result;
     }
 
-    protected static String descriptionToLatex(String[] description) {
+    protected static String descriptionToLatex(ArrayList<String> description) {
         String latex = "";
 
         for (String bulletPoint : description) {

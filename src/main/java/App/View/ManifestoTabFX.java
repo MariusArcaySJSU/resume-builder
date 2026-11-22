@@ -12,33 +12,39 @@ import javafx.scene.layout.VBox;
 
 public class ManifestoTabFX extends VBox {
 
-    private HeaderFX headerFX;
-    private EducationGroupFX educationGroupFX;
-    private ExperienceGroupFX experienceGroupFX;
-    private ProjectGroupFX projectGroupFX;
-    private TechnicalSkillsGroupFX technicalSkillsGroupFX;
+    private final HeaderFX headerFX;
+    private final EducationGroupFX educationGroupFX;
+    private final ExperienceGroupFX experienceGroupFX;
+    private final ProjectGroupFX projectGroupFX;
+    private final TechnicalSkillsGroupFX technicalSkillsGroupFX;
 
     public ManifestoTabFX() {
-        this(null);
+
+        super(50);
+        headerFX = new HeaderFX();
+        educationGroupFX = new EducationGroupFX();
+        experienceGroupFX = new ExperienceGroupFX();
+        projectGroupFX = new ProjectGroupFX();
+        technicalSkillsGroupFX = new TechnicalSkillsGroupFX();
+
+        this.setPadding(new Insets(50));
+        this.getChildren().addAll(
+            headerFX,
+            educationGroupFX,
+            experienceGroupFX,
+            projectGroupFX,
+            technicalSkillsGroupFX
+        );
     }
 
     public ManifestoTabFX(Resume resume) {
 
         super(50);
-
-        if (resume == null) {
-            headerFX = new HeaderFX();
-            educationGroupFX = new EducationGroupFX();
-            experienceGroupFX = new ExperienceGroupFX();
-            projectGroupFX = new ProjectGroupFX();
-            technicalSkillsGroupFX = new TechnicalSkillsGroupFX();
-        } else {
-            headerFX = new HeaderFX((Header) resume.items.get(0));
-            educationGroupFX = new EducationGroupFX((EducationGroup) resume.items.get(1));
-            experienceGroupFX = new ExperienceGroupFX((ExperienceGroup) resume.items.get(2));
-            projectGroupFX = new ProjectGroupFX((ProjectGroup) resume.items.get(3));
-            technicalSkillsGroupFX = new TechnicalSkillsGroupFX((TechnicalSkillsGroup) resume.items.get(4));
-        }
+        headerFX = new HeaderFX(resume.getHeader());
+        educationGroupFX = new EducationGroupFX(resume.getEducationGroup());
+        experienceGroupFX = new ExperienceGroupFX(resume.getExperienceGroup());
+        projectGroupFX = new ProjectGroupFX(resume.getProjectGroup());
+        technicalSkillsGroupFX = new TechnicalSkillsGroupFX(resume.getTechnicalSkillsGroup());
 
         this.setPadding(new Insets(50));
         this.getChildren().addAll(

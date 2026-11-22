@@ -3,6 +3,7 @@ package App.Model.Manifesto;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import App.Model.ChatGptService.ChatGptService;
 import App.Model.Resume.Resume;
@@ -25,8 +26,10 @@ public class Manifesto {
 
     public Manifesto(Resume resume) throws IOException {
 
+        ArrayList<ResumeItem> items = resume.getItems();
+
         String bodyJSON = "";
-        for (ResumeItem item : resume.items) {
+        for (ResumeItem item : items) {
             bodyJSON += item.toJSON() + ",\n";
         }
 

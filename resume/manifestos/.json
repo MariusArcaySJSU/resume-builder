@@ -1,0 +1,53 @@
+{
+    "header": {
+        "name": "",
+        "phone": "",
+        "email": "",
+        "links": [
+        ]
+    },
+    "education": [
+        {
+            "institution": "",
+            "degrees": [
+            ],
+            "location": "",
+            "start_date": "null",
+            "end_date": "null"
+        }
+    
+    ],
+    "experience": [
+        {
+            "role": "",
+            "employer": "",
+            "description": [
+                ""
+            ],
+            "location": "",
+            "start_date": "null",
+            "end_date": "null"
+        }
+    
+    ],
+    "project": [
+        {
+            "title": "",
+            "technologies": [""],
+            "description": [
+                ""
+            ],
+            "start_date": "null",
+            "start_date": "null",
+            "display_date": "true"
+        }
+    
+    ],
+    "technical_skills": [
+        {
+            "category": "",
+            "skills": []
+        }
+    
+    ]
+}

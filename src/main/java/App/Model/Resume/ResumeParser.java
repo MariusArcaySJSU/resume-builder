@@ -2,6 +2,7 @@ package App.Model.Resume;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,7 +51,7 @@ public class ResumeParser {
             links.add(label.equals("") ? new Link(url) : new Link(url, label));
         }
 
-        return new Header(name, phone, email, links.toArray(Link[]::new));
+        return new Header(name, phone, email, links);
 
     }
 
@@ -66,12 +67,12 @@ public class ResumeParser {
             String startDate = educationNode.path("start_date").asText();
             String endDate = educationNode.path("end_date").asText();
 
-            String[] degrees = parseList(educationNode.path("degrees"));
+            ArrayList<String> degrees = parseList(educationNode.path("degrees"));
 
             educationList.add(new Education(institution, degrees, location, stringToDate(startDate), stringToDate(endDate)));
         }
 
-        EducationGroup educationGroup = new EducationGroup( educationList.toArray(Education[]::new) );
+        EducationGroup educationGroup = new EducationGroup(educationList);
         return educationGroup;
 
     }
@@ -89,12 +90,12 @@ public class ResumeParser {
             String startDate = experienceNode.path("start_date").asText();
             String endDate = experienceNode.path("end_date").asText();
 
-            String[] description = parseList(experienceNode.path("description"));
+            ArrayList<String> description = parseList(experienceNode.path("description"));
 
             experienceList.add(new Experience(role, employer, description, location, stringToDate(startDate), stringToDate(endDate)));
         }
 
-        ExperienceGroup experienceGroup = new ExperienceGroup( experienceList.toArray(Experience[]::new) );
+        ExperienceGroup experienceGroup = new ExperienceGroup(experienceList);
         return experienceGroup;
 
     }
@@ -111,13 +112,13 @@ public class ResumeParser {
             String endDate = projectNode.path("end_date").asText();
             Boolean displayDate = projectNode.path("display_date").asBoolean();
 
-            String[] technologies = parseList(projectNode.path("technologies"));
-            String[] description = parseList(projectNode.path("description"));
+            ArrayList<String> technologies = parseList(projectNode.path("technologies"));
+            ArrayList<String> description = parseList(projectNode.path("description"));
 
             projectList.add(new Project(title, technologies, description, stringToDate(startDate), stringToDate(endDate), displayDate));
         }
 
-        ProjectGroup projectGroup = new ProjectGroup( projectList.toArray(Project[]::new) );
+        ProjectGroup projectGroup = new ProjectGroup(projectList);
         return projectGroup;
 
     }
@@ -129,17 +130,17 @@ public class ResumeParser {
 
         for (JsonNode technicalSkill : technicalSkillsNode) {
             String category = technicalSkill.path("category").asText();
-            String[] skills = parseList(technicalSkill.path("skills"));
+            ArrayList<String> skills = parseList(technicalSkill.path("skills"));
 
             technicalSkillsList.add(new TechnicalSkills(category, skills));
         }
 
-        TechnicalSkillsGroup technicalSkillsGroup = new TechnicalSkillsGroup(technicalSkillsList.toArray(TechnicalSkills[]::new));
+        TechnicalSkillsGroup technicalSkillsGroup = new TechnicalSkillsGroup(technicalSkillsList);
         return technicalSkillsGroup;
 
     }
 
-    private String[] parseList(JsonNode jsonList) {
+    private ArrayList<String> parseList(JsonNode jsonList) {
 
         ArrayList<String> list = new ArrayList<>();
 
@@ -147,15 +148,15 @@ public class ResumeParser {
             list.add(element.asText());
         }
 
-        return list.toArray(String[]::new);
+        return list;
     }
 
     private LocalDate stringToDate(String date) {
 
         if (date == null || date.equals("null") || date.equals("")) return null;
 
-        String[] split = date.split("-");
-        return LocalDate.of(Integer.parseInt(split[0].trim()), Integer.parseInt(split[1].trim()), Integer.parseInt(split[2].trim()));
+        ArrayList<String> split = new ArrayList<>(Arrays.asList(date.split("-")));
+        return LocalDate.of(Integer.parseInt(split.get(0).trim()), Integer.parseInt(split.get(1).trim()), Integer.parseInt(split.get(2).trim()));
     }
 
 }

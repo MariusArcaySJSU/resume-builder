@@ -1,36 +1,37 @@
 package App.Model.Resume.ResumeItems;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Project extends ResumeItem {
     
     public String title;
-    public String[] technologies;
-    public String[] description;
+    public ArrayList<String> technologies;
+    public ArrayList<String> description;
     public LocalDate startDate;
     public LocalDate endDate;
     public boolean displayDate = true;
 
-    public Project(String title, String[] technologies, String[] description, LocalDate startDate, LocalDate endDate) {
+    public Project(String title, ArrayList<String> technologies, ArrayList<String> description, LocalDate startDate, LocalDate endDate) {
         this.title = title;
-        this.technologies = technologies;
-        this.description = description;
+        this.technologies = new ArrayList<>(technologies);
+        this.description = new ArrayList<>(description);
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Project(String title, String[] technologies, String[] description, LocalDate startDate, LocalDate endDate, boolean displayDate) {
+    public Project(String title, ArrayList<String> technologies, ArrayList<String> description, LocalDate startDate, LocalDate endDate, boolean displayDate) {
         this(title, technologies, description, startDate, endDate);
         this.displayDate = displayDate;
     }
 
-    public Project(String title, String[] technologies, String[] description) {
+    public Project(String title, ArrayList<String> technologies, ArrayList<String> description) {
         this(title, technologies, description, null, null);
         this.displayDate = false;
     }
 
     @Override
     public boolean isValid() {
-        return !title.isBlank() && technologies.length > 0 && description.length > 0 && (displayDate ? startDate != null : true);
+        return !title.isBlank() && !technologies.isEmpty() && !description.isEmpty() && (displayDate ? startDate != null : true);
     }
 
     @Override
@@ -39,8 +40,8 @@ public class Project extends ResumeItem {
         String dateRange = super.getResumeFormattedDate(startDate) + " -- " + super.getResumeFormattedDate(endDate);
         
         String technologiesCombined = "";
-        for (int i = 0; i < technologies.length; ++i) {
-            technologiesCombined += technologies[i] + ((i == technologies.length - 1) ? "" : ", ");
+        for (int i = 0; i < technologies.size(); ++i) {
+            technologiesCombined += technologies.get(i) + ((i == technologies.size() - 1) ? "" : ", ");
         }
 
         String latex = 
@@ -60,14 +61,14 @@ public class Project extends ResumeItem {
         for (String bulletPoint : description) {
             descriptionJSON += indentText(1, "\"" + sanitizeJSON(bulletPoint) + "\",\n");
         }
-        if (description.length != 0) descriptionJSON = descriptionJSON.substring(0, descriptionJSON.length() - 2) + "\n";
+        if (!description.isEmpty()) descriptionJSON = descriptionJSON.substring(0, descriptionJSON.length() - 2) + "\n";
         descriptionJSON += "],\n";
 
         String technologiesJSON = "\"technologies\": [";
         for (String technology : technologies) {
             technologiesJSON += "\"" + sanitizeJSON(technology) + "\", ";
         }
-        if (technologies.length != 0) technologiesJSON = technologiesJSON.substring(0, technologiesJSON.length() - 2);
+        if (!technologies.isEmpty()) technologiesJSON = technologiesJSON.substring(0, technologiesJSON.length() - 2);
         technologiesJSON += "],\n";
 
         String JSON =

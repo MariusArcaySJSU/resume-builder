@@ -58,7 +58,7 @@ public class TechnicalSkillsFX extends HBox {
     public ArrayList<String> getSkills() {
         
         ArrayList<String> result = new ArrayList<>();
-        String[] technologiesArray = skillsField.getText().split(",");
+        ArrayList<String> technologiesArray = new ArrayList<>(java.util.Arrays.asList(skillsField.getText().split(",")));
 
         for (String technology : technologiesArray) {
             if (!technology.trim().isBlank()) result.add(technology.trim()); // Don't add if it's blank

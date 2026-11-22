@@ -15,39 +15,61 @@ import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 
 public class Resume {
 
-    public ArrayList<ResumeItem> items = new ArrayList<>();    
+    private final ArrayList<ResumeItem> items = new ArrayList<>();    
 
-    private final String canidateFullName;
+    private final Header header;
+    private final EducationGroup educationGroup;
+    private final ExperienceGroup experienceGroup;
+    private final ProjectGroup projectGroup;
+    private final TechnicalSkillsGroup technicalSkillsGroup;
+
     private final LatexCompiler latexCompiler = new LatexCompiler();
     private final String preambleFile = "resume/resources/jakes_resume_preamble.tex";
     private final String preambleLatex;
-    
 
     public Resume(
         Header header, 
-        EducationGroup education, 
-        ExperienceGroup experience, 
-        ProjectGroup projects, 
-        TechnicalSkillsGroup technicalSkills) 
+        EducationGroup educationGroup, 
+        ExperienceGroup experienceGroup, 
+        ProjectGroup projectGroup, 
+        TechnicalSkillsGroup technicalSkillsGroup) 
     throws IOException {
         
         Path filePath = Path.of(preambleFile);
         preambleLatex = Files.readString(filePath);
 
         items.add(header);
-        items.add(education);
-        items.add(experience);
-        items.add(projects);
-        items.add(technicalSkills);
+        items.add(educationGroup);
+        items.add(experienceGroup);
+        items.add(projectGroup);
+        items.add(technicalSkillsGroup);
 
-        canidateFullName = header.name.isBlank() ? "untitled" : header.name;
+        this.header = header;
+        this.educationGroup = educationGroup;
+        this.experienceGroup = experienceGroup;
+        this.projectGroup = projectGroup;
+        this.technicalSkillsGroup = technicalSkillsGroup;
+
+    }
+
+    public ArrayList<String> getInvalid() {
+
+        ArrayList<String> invalid = new ArrayList<>();
+
+        for (ResumeItem item : items) {
+            if (!item.isValid()) {
+                invalid.add(item.getClass().getSimpleName());
+            }
+        }
+
+        return invalid;
+
     }
 
     public boolean isValid() {
 
         for (ResumeItem item : items) {
             if (!item.isValid()) {
-                System.out.println(item);
                 return false;
             }
         }
@@ -71,8 +93,32 @@ public class Resume {
 
     }
 
+    public ArrayList<ResumeItem> getItems() {
+        return new ArrayList<>(items);
+    }
+
+    public Header getHeader() {
+        return header;
+    }
+
+    public EducationGroup getEducationGroup() {
+        return educationGroup;
+    }
+
+    public ExperienceGroup getExperienceGroup() {
+        return experienceGroup;
+    }
+
+    public ProjectGroup getProjectGroup() {
+        return projectGroup;
+    }
+
+    public TechnicalSkillsGroup getTechnicalSkillsGroup() {
+        return technicalSkillsGroup;
+    }
+
     public String getSanitizedCanidateName() {
-        return canidateFullName.replace(" ", "_").toLowerCase().trim();
+        return header.name.replace(" ", "_").toLowerCase().trim();
     }
 
 }
