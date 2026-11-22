@@ -97,7 +97,7 @@ public class ToolBarFX extends ToolBar {
                     String fileNameWithoutExtension = s.substring(0, dotIndex);
                     Manifesto manifesto = new Manifesto( fileNameWithoutExtension );
                     manifestoScrollPane.setContent( new ManifestoTabFX( manifesto ) );
-                    System.out.println("sSuccesfully opened manifesto");
+                    System.out.println("Succesfully opened manifesto");
 
                 } catch (Exception e) {
                     System.out.println("Error opening manifesto: " + e.getMessage());
