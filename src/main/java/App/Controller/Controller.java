@@ -28,9 +28,9 @@ public class Controller {
         this.generateTab = generateTab;
         this.manifestoScrollPane = manifestoScrollPane;
 
-        generateTab.setOnGenerateManifesto( event -> {
+        generateTab.setOnGenerateRawResume( event -> {
                 try {
-                    generateManifesto(
+                    generateRawResume(
                         getCurrentManifestoTab().generateManifesto(),
                         generateTab.getOpenWhenDone()
                     ); 
@@ -41,9 +41,9 @@ public class Controller {
             }
         );
 
-        generateTab.setOnGenerateResume( event -> {
+        generateTab.setOnGenerateTailoredResume( event -> {
                 try {
-                    generateResume(
+                    generateTailoredResume(
                         getCurrentManifestoTab().generateManifesto(),
                         generateTab.getJobDescription(), 
                         generateTab.getOpenWhenDone()
@@ -61,7 +61,7 @@ public class Controller {
         return (ManifestoTabFX) manifestoScrollPane.getContent();
     }
 
-    public void generateResume(Manifesto manifesto, String jobDescription, Boolean openWhenDone) {
+    public void generateTailoredResume(Manifesto manifesto, String jobDescription, Boolean openWhenDone) {
 
         String pdfOutput;
 
@@ -74,7 +74,7 @@ public class Controller {
                 return;
             }
 
-            resume = manifesto.generateResumeFromJobDescription(jobDescription);
+            resume = manifesto.generateTailoredResume(jobDescription);
 
             pdfOutput = resume.compile();
 
@@ -92,7 +92,7 @@ public class Controller {
 
     }
 
-    public void generateManifesto(Manifesto manifesto, Boolean openWhenDone) {
+    public void generateRawResume(Manifesto manifesto, Boolean openWhenDone) {
 
         String pdfOutput;
 

@@ -22,7 +22,7 @@ public class ManifestoExample {
 
         Manifesto manifesto = new Manifesto("example_manifesto.json");
         Resume resume = manifesto.generateResume();
-        //Resume resume = manifesto.generateResumeFromJobDescription(jobDescription);
+        //Resume resume = manifesto.generateTailoredResume(jobDescription);
         //resume.export();
         //System.out.println(resume.generate());
 
