@@ -35,7 +35,7 @@ public class Controller {
                         generateTab.getOpenWhenDone()
                     ); 
                 } catch (Exception e) {
-                    System.out.println("Error generating manifesto:" + e.getMessage());
+                    System.out.println("Error generating raw resume:" + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -49,7 +49,8 @@ public class Controller {
                         generateTab.getOpenWhenDone()
                     ); 
                 } catch (Exception e) {
-                    System.out.println("Error generating manifesto: " + e.getMessage());
+                    System.out.println("Error tailoring resume: " + e.getMessage());
+                    ToolBarFX.createAlert("Error tailoring resume", e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -74,20 +75,26 @@ public class Controller {
                 return;
             }
 
-            resume = manifesto.generateTailoredResume(jobDescription);
+            try {
+                resume = manifesto.generateTailoredResume(jobDescription);
+                pdfOutput = resume.compile();
 
-            pdfOutput = resume.compile();
+                if (openWhenDone) {
+                    Path absolutePdfPath = Path.of(pdfOutput).toAbsolutePath();
+                    openPdfInBrowser(absolutePdfPath);   
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error tailoring resume: " + e.getMessage());
+                ToolBarFX.createAlert("Error tailoring resume", e.getMessage());
+                e.printStackTrace();
+            }
 
 
         } catch (Exception e) {
             System.out.println("Error compiling resume: " + e.getMessage() + ".pdf");
             e.printStackTrace();
             return;
-        }
-
-        if (openWhenDone) {
-            Path absolutePdfPath = Path.of(pdfOutput).toAbsolutePath();
-            openPdfInBrowser(absolutePdfPath);   
         }
 
     }

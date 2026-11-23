@@ -9,20 +9,18 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class ChatGptService {
 
-    final private OpenAIClient client;
+    private OpenAIClient client;
+    private Dotenv dotenv;
     final private String model = "gpt-4o-mini";
     final private int maxTokensPerMessage = 3000;
-    final private Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-    public ChatGptService() {
+    public String sendPrompt(String message) throws Exception {
+
+        dotenv = Dotenv.configure().ignoreIfMissing().load();
 
         client = OpenAIOkHttpClient.builder()
             .apiKey(dotenv.get("OPENAI_API_KEY"))
             .build();
-    
-    }
-
-    public String sendPrompt(String message) throws Exception {
 
         ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
             .model(model) 

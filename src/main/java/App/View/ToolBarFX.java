@@ -18,6 +18,8 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class ToolBarFX extends ToolBar {
 
     public final ScrollPane manifestoScrollPane;
@@ -69,9 +71,13 @@ public class ToolBarFX extends ToolBar {
     }
 
     public void setApiKeyPrompt() {
-        TextInputDialog dialog = new TextInputDialog("current-api-key");
+
+        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+        String currentApiKey = dotenv.get("OPENAI_API_KEY");
+
+        TextInputDialog dialog = new TextInputDialog(currentApiKey == null ? "new-api-key" : currentApiKey);
         dialog.setTitle("API Configuration");
-        dialog.setHeaderText("Enter ChatGPT API Key");
+        dialog.setHeaderText("Enter ChatGPT API Key. You can find your API key at https://platform.openai.com/account/api-keys");
         dialog.setContentText("API Key:");
 
         // Show the dialog and wait for the user's response
