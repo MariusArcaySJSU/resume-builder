@@ -13,6 +13,7 @@ import App.View.ManifestoTabFX;
 import App.View.ToolBarFX;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 
 public class Controller {
 
@@ -59,7 +60,8 @@ public class Controller {
     }
 
     private ManifestoTabFX getCurrentManifestoTab() {
-        return (ManifestoTabFX) manifestoScrollPane.getContent();
+        StackPane content = (StackPane) manifestoScrollPane.getContent();
+        return (ManifestoTabFX) content.getChildren().get(0);
     }
 
     public void generateTailoredResume(Manifesto manifesto, String jobDescription, Boolean openWhenDone) {

@@ -38,7 +38,7 @@ public class ExperienceGroupFX extends ResumeItemGroupFX<Experience> {
     protected Node createEntry(Node itemView, Button removeButton, boolean firstItem) {
         ExperienceFX experienceFX = (ExperienceFX) itemView;
         if (firstItem) {
-            return new VBox(10, experienceFX, new Separator());
+            return new VBox(10, experienceFX, removeButton, new Separator());
         }
         return new VBox(10, experienceFX, removeButton, new Separator());
     }

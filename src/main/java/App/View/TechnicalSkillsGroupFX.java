@@ -37,7 +37,7 @@ public class TechnicalSkillsGroupFX extends ResumeItemGroupFX<TechnicalSkills> {
     protected Node createEntry(Node itemView, Button removeButton, boolean firstItem) {
         TechnicalSkillsFX skillFX = (TechnicalSkillsFX) itemView;
         if (firstItem) {
-            return new HBox(10, skillFX);
+            return new HBox(10, skillFX, removeButton);
         }
         return new HBox(10, skillFX, removeButton);
     }

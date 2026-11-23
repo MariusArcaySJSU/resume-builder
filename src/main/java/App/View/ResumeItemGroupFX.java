@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 public abstract class ResumeItemGroupFX<T extends ResumeItem> extends VBox {
 
     protected final VBox itemList;
+    private final ArrayList<Button> removeButtons = new ArrayList<>();
 
     protected ResumeItemGroupFX(String title, String addButtonText, double itemSpacing, Insets itemPadding, double contentSpacing) {
         itemList = new VBox(itemSpacing);
@@ -29,16 +30,33 @@ public abstract class ResumeItemGroupFX<T extends ResumeItem> extends VBox {
 
     public final void clear() {
         itemList.getChildren().clear();
+        removeButtons.clear();
     }
 
     protected final void addItem(T item) {
         Node itemView = createItemView(item);
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
+        removeButton.getStyleClass().add("remove-action");
+        removeButton.setMinWidth(90);
 
         Node entry = createEntry(itemView, removeButton, itemList.getChildren().isEmpty());
         itemList.getChildren().add(entry);
-        removeButton.setOnAction(event -> itemList.getChildren().remove(entry));
+        removeButtons.add(removeButton);
+        updateRemoveButtons();
+        removeButton.setOnAction(event -> {
+            itemList.getChildren().remove(entry);
+            removeButtons.remove(removeButton);
+            updateRemoveButtons();
+        });
+    }
+
+    private void updateRemoveButtons() {
+        boolean showRemoveButtons = itemList.getChildren().size() > 1;
+        for (Button removeButton : removeButtons) {
+            removeButton.setVisible(showRemoveButtons);
+            removeButton.setManaged(showRemoveButtons);
+        }
     }
 
     protected final ArrayList<T> getItems() {

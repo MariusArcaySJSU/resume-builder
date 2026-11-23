@@ -55,6 +55,7 @@ public class EducationFX extends VBox {
         Label endDateLabel = new Label("End Date (Expected):");
         endDatePicker = new DatePicker();
         endDatePicker.setPromptText("MM/DD/YYYY");
+        DateRangeFX.enforce(startDatePicker, endDatePicker);
 
         this.getChildren().addAll(
                 institutionLabel, institutionField,
@@ -131,6 +132,7 @@ public class EducationFX extends VBox {
 
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
+        removeButton.getStyleClass().add("remove-action");
 
         HBox fullDegreeList;
         if (degrees.getChildren().isEmpty()) {

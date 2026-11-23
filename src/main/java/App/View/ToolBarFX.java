@@ -17,6 +17,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
+import javafx.scene.layout.StackPane;
+import javafx.geometry.Pos;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -30,10 +32,12 @@ public class ToolBarFX extends ToolBar {
     public final MenuItem exitItem = new MenuItem("Exit");
 
     public final MenuItem setApiKeyItem = new MenuItem("Edit API Key");
+    private final Runnable showGenerateTab;
 
-    public ToolBarFX(ScrollPane manifestoScrollPane) throws Exception {
+    public ToolBarFX(ScrollPane manifestoScrollPane, Runnable showGenerateTab) throws Exception {
 
         this.manifestoScrollPane = manifestoScrollPane;
+        this.showGenerateTab = showGenerateTab;
 
         MenuButton fileButton = new MenuButton("File");
         MenuButton editButton = new MenuButton("Edit");
@@ -68,6 +72,7 @@ public class ToolBarFX extends ToolBar {
             fileButton, 
             editButton
         );
+        getStyleClass().add("app-toolbar");
     }
 
     public void setApiKeyPrompt() {
@@ -103,14 +108,16 @@ public class ToolBarFX extends ToolBar {
     }
 
     public void createNewManifesto() {
-        manifestoScrollPane.setContent( new ManifestoTabFX() );
+        ManifestoTabFX manifestoTab = new ManifestoTabFX();
+        manifestoTab.setOnContinue(showGenerateTab);
+        setManifestoContent(manifestoTab);
         System.out.println("Created new manifesto");
     }
 
     public void saveManifesto() {
 
         try {
-            ((ManifestoTabFX) manifestoScrollPane.getContent()).generateManifesto().saveManifestoFile();
+            getCurrentManifestoTab().generateManifesto().saveManifestoFile();
             System.out.println("Succesfully saved manifesto");
 
         } catch (Exception e) {
@@ -148,7 +155,9 @@ public class ToolBarFX extends ToolBar {
                     int dotIndex = s.lastIndexOf('.');
                     String fileNameWithoutExtension = s.substring(0, dotIndex);
                     Manifesto manifesto = new Manifesto( fileNameWithoutExtension );
-                    manifestoScrollPane.setContent( new ManifestoTabFX( manifesto ) );
+                    ManifestoTabFX manifestoTab = new ManifestoTabFX(manifesto);
+                    manifestoTab.setOnContinue(showGenerateTab);
+                    setManifestoContent(manifestoTab);
                     System.out.println("Succesfully opened manifesto");
 
                 } catch (Exception e) {
@@ -161,6 +170,17 @@ public class ToolBarFX extends ToolBar {
             openItem.getItems().add( fileButton );
         }
 
+    }
+
+    private ManifestoTabFX getCurrentManifestoTab() {
+        StackPane content = (StackPane) manifestoScrollPane.getContent();
+        return (ManifestoTabFX) content.getChildren().get(0);
+    }
+
+    private void setManifestoContent(ManifestoTabFX manifestoTab) {
+        StackPane content = new StackPane(manifestoTab);
+        content.setAlignment(Pos.TOP_CENTER);
+        manifestoScrollPane.setContent(content);
     }
 
 }

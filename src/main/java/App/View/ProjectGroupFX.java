@@ -38,7 +38,7 @@ public class ProjectGroupFX extends ResumeItemGroupFX<Project> {
     protected Node createEntry(Node itemView, Button removeButton, boolean firstItem) {
         ProjectFX projectFX = (ProjectFX) itemView;
         if (firstItem) {
-            return new VBox(10, projectFX, new Separator());
+            return new VBox(10, projectFX, removeButton, new Separator());
         }
         return new VBox(10, projectFX, removeButton, new Separator());
     }

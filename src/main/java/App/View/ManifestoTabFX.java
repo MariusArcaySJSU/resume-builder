@@ -9,6 +9,8 @@ import App.Model.Resume.ResumeItems.ProjectGroup;
 import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class ManifestoTabFX extends VBox {
 
@@ -17,6 +19,7 @@ public class ManifestoTabFX extends VBox {
     private final ExperienceGroupFX experienceGroupFX;
     private final ProjectGroupFX projectGroupFX;
     private final TechnicalSkillsGroupFX technicalSkillsGroupFX;
+    private final Button continueButton;
 
     public ManifestoTabFX() {
 
@@ -26,14 +29,23 @@ public class ManifestoTabFX extends VBox {
         experienceGroupFX = new ExperienceGroupFX();
         projectGroupFX = new ProjectGroupFX();
         technicalSkillsGroupFX = new TechnicalSkillsGroupFX();
+        continueButton = createContinueButton();
 
         this.setPadding(new Insets(50));
+        this.getStyleClass().add("manifesto-page");
+        Label title = new Label("Build your resume");
+        title.getStyleClass().add("page-title");
+        Label subtitle = new Label("Add the details that make your experience easy to understand.");
+        subtitle.getStyleClass().add("page-subtitle");
         this.getChildren().addAll(
+            title,
+            subtitle,
             headerFX,
             educationGroupFX,
             experienceGroupFX,
             projectGroupFX,
-            technicalSkillsGroupFX
+            technicalSkillsGroupFX,
+            continueButton
         );
     }
 
@@ -47,16 +59,36 @@ public class ManifestoTabFX extends VBox {
         experienceGroupFX = new ExperienceGroupFX(resume.getExperienceGroup());
         projectGroupFX = new ProjectGroupFX(resume.getProjectGroup());
         technicalSkillsGroupFX = new TechnicalSkillsGroupFX(resume.getTechnicalSkillsGroup());
+        continueButton = createContinueButton();
 
         this.setPadding(new Insets(50));
+        this.getStyleClass().add("manifesto-page");
+        Label title = new Label("Build your resume");
+        title.getStyleClass().add("page-title");
+        Label subtitle = new Label("Add the details that make your experience easy to understand.");
+        subtitle.getStyleClass().add("page-subtitle");
         this.getChildren().addAll(
+            title,
+            subtitle,
             headerFX,
             educationGroupFX,
             experienceGroupFX,
             projectGroupFX,
-            technicalSkillsGroupFX
+            technicalSkillsGroupFX,
+            continueButton
         );
 
+    }
+
+    public void setOnContinue(Runnable action) {
+        continueButton.setOnAction(event -> action.run());
+    }
+
+    private Button createContinueButton() {
+        Button button = new Button("Continue to Generate");
+        button.getStyleClass().add("primary-action");
+        button.setMaxWidth(Double.MAX_VALUE);
+        return button;
     }
 
     public Manifesto generateManifesto() throws Exception {
