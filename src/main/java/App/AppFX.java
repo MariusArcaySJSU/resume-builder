@@ -13,6 +13,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class AppFX extends Application {
 
     private ToolBarFX toolBar;
@@ -21,6 +23,8 @@ public class AppFX extends Application {
 
     private ScrollPane manifestoScrollPane;
     private ScrollPane generateScrollPane;
+
+    final private Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -38,6 +42,8 @@ public class AppFX extends Application {
         generateScrollPane = createTab(tabPane, generateTab, "Generate");
         toolBar = new ToolBarFX(manifestoScrollPane);
 
+        if (!isApiKeySet()) toolBar.setApiKeyPrompt();
+
         BorderPane root = new BorderPane();
         root.setTop(toolBar);
         root.setCenter(tabPane);
@@ -52,6 +58,15 @@ public class AppFX extends Application {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    private Boolean isApiKeySet() {
+        if (dotenv.get("OPENAI_API_KEY") == null) {
+            System.out.println("Error fetching api key, will prompt user for one");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private ScrollPane createTab(TabPane tabPane, VBox tabBox, String title) {
