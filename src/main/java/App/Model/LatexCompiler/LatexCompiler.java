@@ -40,6 +40,11 @@ public class LatexCompiler {
 
     public String saveLatexFile(String sanitizedCanidateName, String latex) throws IOException {
 
+        // Generates output folder if doesn't exists
+        if (!Files.isDirectory(Path.of(outputFolder))) {
+            Files.createDirectories(Path.of(outputFolder));
+        }
+
         Path latexFile = Path.of(outputFolder + sanitizedCanidateName + ".tex");
         Files.writeString(latexFile, latex);
         System.out.println("Succesfully saved Latex File: " + latexFile.toString().replace("\\", "/"));
