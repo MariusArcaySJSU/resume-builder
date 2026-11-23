@@ -1,5 +1,4 @@
 % ls-R -- filename database for kpathsea; do not change this line.
-
 ./:
 bibtex
 doc
@@ -60,6 +59,7 @@ local
 local
 
 ./fonts/vf/local:
+
 
 ./metapost:
 local
