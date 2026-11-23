@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class LatexCompiler {
@@ -13,29 +15,52 @@ public class LatexCompiler {
     private static final String outputFolder = resumeFolder + "output/";
     private static final ProcessBuilder pb = new ProcessBuilder();
     
-    private static String pathToCompiler() {
+    private static List<String> compilerCommand() {
         String osName = System.getProperty("os.name").toLowerCase();
-        Path bundledCompiler;
+        List<String> command = new ArrayList<>();
 
         if (osName.contains("win")) {
-            bundledCompiler = Path.of("tools/TinyTeX/bin/windows/pdflatex.exe");
+            command.add("tools/TinyTeX/bin/windows/pdflatex.exe");
         } else if (osName.contains("mac")) {
-            bundledCompiler = Path.of("tools/TinyTeX/bin/universal-darwin/pdflatex");
-
             Path userTinyTex = Path.of(System.getProperty("user.home"), "Library", "TinyTeX",
                     "bin", "universal-darwin", "pdflatex");
-            if (Files.isExecutable(userTinyTex)) {
-                return userTinyTex.toString();
+            if (isUsableExecutable(userTinyTex)) {
+                command.add(userTinyTex.toString());
+                return command;
+            }
+
+            Path bundledPdflatex = Path.of("tools/TinyTeX/bin/universal-darwin/pdflatex");
+            if (isUsableExecutable(bundledPdflatex)) {
+                command.add(bundledPdflatex.toString());
+                return command;
+            }
+
+            
+            Path bundledPdftex = Path.of("tools/TinyTeX/bin/universal-darwin/pdftex");
+            if (isUsableExecutable(bundledPdftex)) {
+                command.add(bundledPdftex.toString());
+                command.add("-fmt=pdflatex");
+                return command;
             }
         } else {
-            bundledCompiler = Path.of("tools/TinyTeX/bin/x86_64-linux/pdflatex");
+            command.add("tools/TinyTeX/bin/x86_64-linux/pdflatex");
         }
 
-        if (Files.isExecutable(bundledCompiler)) {
-            return bundledCompiler.toString();
+        if (isUsableExecutable(Path.of(command.get(0)))) {
+            return command;
         }
 
-        return "pdflatex";
+        command.clear();
+        command.add("pdflatex");
+        return command;
+    }
+
+    private static boolean isUsableExecutable(Path path) {
+        try {
+            return Files.isExecutable(path) && Files.size(path) > 100;
+        } catch (IOException exception) {
+            return false;
+        }
     }
 
     public String saveLatexFile(String sanitizedCanidateName, String latex) throws IOException {
@@ -60,7 +85,11 @@ public class LatexCompiler {
         
         String logOutput;
         pb.redirectErrorStream(true);
-        pb.command(pathToCompiler(), outputFlag, interactionFlag, outputFolder + sanitizedCanidateName + ".tex");
+        List<String> command = compilerCommand();
+        command.add(outputFlag);
+        command.add(interactionFlag);
+        command.add(outputFolder + sanitizedCanidateName + ".tex");
+        pb.command(command);
         Process p = pb.start();
 
         // Read and capture the console output text
