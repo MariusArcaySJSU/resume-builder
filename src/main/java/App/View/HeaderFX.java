@@ -126,6 +126,7 @@ public class HeaderFX extends VBox {
         LinkFX linkFX = new LinkFX(link);
         Button removeButton = new Button("Remove");
         removeButton.setFocusTraversable(false);
+        removeButton.getStyleClass().add("remove-action");
 
         HBox fullLink = new HBox(10, linkFX, removeButton);
 

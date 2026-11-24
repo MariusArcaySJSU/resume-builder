@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -40,14 +41,21 @@ public class AppFX extends Application {
         // Creates toolBar
         manifestoScrollPane = createTab(tabPane, manifestoTab, "Manifesto");
         generateScrollPane = createTab(tabPane, generateTab, "Generate");
-        toolBar = new ToolBarFX(manifestoScrollPane);
+        Runnable showGenerateTab = () -> tabPane.getSelectionModel().select(1);
+        Runnable showManifestoTab = () -> tabPane.getSelectionModel().select(0);
+        manifestoTab.setOnContinue(showGenerateTab);
+        generateTab.setOnReturn(showManifestoTab);
+        toolBar = new ToolBarFX(manifestoScrollPane, showGenerateTab);
 
         if (!isApiKeySet()) toolBar.setApiKeyPrompt();
 
         BorderPane root = new BorderPane();
+        root.getStyleClass().add("app-root");
         root.setTop(toolBar);
         root.setCenter(tabPane);
         Scene scene = new Scene(root, 700, 700);
+        String stylesheet = getClass().getResource("/app.css").toExternalForm();
+        scene.getStylesheets().add(stylesheet);
 
 
 
@@ -70,7 +78,9 @@ public class AppFX extends Application {
     }
 
     private ScrollPane createTab(TabPane tabPane, VBox tabBox, String title) {
-        ScrollPane scrollPane = new ScrollPane(tabBox);
+        StackPane content = new StackPane(tabBox);
+        content.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        ScrollPane scrollPane = new ScrollPane(content);
         scrollPane.setFitToWidth(true);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);

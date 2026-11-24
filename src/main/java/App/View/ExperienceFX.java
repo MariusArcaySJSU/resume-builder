@@ -44,6 +44,8 @@ public class ExperienceFX extends VBox {
 
         Label descriptionLabel = new Label("Description:");
         descriptionArea = new TextArea();
+        descriptionArea.setWrapText(true);
+        descriptionArea.setPrefRowCount(8);
 
         Label startDateLabel = new Label("Start Date:");
         startDatePicker = new DatePicker();
@@ -52,6 +54,7 @@ public class ExperienceFX extends VBox {
         Label endDateLabel = new Label("End Date:");
         endDatePicker = new DatePicker();
         endDatePicker.setPromptText("MM/DD/YYYY");
+        DateRangeFX.enforce(startDatePicker, endDatePicker);
 
         currentlyEmployed = new CheckBox("Currently Employed");
         

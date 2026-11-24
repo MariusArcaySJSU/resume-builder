@@ -40,7 +40,7 @@ public class EducationGroupFX extends ResumeItemGroupFX<Education> {
     protected Node createEntry(Node itemView, Button removeButton, boolean firstItem) {
         EducationFX educationFX = (EducationFX) itemView;
         if (firstItem) {
-            return new VBox(10, educationFX, new Separator());
+            return new VBox(10, educationFX, removeButton, new Separator());
         }
         return new VBox(10, educationFX, removeButton, new Separator());
     }

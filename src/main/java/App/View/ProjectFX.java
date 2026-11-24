@@ -38,6 +38,8 @@ public class ProjectFX extends VBox {
 
         Label descriptionLabel = new Label("Description:");
         descriptionArea = new TextArea();
+        descriptionArea.setWrapText(true);
+        descriptionArea.setPrefRowCount(8);
 
         Label startDateLabel = new Label("Start Date:");
         startDatePicker = new DatePicker();
@@ -46,6 +48,7 @@ public class ProjectFX extends VBox {
         Label endDateLabel = new Label("End Date:");
         endDatePicker = new DatePicker();
         endDatePicker.setPromptText("MM/DD/YYYY");
+        DateRangeFX.enforce(startDatePicker, endDatePicker);
 
         displayDate = new CheckBox("Display Date");
         displayDate.setSelected(true);
