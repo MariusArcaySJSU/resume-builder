@@ -54,11 +54,8 @@ public class GenerateTabFX extends VBox {
         returnButton.getStyleClass().add("secondary-action");
         Label pageTitle = new Label("Generate your resume");
         pageTitle.getStyleClass().add("page-title");
-        Label pageSubtitle = new Label("Create a polished resume from the details you added.");
-        pageSubtitle.getStyleClass().add("page-subtitle");
         this.getChildren().addAll(
             pageTitle,
-            pageSubtitle,
             generatePane,
             returnButton
         );

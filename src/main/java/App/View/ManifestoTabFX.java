@@ -9,8 +9,8 @@ import App.Model.Resume.ResumeItems.ProjectGroup;
 import App.Model.Resume.ResumeItems.TechnicalSkillsGroup;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class ManifestoTabFX extends VBox {
 
@@ -35,11 +35,8 @@ public class ManifestoTabFX extends VBox {
         this.getStyleClass().add("manifesto-page");
         Label title = new Label("Build your resume");
         title.getStyleClass().add("page-title");
-        Label subtitle = new Label("Add the details that make your experience easy to understand.");
-        subtitle.getStyleClass().add("page-subtitle");
         this.getChildren().addAll(
             title,
-            subtitle,
             headerFX,
             educationGroupFX,
             experienceGroupFX,
@@ -65,11 +62,8 @@ public class ManifestoTabFX extends VBox {
         this.getStyleClass().add("manifesto-page");
         Label title = new Label("Build your resume");
         title.getStyleClass().add("page-title");
-        Label subtitle = new Label("Add the details that make your experience easy to understand.");
-        subtitle.getStyleClass().add("page-subtitle");
         this.getChildren().addAll(
             title,
-            subtitle,
             headerFX,
             educationGroupFX,
             experienceGroupFX,

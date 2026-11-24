@@ -151,6 +151,21 @@
     -fx-padding: 9px 10px;
 }
 
+.date-picker,
+.date-picker .text-field,
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #c8c8c8;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 0;
+}
+
 .text-field:focused,
 .text-area:focused,
 .date-picker:focused {
